@@ -2,6 +2,7 @@ import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Footer from '../../ui/Footer';
 import Header from '../../ui/Header';
+import MainDashboard from '../../components/MainDashboard';
 
 export default function Dashboard(): JSX.Element {
   return (
@@ -34,7 +35,7 @@ export default function Dashboard(): JSX.Element {
           }}
         >
           <Header />
-          {/* <MainDashboard /> */}
+          <MainDashboard />
           <Footer />
         </Box>
       </Box>
