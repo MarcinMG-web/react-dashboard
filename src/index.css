@@ -1,0 +1,39 @@
+:root {
+  /* Colors */
+  --color-myOrange: #ff6200;
+  --color-myOrangeHover: #ff4500;
+  --color-myBlack: #333;
+  --color-myWhite: #fff;
+  --color-mySky: #559bd1;
+  --color-mySky60: #77afda;
+  --color-myPrimary: #007bff;
+  --color-myPrimaryHover: #0056b3;
+  --color-mySecondary: #6c757d;
+  --color-mySecondaryHover: #565e64;
+  --color-mySuccess: #28a745;
+  --color-mySuccessHover: #218838;
+  --color-myDanger: #dc3545;
+  --color-myDangerHover: #c82333;
+  --color-myWarning: #ffc107;
+  --color-myWarningHover: #e0a800;
+  --color-myInfo: #17a2b8;
+  --color-myInfoHover: #138496;
+  --color-myLight: #f8f9fa;
+  --color-myLightHover: #dae0e5;
+  --color-myDark: #343a40;
+  --color-myDarkHover: #1d2124;
+  --color-myBrown: #8b4513;
+  --color-myBrownHover: #a1522d;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
