@@ -1,11 +1,12 @@
 {
   "name": "react-dashboard",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "release": "standard-version",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write .",
@@ -37,6 +38,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
+    "standard-version": "^9.5.0",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   },
