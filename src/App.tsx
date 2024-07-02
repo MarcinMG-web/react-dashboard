@@ -8,10 +8,11 @@ import Dashboard from './pages/Dashboard';
 import { auth } from './api/firebase';
 import { User } from 'firebase/auth';
 import { useAppState } from './context/AppState';
-import ProtectedRoute from './components/ProtectedRoute';
+// import ProtectedRoute from './components/ProtectedRoute';
 import { theme } from './theme';
 import { SnackbarOrigin, SnackbarProvider } from 'notistack';
 import { snackbarConfig } from './config/snackbarConfig';
+import MainApp from './pages/MainApp';
 
 export default function App(): JSX.Element {
   const {
@@ -43,7 +44,8 @@ export default function App(): JSX.Element {
     },
     {
       path: RoutesEnum.APP,
-      component: <ProtectedRoute />,
+      // component: <ProtectedRoute />,
+      component: <MainApp />,
     },
     {
       path: RoutesEnum.ANYTHING,

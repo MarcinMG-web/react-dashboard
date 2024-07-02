@@ -35,6 +35,8 @@ export default function Header(): JSX.Element {
         py: 3,
         display: 'flex',
         justifyContent: 'space-between',
+        marginLeft: '3vw',
+        marginRight: '3vw',
       }}
     >
       <Box sx={{ gap: 2, display: 'flex', alignItems: 'center' }}>
