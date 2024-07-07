@@ -16,7 +16,7 @@ import { Order } from './utils/helper';
 import Pagination from '../Pagination';
 import ChipColor from '../ChipColor';
 import { Status } from '../ChipColor/ChipColor';
-import { Button } from '@mui/joy';
+import { Button, Stack } from '@mui/joy';
 
 export default function OrderTable(): JSX.Element {
   const [order, setOrder] = useState<Order>('desc');
@@ -41,7 +41,7 @@ export default function OrderTable(): JSX.Element {
         sx={{
           borderRadius: 'sm',
           py: 2,
-          display: { xs: 'none', sm: 'flex' },
+          display: { xs: 'flex', sm: 'flex' },
           flexWrap: 'wrap',
           gap: 1.5,
           '& > *': {
@@ -55,7 +55,7 @@ export default function OrderTable(): JSX.Element {
         className='OrderTableContainer'
         variant='outlined'
         sx={{
-          display: { xs: 'none', sm: 'initial' },
+          display: { xs: 'initial', sm: 'initial' },
           width: '100%',
           borderRadius: 'sm',
           flexShrink: 1,
@@ -107,8 +107,8 @@ export default function OrderTable(): JSX.Element {
               </th>
               <th style={{ width: 140, padding: '12px 6px' }}>Date</th>
               <th style={{ width: 140, padding: '12px 6px' }}>Status</th>
-              <th style={{ width: 240, padding: '12px 6px' }}>Customer</th>
-              <th style={{ width: 140, padding: '12px 6px' }}> </th>
+              <th style={{ width: 180, padding: '12px 6px' }}>Customer</th>
+              <th style={{ width: 90, padding: '12px 6px' }}>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -142,7 +142,7 @@ export default function OrderTable(): JSX.Element {
                     </div>
                   </Box>
                 </td>
-                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
                   <Button color='neutral' variant='plain' size='md'>
                     <EditIcon color='warning' />
                   </Button>
@@ -152,7 +152,7 @@ export default function OrderTable(): JSX.Element {
                   </Button>
 
                   <RowMenu />
-                </Box>
+                </Stack>
               </tr>
             ))}
           </tbody>

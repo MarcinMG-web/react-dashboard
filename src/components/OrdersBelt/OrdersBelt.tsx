@@ -30,6 +30,9 @@ export default function OrdersBelt(): JSX.Element {
         <Button color='neutral' variant='outlined' startDecorator={<DownloadRoundedIcon />} size='sm'>
           Download PDF
         </Button>
+        <Button color='neutral' variant='outlined' startDecorator={<DownloadRoundedIcon />} size='sm'>
+          Download CSV
+        </Button>
         <Button color='success' startDecorator={<AddIcon />} size='sm'>
           Add new
         </Button>
