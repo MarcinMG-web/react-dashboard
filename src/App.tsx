@@ -9,7 +9,7 @@ import { User } from 'firebase/auth';
 import { useAppState } from './context/AppState';
 import { theme } from './theme';
 import { SnackbarOrigin, SnackbarProvider } from 'notistack';
-import { snackbarConfig } from './config/snackbarConfig';
+import { StyledMaterialDesignContent, snackbarConfig } from './config/snackbarConfig';
 import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App(): JSX.Element {
@@ -57,6 +57,10 @@ export default function App(): JSX.Element {
           iconVariant={snackbarConfig.iconVariant}
           anchorOrigin={snackbarConfig.anchorOrigin as SnackbarOrigin}
           autoHideDuration={snackbarConfig.autoHideDuration}
+          Components={{
+            success: StyledMaterialDesignContent,
+            error: StyledMaterialDesignContent,
+          }}
         >
           <Routes>
             {routes.map(({ path, component }) => (

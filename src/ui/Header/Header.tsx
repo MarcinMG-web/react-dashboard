@@ -1,4 +1,4 @@
-import { Box, Button, Link, Typography } from '@mui/joy';
+import { Box, Button, Link } from '@mui/joy';
 import { signOut } from 'firebase/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
@@ -45,13 +45,13 @@ export default function Header(): JSX.Element {
           </Button>
         )}
         <Link level='title-sm' href='#replace-with-a-link'>
-          PL | EN
+          EN
+        </Link>
+        |
+        <Link level='title-sm' href='#replace-with-a-link'>
+          PL
         </Link>
       </Box>
-
-      <Typography level='title-lg' sx={{ gap: 2, display: 'flex', alignItems: 'center' }}>
-        Dashboard App
-      </Typography>
 
       <ColorSchemeToggle />
     </Box>
