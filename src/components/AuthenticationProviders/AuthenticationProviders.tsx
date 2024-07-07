@@ -2,11 +2,11 @@ import { Button, Stack, Typography } from '@mui/joy';
 import Link from '@mui/joy/Link';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { auth, googleProvider } from '../api/firebase.ts';
-import { useAppState } from '../context/AppState.tsx';
-import RoutesEnum from '../types/routesEnum';
-import GoogleIcon from '../ui/GoogleIcon.tsx.tsx';
 import { useSnackbar } from 'notistack';
+import { auth, googleProvider } from '../../api/firebase';
+import { useAppState } from '../../context/AppState';
+import RoutesEnum from '../../types/routesEnum';
+import GoogleIcon from '../../ui/GoogleIcon/GoogleIcon.tsx';
 
 export default function AuthenticationProviders(): JSX.Element {
   const navigate = useNavigate();

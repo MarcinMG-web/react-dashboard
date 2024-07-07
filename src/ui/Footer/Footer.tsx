@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/joy';
-import packageJson from '../../package.json';
+import packageJson from '../../../package.json';
 
 export default function Footer(): JSX.Element {
   const year = new Date().getFullYear();

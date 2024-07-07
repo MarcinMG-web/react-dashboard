@@ -4,12 +4,12 @@ import Link from '@mui/joy/Link';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../api/firebase.ts';
-import { useAppState } from '../context/AppState.tsx';
-import { authSchema } from '../schema/authenticationFormSchema.ts';
-import { AuthForm, FormValues } from '../types/authenticationFormTypes.ts';
-import RoutesEnum from '../types/routesEnum.ts';
-import ErrorMessage from '../ui/ErrorMessage.tsx';
+import { auth } from '../../api/firebase.ts';
+import { useAppState } from '../../context/AppState.tsx';
+import { authSchema } from '../../schema/authenticationFormSchema.ts';
+import { AuthForm, FormValues } from '../../types/authenticationFormTypes.ts';
+import RoutesEnum from '../../types/routesEnum.ts';
+import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage.tsx';
 import { useSnackbar } from 'notistack';
 
 export default function AuthenticationForm(): JSX.Element {
@@ -90,7 +90,7 @@ export default function AuthenticationForm(): JSX.Element {
           </Link>
         </Box>
 
-        <Button type='submit' fullWidth>
+        <Button type='submit' color='success' fullWidth>
           {registerApp ? 'Registration' : 'Sign in'}
         </Button>
       </Stack>

@@ -4,6 +4,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 export default function Pagination(): JSX.Element {
   const pages = [1, 2, 3, '…', 8, 9, 10];
+
   return (
     <Box
       className='Pagination-laptopUp'

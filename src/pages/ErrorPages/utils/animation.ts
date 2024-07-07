@@ -4,6 +4,8 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 import RunningWithErrorsIcon from '@mui/icons-material/RunningWithErrors';
+import { SvgIconProps } from '@mui/material/SvgIcon';
+import { StyledComponent } from '@emotion/styled';
 
 export const bounce = keyframes`
   0%, 20%, 50%, 80%, 100% {
@@ -17,26 +19,26 @@ export const bounce = keyframes`
   }
 `;
 
-export const AnimatedErrorOutlineIcon = styled(ErrorOutlineIcon)`
+export const AnimatedErrorOutlineIcon: StyledComponent<SvgIconProps> = styled(ErrorOutlineIcon)`
   font-size: 120px;
-  color: var(--color-myBrown);
+  color: var(--color-myOrange);
   animation: ${bounce} 2s infinite;
 `;
 
-export const AnimatedLockPersonIcon = styled(LockPersonIcon)`
+export const AnimatedLockPersonIcon: StyledComponent<SvgIconProps> = styled(LockPersonIcon)`
   font-size: 120px;
-  color: var(--color-myBrown);
+  color: var(--color-myOrange);
   animation: ${bounce} 2s infinite;
 `;
 
-export const AnimatedReportProblemIcon = styled(ReportProblemIcon)`
+export const AnimatedReportProblemIcon: StyledComponent<SvgIconProps> = styled(ReportProblemIcon)`
   font-size: 120px;
-  color: var(--color-myBrown);
+  color: var(--color-myOrange);
   animation: ${bounce} 2s infinite;
 `;
 
-export const AnimatedRunningWithErrorsIcon = styled(RunningWithErrorsIcon)`
+export const AnimatedRunningWithErrorsIcon: StyledComponent<SvgIconProps> = styled(RunningWithErrorsIcon)`
   font-size: 120px;
-  color: var(--color-myBrown);
+  color: var(--color-myOrange);
   animation: ${bounce} 2s infinite;
 `;

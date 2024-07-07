@@ -1,36 +1,38 @@
-import { ColorPaletteProp } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
-
-import Chip from '@mui/joy/Chip';
-
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
 import Link from '@mui/joy/Link';
-import Input from '@mui/joy/Input';
-
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
 import Checkbox from '@mui/joy/Checkbox';
-
 import Typography from '@mui/joy/Typography';
-
-import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
-import BlockIcon from '@mui/icons-material/Block';
-import AutorenewRoundedIcon from '@mui/icons-material/AutorenewRounded';
-
-import { rows } from './utils/data';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { DataRow, rows } from './utils/data';
 import RowMenu from '../RowMenu';
-import Filters from '../Filters';
-import { useState } from 'react';
-import { stableSort, getComparator, Order } from './utils/helper';
+import TableFilters from '../ TableFilters';
+import { ChangeEvent, useState } from 'react';
+import { Order } from './utils/helper';
 import Pagination from '../Pagination';
+import ChipColor from '../ChipColor';
+import { Status } from '../ChipColor/ChipColor';
+import { Button } from '@mui/joy';
 
 export default function OrderTable(): JSX.Element {
   const [order, setOrder] = useState<Order>('desc');
   const [selected, setSelected] = useState<readonly string[]>([]);
+
+  const setSelectedCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelected(event.target.checked ? rows.map((row) => row.id) : []);
+  };
+
+  const handleCheckBoxChange = (event: ChangeEvent<HTMLInputElement>, row: DataRow) => {
+    setSelected((ids) => (event.target.checked ? [...ids, row.id] : ids.filter((itemId) => itemId !== row.id)));
+  };
+
+  const setOrderInvoice = () => {
+    setOrder(order === 'asc' ? 'desc' : 'asc');
+  };
 
   return (
     <>
@@ -47,11 +49,7 @@ export default function OrderTable(): JSX.Element {
           },
         }}
       >
-        <FormControl sx={{ flex: 1 }} size='sm'>
-          <FormLabel>Search for order</FormLabel>
-          <Input size='sm' placeholder='Search' startDecorator={<SearchIcon />} />
-        </FormControl>
-        <Filters />
+        <TableFilters />
       </Box>
       <Sheet
         className='OrderTableContainer'
@@ -84,9 +82,7 @@ export default function OrderTable(): JSX.Element {
                   size='sm'
                   indeterminate={selected.length > 0 && selected.length !== rows.length}
                   checked={selected.length === rows.length}
-                  onChange={(event) => {
-                    setSelected(event.target.checked ? rows.map((row) => row.id) : []);
-                  }}
+                  onChange={(event) => setSelectedCheckBox(event)}
                   color={selected.length > 0 || selected.length === rows.length ? 'primary' : undefined}
                   sx={{ verticalAlign: 'text-bottom' }}
                 />
@@ -96,7 +92,7 @@ export default function OrderTable(): JSX.Element {
                   underline='none'
                   color='primary'
                   component='button'
-                  onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
+                  onClick={setOrderInvoice}
                   fontWeight='lg'
                   endDecorator={<ArrowDropDownIcon />}
                   sx={{
@@ -116,18 +112,14 @@ export default function OrderTable(): JSX.Element {
             </tr>
           </thead>
           <tbody>
-            {stableSort(rows, getComparator(order, 'id')).map((row) => (
+            {rows.map((row) => (
               <tr key={row.id}>
                 <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox
                     size='sm'
                     checked={selected.includes(row.id)}
                     color={selected.includes(row.id) ? 'primary' : undefined}
-                    onChange={(event) => {
-                      setSelected((ids) =>
-                        event.target.checked ? ids.concat(row.id) : ids.filter((itemId) => itemId !== row.id),
-                      );
-                    }}
+                    onChange={(event) => handleCheckBoxChange(event, row)}
                     slotProps={{ checkbox: { sx: { textAlign: 'left' } } }}
                     sx={{ verticalAlign: 'text-bottom' }}
                   />
@@ -139,26 +131,7 @@ export default function OrderTable(): JSX.Element {
                   <Typography level='body-xs'>{row.date}</Typography>
                 </td>
                 <td>
-                  <Chip
-                    variant='soft'
-                    size='sm'
-                    startDecorator={
-                      {
-                        Paid: <CheckRoundedIcon />,
-                        Refunded: <AutorenewRoundedIcon />,
-                        Cancelled: <BlockIcon />,
-                      }[row.status]
-                    }
-                    color={
-                      {
-                        Paid: 'success',
-                        Refunded: 'neutral',
-                        Cancelled: 'danger',
-                      }[row.status] as ColorPaletteProp
-                    }
-                  >
-                    {row.status}
-                  </Chip>
+                  <ChipColor status={row.status as Status} />
                 </td>
                 <td>
                   <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
@@ -169,14 +142,17 @@ export default function OrderTable(): JSX.Element {
                     </div>
                   </Box>
                 </td>
-                <td>
-                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                    <Link level='body-xs' component='button'>
-                      Download
-                    </Link>
-                    <RowMenu />
-                  </Box>
-                </td>
+                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                  <Button color='neutral' variant='plain' size='md'>
+                    <EditIcon color='warning' />
+                  </Button>
+
+                  <Button color='danger' variant='plain' size='md'>
+                    <DeleteIcon color='error' />
+                  </Button>
+
+                  <RowMenu />
+                </Box>
               </tr>
             ))}
           </tbody>

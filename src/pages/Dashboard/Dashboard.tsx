@@ -1,8 +1,8 @@
 import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
-import Footer from '../../ui/Footer';
 import Header from '../../ui/Header';
-import MainDashboard from '../../components/MainDashboard';
+import Footer from '../../ui/Footer';
+import MainDashboard from '../../components/MainDashboard/MainDashboard';
 
 export default function Dashboard(): JSX.Element {
   return (
@@ -55,9 +55,9 @@ export default function Dashboard(): JSX.Element {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundImage: 'url(src/assets/lightMode.png)',
+          backgroundImage: 'url(src/assets/light.png)',
           [theme.getColorSchemeSelector('dark')]: {
-            backgroundImage: 'url(src/assets/darkMode.png)',
+            backgroundImage: 'url(src/assets/dark.png)',
           },
         })}
       />

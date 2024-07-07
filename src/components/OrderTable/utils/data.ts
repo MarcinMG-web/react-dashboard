@@ -1,4 +1,26 @@
-export const rows = [
+export type DataRow = {
+  id: string;
+  date: string;
+  status: string;
+  customer: {
+    initial: string;
+    name: string;
+    email: string;
+  };
+};
+
+export type DataRows = {
+  id: string;
+  date: string;
+  status: string;
+  customer: {
+    initial: string;
+    name: string;
+    email: string;
+  };
+}[];
+
+export const rows: DataRows = [
   {
     id: 'INV-1234',
     date: 'Feb 3, 2023',
