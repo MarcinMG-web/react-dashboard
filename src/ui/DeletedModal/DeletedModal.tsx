@@ -25,11 +25,18 @@ export default function DeletedModal(): JSX.Element {
       <Modal open={openDeletedModal} onClose={onClosed}>
         <ModalDialog variant='outlined' role='alertdialog'>
           <DialogTitle>
-            <WarningRoundedIcon />
+            <WarningRoundedIcon
+              sx={{
+                color: 'var(--joy-palette-danger-700, #7D1212)',
+              }}
+            />
             Confirmation
           </DialogTitle>
+
           <Divider />
+
           <DialogContent>Are you sure you want to discard all of your notes?</DialogContent>
+
           <DialogActions>
             <Button variant='solid' color='danger' onClick={onSubmit}>
               Discard notes

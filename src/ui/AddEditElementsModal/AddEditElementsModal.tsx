@@ -1,8 +1,12 @@
-import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Typography from '@mui/joy/Typography';
+import Divider from '@mui/joy/Divider';
+import DialogTitle from '@mui/joy/DialogTitle';
+import DialogContent from '@mui/joy/DialogContent';
+import DialogActions from '@mui/joy/DialogActions';
+import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
 import { useAppState } from '../../context/AppState';
 
 export default function AddEditElementsModal(): JSX.Element {
@@ -36,31 +40,37 @@ export default function AddEditElementsModal(): JSX.Element {
             },
           })}
         >
-          <Typography id='nested-modal-title' level='h2'>
+          <DialogTitle>
+            {openModalAddEditElements.isEdit ? (
+              <EditIcon
+                sx={{
+                  color: 'var(--joy-palette-warning-500, #9A5B13)',
+                }}
+              />
+            ) : (
+              <AddIcon
+                sx={{
+                  color: ' var(--joy-palette-success-solidBg)',
+                }}
+              />
+            )}
             {openModalAddEditElements.isEdit
               ? 'Are you absolutely sure to edit element?'
               : 'Are you absolutely sure to add new element?'}
-          </Typography>
+          </DialogTitle>
 
-          <Typography id='nested-modal-description' textColor='text.tertiary'>
-            This action cannot be undone. This will permanently delete your account and remove your data from our
-            servers.
-          </Typography>
-          <Box
-            sx={{
-              mt: 1,
-              display: 'flex',
-              gap: 1,
-              flexDirection: { xs: 'column', sm: 'row-reverse' },
-            }}
-          >
+          <Divider />
+
+          <DialogContent>Place for form</DialogContent>
+
+          <DialogActions>
             <Button variant='solid' color='success' onClick={onSubmit}>
-              Continue
+              Submit
             </Button>
             <Button variant='outlined' color='neutral' onClick={onClose}>
               Cancel
             </Button>
-          </Box>
+          </DialogActions>
         </ModalDialog>
       </Modal>
     </>
