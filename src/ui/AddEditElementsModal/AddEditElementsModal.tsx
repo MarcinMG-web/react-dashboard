@@ -66,9 +66,7 @@ export default function AddEditElementsModal(): JSX.Element {
                 }}
               />
             )}
-            {openModalAddEditElements.isEdit
-              ? 'Are you absolutely sure to edit element?'
-              : 'Are you absolutely sure to add new element?'}
+            {openModalAddEditElements.isEdit ? 'Edit element?' : 'Add new element?'}
           </DialogTitle>
 
           <Divider />
