@@ -18,4 +18,5 @@ export enum StatusOptions {
   PENDING = 'Pending',
   PAID = 'Paid',
   REFUNDED = 'Refunded',
+  CANCELLED = 'Cancelled',
 }
