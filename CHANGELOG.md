@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.4 (2024-07-08)
+
+### Features
+
+- added deleted modal ([333e4f5](https://github.com/MarcinMG-web/react-dashboard/commit/333e4f5429c1cb694b13028ee3013ea43f9f2fc1))
+
 ### 0.1.3 (2024-07-07)
 
 ### Features
