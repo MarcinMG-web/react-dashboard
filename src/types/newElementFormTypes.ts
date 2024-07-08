@@ -13,3 +13,9 @@ export enum ElementForm {
   STATUS = 'status',
   CUSTOMER_INITIAL = 'customerInitial',
 }
+
+export enum StatusOptions {
+  PENDING = 'Pending',
+  PAID = 'Paid',
+  REFUNDED = 'Refunded',
+}

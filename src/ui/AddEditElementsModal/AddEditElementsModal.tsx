@@ -30,7 +30,7 @@ export default function AddEditElementsModal(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = (data: ElementFormValues) => {
     // To DO: Data to send
-
+    // console.log(data);
     onClose();
   };
 

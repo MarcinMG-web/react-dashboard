@@ -150,25 +150,27 @@ export default function OrderTable(): JSX.Element {
                     </div>
                   </Stack>
                 </td>
-                <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                  <Button color='neutral' variant='plain' size='md' onClick={onClickEditElement}>
-                    <EditIcon
-                      sx={{
-                        color: 'var(--joy-palette-warning-500, #9A5B13)',
-                      }}
-                    />
-                  </Button>
+                <td>
+                  <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+                    <Button color='neutral' variant='plain' size='md' onClick={onClickEditElement}>
+                      <EditIcon
+                        sx={{
+                          color: 'var(--joy-palette-warning-500, #9A5B13)',
+                        }}
+                      />
+                    </Button>
 
-                  <Button color='danger' variant='plain' size='md' onClick={onClickRemovedElement}>
-                    <DeleteForever
-                      sx={{
-                        color: 'var(--joy-palette-danger-700, #7D1212)',
-                      }}
-                    />
-                  </Button>
+                    <Button color='danger' variant='plain' size='md' onClick={onClickRemovedElement}>
+                      <DeleteForever
+                        sx={{
+                          color: 'var(--joy-palette-danger-700, #7D1212)',
+                        }}
+                      />
+                    </Button>
 
-                  <RowMenu />
-                </Stack>
+                    <RowMenu />
+                  </Stack>
+                </td>
               </tr>
             ))}
           </tbody>
