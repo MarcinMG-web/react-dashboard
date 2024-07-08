@@ -6,10 +6,11 @@ import Header from '../../ui/Header';
 import OrdersBelt from '../../components/OrdersBelt';
 import AddEditElementsModal from '../../ui/AddEditElementsModal';
 import { useAppState } from '../../context/AppState';
+import DeletedModal from '../../ui/DeletedModal';
 
 export default function MainApp(): JSX.Element {
   const {
-    state: { openModalAddEditElements },
+    state: { openModalAddEditElements, openDeletedModal },
   } = useAppState();
 
   return (
@@ -43,6 +44,7 @@ export default function MainApp(): JSX.Element {
           </Box>
 
           {openModalAddEditElements.modal && <AddEditElementsModal />}
+          {openDeletedModal && <DeletedModal />}
           <OrdersBelt />
           <OrderTable />
         </Box>

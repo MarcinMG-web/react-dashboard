@@ -6,4 +6,5 @@ export interface State {
   currentUser: User | null;
   registerApp: boolean;
   openModalAddEditElements: { modal: boolean; isEdit: boolean };
+  openDeletedModal: boolean;
 }

@@ -28,6 +28,11 @@ export const appReducer = (state: State, action: Action): State => {
           isEdit: action.payload.isEdit,
         },
       };
+    case 'SET_OPEN_DELETED_MODAL':
+      return {
+        ...state,
+        openDeletedModal: action.payload,
+      };
 
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

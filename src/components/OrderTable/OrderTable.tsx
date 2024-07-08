@@ -6,7 +6,7 @@ import Sheet from '@mui/joy/Sheet';
 import Checkbox from '@mui/joy/Checkbox';
 import Typography from '@mui/joy/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteForever from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataRow, rows } from './utils/data';
 import RowMenu from '../RowMenu';
@@ -37,9 +37,10 @@ export default function OrderTable(): JSX.Element {
     setOrder(order === 'asc' ? 'desc' : 'asc');
   };
 
-  const onClickEditElement = () => {
+  const onClickEditElement = () =>
     dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: true, isEdit: true } });
-  };
+
+  const onClickRemovedElement = () => dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
 
   return (
     <>
@@ -158,8 +159,8 @@ export default function OrderTable(): JSX.Element {
                     />
                   </Button>
 
-                  <Button color='danger' variant='plain' size='md'>
-                    <DeleteIcon
+                  <Button color='danger' variant='plain' size='md' onClick={onClickRemovedElement}>
+                    <DeleteForever
                       sx={{
                         color: 'var(--joy-palette-danger-700, #7D1212)',
                       }}
