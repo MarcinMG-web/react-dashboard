@@ -4,8 +4,15 @@ import OrderTable from '../../components/OrderTable/OrderTable';
 import PageLocator from '../../components/PageLocator';
 import Header from '../../ui/Header';
 import OrdersBelt from '../../components/OrdersBelt';
+import AddEditElementsModal from '../../ui/AddEditElementsModal';
+import { useAppState } from '../../context/AppState';
+import DeletedModal from '../../ui/DeletedModal';
 
 export default function MainApp(): JSX.Element {
+  const {
+    state: { openModalAddEditElements, openDeletedModal },
+  } = useAppState();
+
   return (
     <div>
       <CssBaseline />
@@ -36,6 +43,8 @@ export default function MainApp(): JSX.Element {
             <PageLocator />
           </Box>
 
+          {openModalAddEditElements.modal && <AddEditElementsModal />}
+          {openDeletedModal && <DeletedModal />}
           <OrdersBelt />
           <OrderTable />
         </Box>
