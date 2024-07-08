@@ -1,4 +1,3 @@
-import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Divider from '@mui/joy/Divider';
@@ -8,6 +7,12 @@ import DialogActions from '@mui/joy/DialogActions';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import { useAppState } from '../../context/AppState';
+import { useForm, FormProvider } from 'react-hook-form';
+import { Button } from '@mui/joy';
+import NewElementForm from '../../components/NewElementForm';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { newElementSchema } from '../../schema/newElementSchema';
+import { ElementFormValues } from '../../types/newElementFormTypes';
 
 export default function AddEditElementsModal(): JSX.Element {
   const {
@@ -18,7 +23,14 @@ export default function AddEditElementsModal(): JSX.Element {
   const onClose = () =>
     dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: false, isEdit: false } });
 
-  const onSubmit = () => {
+  const methods = useForm({
+    resolver: yupResolver(newElementSchema),
+  });
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onSubmit = (data: ElementFormValues) => {
+    // To DO: Data to send
+    // console.log(data);
     onClose();
   };
 
@@ -50,27 +62,31 @@ export default function AddEditElementsModal(): JSX.Element {
             ) : (
               <AddIcon
                 sx={{
-                  color: ' var(--joy-palette-success-solidBg)',
+                  color: 'var(--joy-palette-success-solidBg)',
                 }}
               />
             )}
-            {openModalAddEditElements.isEdit
-              ? 'Are you absolutely sure to edit element?'
-              : 'Are you absolutely sure to add new element?'}
+            {openModalAddEditElements.isEdit ? 'Edit element?' : 'Add new element?'}
           </DialogTitle>
 
           <Divider />
 
-          <DialogContent>Place for form</DialogContent>
+          <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
+              <DialogContent>
+                <NewElementForm />
+              </DialogContent>
 
-          <DialogActions>
-            <Button variant='solid' color='success' onClick={onSubmit}>
-              Submit
-            </Button>
-            <Button variant='outlined' color='neutral' onClick={onClose}>
-              Cancel
-            </Button>
-          </DialogActions>
+              <DialogActions>
+                <Button variant='solid' color='success' type='submit'>
+                  Submit
+                </Button>
+                <Button variant='outlined' color='neutral' onClick={onClose}>
+                  Cancel
+                </Button>
+              </DialogActions>
+            </form>
+          </FormProvider>
         </ModalDialog>
       </Modal>
     </>
