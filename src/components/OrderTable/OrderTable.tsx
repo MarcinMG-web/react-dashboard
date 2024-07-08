@@ -134,21 +134,29 @@ export default function OrderTable(): JSX.Element {
                   <ChipColor status={row.status as Status} />
                 </td>
                 <td>
-                  <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                  <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
                     <Avatar size='sm'>{row.customer.initial}</Avatar>
                     <div>
                       <Typography level='body-xs'>{row.customer.name}</Typography>
                       <Typography level='body-xs'>{row.customer.email}</Typography>
                     </div>
-                  </Box>
+                  </Stack>
                 </td>
                 <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
                   <Button color='neutral' variant='plain' size='md'>
-                    <EditIcon color='warning' />
+                    <EditIcon
+                      sx={{
+                        color: 'var(--joy-palette-warning-500, #9A5B13)',
+                      }}
+                    />
                   </Button>
 
                   <Button color='danger' variant='plain' size='md'>
-                    <DeleteIcon color='error' />
+                    <DeleteIcon
+                      sx={{
+                        color: 'var(--joy-palette-danger-700, #7D1212)',
+                      }}
+                    />
                   </Button>
 
                   <RowMenu />

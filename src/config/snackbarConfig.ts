@@ -18,6 +18,6 @@ export const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => (
       'var(--variant-solidBg, var(--joy-palette-success-solidBg, var(--joy-palette-success-500, #1F7A1F)))',
   },
   '&.notistack-MuiContent-error': {
-    backgroundColor: '#970C0C',
+    backgroundColor: 'var(--joy-palette-danger-700, #7D1212)',
   },
 }));
