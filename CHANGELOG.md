@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- add new form to add or eddit elements ([3140eb8](https://github.com/MarcinMG-web/react-dashboard/commit/3140eb8afc19eda8790c4a226ded82a230ae9f91))
+- add new form to add or edit elements ([3140eb8](https://github.com/MarcinMG-web/react-dashboard/commit/3140eb8afc19eda8790c4a226ded82a230ae9f91))
 
 ### Bug Fixes
 
