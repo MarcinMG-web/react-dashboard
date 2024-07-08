@@ -17,8 +17,11 @@ import Pagination from '../Pagination';
 import ChipColor from '../ChipColor';
 import { Status } from '../ChipColor/ChipColor';
 import { Button, Stack } from '@mui/joy';
+import { useAppState } from '../../context/AppState';
 
 export default function OrderTable(): JSX.Element {
+  const { dispatch } = useAppState();
+
   const [order, setOrder] = useState<Order>('desc');
   const [selected, setSelected] = useState<readonly string[]>([]);
 
@@ -32,6 +35,10 @@ export default function OrderTable(): JSX.Element {
 
   const setOrderInvoice = () => {
     setOrder(order === 'asc' ? 'desc' : 'asc');
+  };
+
+  const onClickEditElement = () => {
+    dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: true, isEdit: true } });
   };
 
   return (
@@ -143,7 +150,7 @@ export default function OrderTable(): JSX.Element {
                   </Stack>
                 </td>
                 <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                  <Button color='neutral' variant='plain' size='md'>
+                  <Button color='neutral' variant='plain' size='md' onClick={onClickEditElement}>
                     <EditIcon
                       sx={{
                         color: 'var(--joy-palette-warning-500, #9A5B13)',
