@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { DataRow, rows } from './utils/data';
 import RowMenu from '../RowMenu';
-import TableFilters from '../ TableFilters';
+import TableFilters from '../TableFilters';
 import { ChangeEvent, useState } from 'react';
 import { Order } from './utils/helper';
 import Pagination from '../Pagination';
