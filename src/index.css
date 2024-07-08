@@ -2,7 +2,7 @@
   /* Colors */
   --color-myOrange: #ff6200;
   --color-myOrangeHover: #ff4500;
-  --color-myBlack: #333;
+  --color-myBlack: #0e1926;
   --color-myWhite: #fff;
   --color-mySky: #559bd1;
   --color-mySky60: #77afda;
@@ -27,7 +27,6 @@
 }
 
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 0.5rem;
 }

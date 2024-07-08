@@ -6,9 +6,9 @@ export const theme = extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.color === 'primary' && {
-            backgroundColor: 'var(--color-myBrown)',
+            backgroundColor: 'var(--color-myOrange)',
             '&:hover': {
-              background: 'var(--color-myBrownHover)',
+              background: 'var(--color-myOrangeHover)',
             },
           }),
         }),

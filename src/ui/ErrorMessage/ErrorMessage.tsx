@@ -1,4 +1,4 @@
-import { InfoOutlined } from '@mui/icons-material';
+import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 import { FormHelperText } from '@mui/joy';
 
 interface ErrorMessageProps {
@@ -10,7 +10,7 @@ interface ErrorMessageProps {
 export default function ErrorMessage({ error }: ErrorMessageProps): JSX.Element {
   return (
     <FormHelperText>
-      <InfoOutlined />
+      <WarningAmberRoundedIcon />
       {error?.message}
     </FormHelperText>
   );

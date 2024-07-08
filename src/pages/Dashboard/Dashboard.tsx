@@ -1,8 +1,8 @@
 import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
-import Footer from '../../ui/Footer';
 import Header from '../../ui/Header';
-import MainDashboard from '../../components/MainDashboard';
+import Footer from '../../ui/Footer';
+import MainDashboard from '../../components/MainDashboard/MainDashboard';
 
 export default function Dashboard(): JSX.Element {
   return (
@@ -11,13 +11,14 @@ export default function Dashboard(): JSX.Element {
 
       <Box
         sx={(theme) => ({
-          width: { xs: '100%', md: '25vw' },
+          width: { xs: '100%', md: '48vw' },
           transition: 'width var(--Transition-duration)',
           transitionDelay: 'calc(var(--Transition-duration) + 0.1s)',
           position: 'relative',
           zIndex: 1,
           display: 'flex',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
+          alignItems: 'center',
           backdropFilter: 'blur(12px)',
           backgroundColor: 'rgba(255 255 255 / 0.2)',
           [theme.getColorSchemeSelector('dark')]: {
@@ -54,9 +55,9 @@ export default function Dashboard(): JSX.Element {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundImage: 'url(src/assets/lightMode.png)',
+          backgroundImage: 'url(src/assets/light.png)',
           [theme.getColorSchemeSelector('dark')]: {
-            backgroundImage: 'url(src/assets/darkMode.png)',
+            backgroundImage: 'url(src/assets/dark.png)',
           },
         })}
       />
