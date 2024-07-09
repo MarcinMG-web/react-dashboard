@@ -9,18 +9,18 @@ export type DataRow = {
   };
 };
 
-export type DataRows = {
-  id: string;
-  date: string;
-  status: string;
-  customer: {
-    initial: string;
-    name: string;
-    email: string;
-  };
-}[];
+// export type DataRows = {
+//   id: string;
+//   date: string;
+//   status: string;
+//   customer: {
+//     initial: string;
+//     name: string;
+//     email: string;
+//   };
+// }[];
 
-export const rows: DataRows = [
+export const rows: DataRow[] = [
   {
     id: 'INV-1234',
     date: 'Feb 3, 2023',

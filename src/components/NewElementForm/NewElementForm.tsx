@@ -35,7 +35,12 @@ export default function NewElementForm(): JSX.Element {
             name={ElementForm.STATUS}
             control={control}
             render={({ field }) => (
-              <Select {...field} value={field.value} onChange={(_, value) => field.onChange(value)}>
+              <Select
+                {...field}
+                value={field.value || ''}
+                placeholder='Select option...'
+                onChange={(_, value) => field.onChange(value)}
+              >
                 {Object.entries(StatusOptions).map(([key, value]) => (
                   <Option key={key} value={value}>
                     {value}

@@ -13,27 +13,68 @@ import NewElementForm from '../../components/NewElementForm';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { newElementSchema } from '../../schema/newElementSchema';
 import { ElementFormValues } from '../../types/newElementFormTypes';
+import { addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { customerCollectionRef, db } from '../../api/firebase';
+import { ExpectedAPIFormat, dataPayloadNewElement } from '../../api/utils/dataPayloadNewElement';
+import { useEffect } from 'react';
+import { expectedElementFormValues } from '../../api/utils/expectedFrontedData';
 
 export default function AddEditElementsModal(): JSX.Element {
   const {
-    state: { openModalAddEditElements },
+    state: { openModalAddEditElements, selectedId },
     dispatch,
   } = useAppState();
 
   const onClose = () =>
     dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: false, isEdit: false } });
 
-  const methods = useForm({
+  const methods = useForm<ElementFormValues>({
     resolver: yupResolver(newElementSchema),
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (data: ElementFormValues) => {
-    // To DO: Data to send
-    // console.log(data);
-    onClose();
+  useEffect(() => {
+    if (openModalAddEditElements.isEdit && selectedId) {
+      getDocumentById(selectedId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openModalAddEditElements.isEdit, selectedId]);
+
+  const addNewOnSubmit = async (data: ElementFormValues) => {
+    try {
+      const expectedFormatData = dataPayloadNewElement(data);
+      await addDoc(customerCollectionRef, expectedFormatData);
+      onClose();
+    } catch (error) {
+      // console.error('Error adding document:', error);
+      // To do: add toast notification
+    }
   };
 
+  const getDocumentById = async (id: string) => {
+    try {
+      const docRef = doc(customerCollectionRef, id);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const dataFromDB = docSnap.data();
+        const dataInEditForm = expectedElementFormValues(dataFromDB as ExpectedAPIFormat);
+        methods.reset(dataInEditForm);
+      }
+    } catch (error) {
+      // console.error('Error fetching document:', error);
+    }
+  };
+
+  const editOnSubmit = async (data: ElementFormValues) => {
+    try {
+      const expectedFormatData = dataPayloadNewElement(data);
+      const customerDoc = doc(db, 'customers', selectedId);
+      await updateDoc(customerDoc, expectedFormatData);
+      onClose();
+    } catch (error) {
+      // console.error('Error updating document:', error);
+      // To do: add toast notification
+    }
+  };
   return (
     <>
       <Modal open={openModalAddEditElements.modal} onClose={onClose}>
@@ -72,7 +113,13 @@ export default function AddEditElementsModal(): JSX.Element {
           <Divider />
 
           <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <form
+              onSubmit={
+                openModalAddEditElements.isEdit
+                  ? methods.handleSubmit(editOnSubmit)
+                  : methods.handleSubmit(addNewOnSubmit)
+              }
+            >
               <DialogContent>
                 <NewElementForm />
               </DialogContent>

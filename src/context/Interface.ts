@@ -7,4 +7,5 @@ export interface State {
   registerApp: boolean;
   openModalAddEditElements: { modal: boolean; isEdit: boolean };
   openDeletedModal: boolean;
+  selectedId: string;
 }

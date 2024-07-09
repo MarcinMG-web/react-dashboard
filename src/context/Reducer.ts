@@ -33,6 +33,11 @@ export const appReducer = (state: State, action: Action): State => {
         ...state,
         openDeletedModal: action.payload,
       };
+    case 'SET_SELECTED_ID':
+      return {
+        ...state,
+        selectedId: action.payload,
+      };
 
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

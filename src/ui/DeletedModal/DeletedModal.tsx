@@ -7,17 +7,26 @@ import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useAppState } from '../../context/AppState';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../api/firebase';
 
 export default function DeletedModal(): JSX.Element {
   const {
-    state: { openDeletedModal },
+    state: { openDeletedModal, selectedId },
     dispatch,
   } = useAppState();
 
   const onClosed = () => dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: false });
 
-  const onSubmit = () => {
-    onClosed();
+  const onSubmit = async () => {
+    try {
+      const customerDoc = doc(db, 'customers', selectedId);
+      await deleteDoc(customerDoc);
+      onClosed();
+    } catch (error) {
+      // To Do: Add tost
+      // console.log(error);
+    }
   };
 
   return (
