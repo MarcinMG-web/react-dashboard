@@ -14,8 +14,8 @@ export default function NewElementForm(): JSX.Element {
     <Grid container spacing={2} sx={{ width: '100%', margin: 0 }}>
       <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
         <FormControl error={!!errors?.customerName}>
-          <FormLabel htmlFor='customerName'>Customer Name</FormLabel>
-          <Input id='customerName' {...register(ElementForm.CUSTOMER_NAME)} />
+          <FormLabel htmlFor={ElementForm.CUSTOMER_NAME}>Customer Name</FormLabel>
+          <Input id={ElementForm.CUSTOMER_NAME} {...register(ElementForm.CUSTOMER_NAME)} />
           {!!errors?.customerName && <ErrorMessage error={errors.customerName} />}
         </FormControl>
       </Grid>
@@ -35,7 +35,7 @@ export default function NewElementForm(): JSX.Element {
             name={ElementForm.STATUS}
             control={control}
             render={({ field }) => (
-              <Select {...field} value={field.value || ''} onChange={(_, value) => field.onChange(value)}>
+              <Select {...field} value={field.value} onChange={(_, value) => field.onChange(value)}>
                 {Object.entries(StatusOptions).map(([key, value]) => (
                   <Option key={key} value={value}>
                     {value}

@@ -78,7 +78,7 @@ export default function AddEditElementsModal(): JSX.Element {
               </DialogContent>
 
               <DialogActions>
-                <Button variant='solid' color='success' type='submit'>
+                <Button variant='solid' color={openModalAddEditElements.isEdit ? 'warning' : 'success'} type='submit'>
                   Submit
                 </Button>
                 <Button variant='outlined' color='neutral' onClick={onClose}>
