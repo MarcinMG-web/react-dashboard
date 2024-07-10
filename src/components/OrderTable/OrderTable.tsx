@@ -58,6 +58,8 @@ export default function OrderTable(): JSX.Element {
     dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
   };
 
+  const slice = (id: string) => id.slice(0, 5);
+
   return (
     <>
       <Box
@@ -149,7 +151,7 @@ export default function OrderTable(): JSX.Element {
                   />
                 </td>
                 <td>
-                  <Typography level='body-xs'>{row.id}</Typography>
+                  <Typography level='body-xs'>{`INV-${slice(row.id)}`}</Typography>
                 </td>
                 <td>
                   <Typography level='body-xs'>{row.date}</Typography>
