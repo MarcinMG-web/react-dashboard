@@ -34,10 +34,11 @@ export default function NewElementForm(): JSX.Element {
           <Controller
             name={ElementForm.STATUS}
             control={control}
+            defaultValue=''
             render={({ field }) => (
               <Select
                 {...field}
-                value={field.value || ''}
+                value={field.value}
                 placeholder='Select option...'
                 onChange={(_, value) => field.onChange(value)}
               >
