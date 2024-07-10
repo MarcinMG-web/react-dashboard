@@ -9,12 +9,15 @@ import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useAppState } from '../../context/AppState';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../api/firebase';
+import { useSnackbar } from 'notistack';
 
 export default function DeletedModal(): JSX.Element {
   const {
     state: { openDeletedModal, selectedId },
     dispatch,
   } = useAppState();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const onClosed = () => dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: false });
 
@@ -23,16 +26,31 @@ export default function DeletedModal(): JSX.Element {
       const customerDoc = doc(db, 'customers', selectedId);
       await deleteDoc(customerDoc);
       onClosed();
+      enqueueSnackbar('The item has been deleted!', { variant: 'success' });
     } catch (error) {
-      // To Do: Add tost
-      // console.log(error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   };
 
   return (
     <>
       <Modal open={openDeletedModal} onClose={onClosed}>
-        <ModalDialog variant='outlined' role='alertdialog'>
+        <ModalDialog
+          variant='outlined'
+          role='alertdialog'
+          sx={(theme) => ({
+            [theme.breakpoints.only('xs')]: {
+              top: 'unset',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              borderRadius: 0,
+              transform: 'none',
+              maxWidth: 'unset',
+            },
+          })}
+        >
           <DialogTitle>
             <WarningRoundedIcon
               sx={{

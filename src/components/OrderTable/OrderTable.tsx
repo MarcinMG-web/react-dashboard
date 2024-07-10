@@ -19,46 +19,22 @@ import { Status } from '../ChipColor/ChipColor';
 import { Button, Stack } from '@mui/joy';
 import { useAppState } from '../../context/AppState';
 import { customerCollectionRef } from '../../api/firebase';
-import { getDocs, onSnapshot } from 'firebase/firestore';
+import useRealTimeData from '../../hooks/useRealTimeData';
 
 export default function OrderTable(): JSX.Element {
   const { dispatch } = useAppState();
 
-  const [rowsData, setRowData] = useState<DataRow[]>([]);
+  const [order, setOrder] = useState<Order>('desc');
+  const [selected, setSelected] = useState<string[]>([]);
 
-  const getRowsData = async () => {
-    try {
-      const data = await getDocs(customerCollectionRef);
-      const filteredData = data.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setRowData(filteredData as DataRow[]);
-    } catch (error) {
-      // To Do: Add tost
-      // console.log('error', error);
-    }
-  };
+  const { rowsData, rowsDataLoading } = useRealTimeData(customerCollectionRef);
 
   useEffect(() => {
-    getRowsData();
-
-    // Set up a listener for real-time updates
-    const unsubscribe = onSnapshot(customerCollectionRef, (snapshot) => {
-      const updatedData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      setRowData(updatedData as DataRow[]);
-    });
-
-    // Clean up the listener when the component unmounts
-    return () => unsubscribe();
-  }, []);
-
-  const [order, setOrder] = useState<Order>('desc');
-  const [selected, setSelected] = useState<readonly string[]>([]);
+    if (rowsDataLoading) {
+      // To Do: For skeleton
+      dispatch({ type: 'SET_LOADING', payload: true });
+    }
+  }, [dispatch, rowsDataLoading]);
 
   const setSelectedCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
     setSelected(event.target.checked ? rows.map((row) => row.id) : []);

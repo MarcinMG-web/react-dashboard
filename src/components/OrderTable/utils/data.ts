@@ -9,17 +9,7 @@ export type DataRow = {
   };
 };
 
-// export type DataRows = {
-//   id: string;
-//   date: string;
-//   status: string;
-//   customer: {
-//     initial: string;
-//     name: string;
-//     email: string;
-//   };
-// }[];
-
+// For test pagination to removed after finish
 export const rows: DataRow[] = [
   {
     id: 'INV-1234',

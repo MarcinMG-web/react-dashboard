@@ -18,12 +18,15 @@ import { customerCollectionRef, db } from '../../api/firebase';
 import { ExpectedAPIFormat, dataPayloadNewElement } from '../../api/utils/dataPayloadNewElement';
 import { useEffect } from 'react';
 import { expectedElementFormValues } from '../../api/utils/expectedFrontedData';
+import { useSnackbar } from 'notistack';
 
 export default function AddEditElementsModal(): JSX.Element {
   const {
     state: { openModalAddEditElements, selectedId },
     dispatch,
   } = useAppState();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const onClose = () =>
     dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: false, isEdit: false } });
@@ -39,17 +42,20 @@ export default function AddEditElementsModal(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModalAddEditElements.isEdit, selectedId]);
 
+  // ADD NEW ELEMENT:
   const addNewOnSubmit = async (data: ElementFormValues) => {
     try {
       const expectedFormatData = dataPayloadNewElement(data);
       await addDoc(customerCollectionRef, expectedFormatData);
       onClose();
+      enqueueSnackbar('The new item has been created!', { variant: 'success' });
     } catch (error) {
-      // console.error('Error adding document:', error);
-      // To do: add toast notification
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   };
 
+  // EDIT ELEMENT:
   const getDocumentById = async (id: string) => {
     try {
       const docRef = doc(customerCollectionRef, id);
@@ -57,10 +63,12 @@ export default function AddEditElementsModal(): JSX.Element {
       if (docSnap.exists()) {
         const dataFromDB = docSnap.data();
         const dataInEditForm = expectedElementFormValues(dataFromDB as ExpectedAPIFormat);
+        // Set values to form
         methods.reset(dataInEditForm);
       }
     } catch (error) {
-      // console.error('Error fetching document:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   };
 
@@ -70,9 +78,10 @@ export default function AddEditElementsModal(): JSX.Element {
       const customerDoc = doc(db, 'customers', selectedId);
       await updateDoc(customerDoc, expectedFormatData);
       onClose();
+      enqueueSnackbar('The item has been edited!', { variant: 'warning' });
     } catch (error) {
-      // console.error('Error updating document:', error);
-      // To do: add toast notification
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      enqueueSnackbar(errorMessage, { variant: 'error' });
     }
   };
   return (
