@@ -5,13 +5,13 @@ import { DataRow } from '../components/OrderTable/utils/data';
 interface useRealTimeDataProps {
   rowsData: DataRow[];
   rowsDataLoading: boolean;
-  error: FirestoreError | null;
+  rowsDataError: FirestoreError | null;
 }
 
 export default function useRealTimeData(collectionRef: CollectionReference): useRealTimeDataProps {
   const [rowsData, setRowsData] = useState<DataRow[]>([]);
   const [rowsDataLoading, setRowsDataLoading] = useState(true);
-  const [error, setError] = useState<FirestoreError | null>(null);
+  const [rowsDataError, setRowsDataError] = useState<FirestoreError | null>(null);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -26,7 +26,7 @@ export default function useRealTimeData(collectionRef: CollectionReference): use
         setRowsDataLoading(false);
       },
       (error) => {
-        setError(error);
+        setRowsDataError(error);
         setRowsDataLoading(false);
       },
     );
@@ -34,5 +34,5 @@ export default function useRealTimeData(collectionRef: CollectionReference): use
     return () => unsubscribe();
   }, [collectionRef]);
 
-  return { rowsData, rowsDataLoading, error };
+  return { rowsData, rowsDataLoading, rowsDataError };
 }
