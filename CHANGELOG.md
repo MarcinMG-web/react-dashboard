@@ -4,8 +4,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.2.5](https://github.com/MarcinMG-web/react-dashboard/compare/v0.1.6...v0.2.5) (2024-07-12)
 
-### 0.1.6 (2024-07-12)
-
 ### Features
 
 - add CRUD operation ([9dc18dc](https://github.com/MarcinMG-web/react-dashboard/commit/9dc18dcfd00ce999c2f7a5a3f3a3b1ea70b2c16a))
