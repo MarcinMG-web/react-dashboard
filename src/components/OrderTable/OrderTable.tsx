@@ -11,7 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { DataRow, rows } from './utils/data';
 import RowMenu from '../RowMenu';
 import TableFilters from '../TableFilters';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Order } from './utils/helper';
 import Pagination from '../Pagination';
 import ChipColor from '../ChipColor';
@@ -19,11 +19,22 @@ import { Status } from '../ChipColor/ChipColor';
 import { Button, Stack } from '@mui/joy';
 import { useAppState } from '../../context/AppState';
 
+import useRealTimeData from '../../hooks/useRealTimeData';
+
 export default function OrderTable(): JSX.Element {
   const { dispatch } = useAppState();
 
   const [order, setOrder] = useState<Order>('desc');
-  const [selected, setSelected] = useState<readonly string[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const { rowsData, rowsDataLoading } = useRealTimeData();
+
+  useEffect(() => {
+    if (rowsDataLoading) {
+      // To Do: For skeleton
+      dispatch({ type: 'SET_LOADING', payload: true });
+    }
+  }, [dispatch, rowsDataLoading]);
 
   const setSelectedCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
     setSelected(event.target.checked ? rows.map((row) => row.id) : []);
@@ -37,10 +48,15 @@ export default function OrderTable(): JSX.Element {
     setOrder(order === 'asc' ? 'desc' : 'asc');
   };
 
-  const onClickEditElement = () =>
+  const onClickEditElement = (id: string) => {
+    dispatch({ type: 'SET_SELECTED_ID', payload: id });
     dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: true, isEdit: true } });
+  };
 
-  const onClickRemovedElement = () => dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
+  const onClickRemovedElement = (id: string) => {
+    dispatch({ type: 'SET_SELECTED_ID', payload: id });
+    dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
+  };
 
   return (
     <>
@@ -120,7 +136,7 @@ export default function OrderTable(): JSX.Element {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {rowsData.map((row: DataRow, index: number) => (
               <tr key={row.id}>
                 <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox
@@ -133,26 +149,28 @@ export default function OrderTable(): JSX.Element {
                   />
                 </td>
                 <td>
-                  <Typography level='body-xs'>{row.id}</Typography>
+                  <Typography level='body-xs'>{`INV-${index + 1}`}</Typography>
                 </td>
                 <td>
-                  <Typography level='body-xs'>{row.date}</Typography>
+                  <Typography level='body-xs'>{row?.date}</Typography>
                 </td>
                 <td>
-                  <ChipColor status={row.status as Status} />
+                  <ChipColor status={row?.status as Status} />
                 </td>
                 <td>
                   <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                    <Avatar size='sm'>{row.customer.initial}</Avatar>
+                    <Avatar size='sm'>{row?.customer?.initial}</Avatar>
                     <div>
-                      <Typography level='body-xs'>{row.customer.name}</Typography>
-                      <Typography level='body-xs'>{row.customer.email}</Typography>
+                      <Typography level='body-md' color='success'>
+                        {row?.customer?.name}
+                      </Typography>
+                      <Typography level='body-xs'>{row?.customer?.email}</Typography>
                     </div>
                   </Stack>
                 </td>
                 <td>
                   <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                    <Button color='neutral' variant='plain' size='md' onClick={onClickEditElement}>
+                    <Button color='neutral' variant='plain' size='md' onClick={() => onClickEditElement(row?.id)}>
                       <EditIcon
                         sx={{
                           color: 'var(--joy-palette-warning-500, #9A5B13)',
@@ -160,7 +178,7 @@ export default function OrderTable(): JSX.Element {
                       />
                     </Button>
 
-                    <Button color='danger' variant='plain' size='md' onClick={onClickRemovedElement}>
+                    <Button color='danger' variant='plain' size='md' onClick={() => onClickRemovedElement(row?.id)}>
                       <DeleteForever
                         sx={{
                           color: 'var(--joy-palette-danger-700, #7D1212)',

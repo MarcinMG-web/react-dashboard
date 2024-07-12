@@ -11,6 +11,7 @@ import { AuthForm, FormValues } from '../../types/authenticationFormTypes.ts';
 import RoutesEnum from '../../types/routesEnum.ts';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage.tsx';
 import { useSnackbar } from 'notistack';
+import { createdNewCollection } from '../../api/createdNewCollection.ts';
 
 export default function AuthenticationForm(): JSX.Element {
   const navigate = useNavigate();
@@ -37,7 +38,11 @@ export default function AuthenticationForm(): JSX.Element {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        dispatch({ type: 'SET_CURRENT_USER', payload: user });
+
+        // Create a new collection post-registration
+        createdNewCollection(user);
+
+        dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
         navigate(RoutesEnum.APP);
         enqueueSnackbar('Registration completed successfully, let`s get started!', { variant: 'success' });
       })
@@ -53,7 +58,7 @@ export default function AuthenticationForm(): JSX.Element {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        dispatch({ type: 'SET_CURRENT_USER', payload: user });
+        dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
         navigate(RoutesEnum.APP);
         enqueueSnackbar('Let`s get started!', { variant: 'success' });
       })

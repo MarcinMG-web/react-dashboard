@@ -60,6 +60,8 @@ export default function App(): JSX.Element {
           Components={{
             success: StyledMaterialDesignContent,
             error: StyledMaterialDesignContent,
+            warning: StyledMaterialDesignContent,
+            info: StyledMaterialDesignContent,
           }}
         >
           <Routes>

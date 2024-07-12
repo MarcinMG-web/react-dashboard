@@ -7,23 +7,59 @@ import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import { useAppState } from '../../context/AppState';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../api/firebase';
+import { useSnackbar } from 'notistack';
 
 export default function DeletedModal(): JSX.Element {
   const {
-    state: { openDeletedModal },
+    state: { openDeletedModal, selectedId, authorizedUser },
     dispatch,
   } = useAppState();
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const onClosed = () => dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: false });
 
   const onSubmit = () => {
-    onClosed();
+    // Check if authorized user and selectedId are defined
+    if (!authorizedUser?.email || !selectedId) {
+      enqueueSnackbar('User email or selected ID is missing!', { variant: 'error' });
+      return;
+    }
+
+    // Create a reference to the document in the nested collection
+    const customerDoc = doc(db, 'customers', authorizedUser.email, 'users', selectedId);
+
+    // Delete the document
+    deleteDoc(customerDoc)
+      .then(() => {
+        onClosed();
+        enqueueSnackbar('The item has been deleted!', { variant: 'success' });
+      })
+      .catch((error) => {
+        enqueueSnackbar(error, { variant: 'error' });
+      });
   };
 
   return (
     <>
       <Modal open={openDeletedModal} onClose={onClosed}>
-        <ModalDialog variant='outlined' role='alertdialog'>
+        <ModalDialog
+          variant='outlined'
+          role='alertdialog'
+          sx={(theme) => ({
+            [theme.breakpoints.only('xs')]: {
+              top: 'unset',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              borderRadius: 0,
+              transform: 'none',
+              maxWidth: 'unset',
+            },
+          })}
+        >
           <DialogTitle>
             <WarningRoundedIcon
               sx={{

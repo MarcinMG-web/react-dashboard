@@ -1,7 +1,7 @@
 export type ElementFormValues = {
   [ElementForm.CUSTOMER_NAME]: string;
   [ElementForm.CUSTOMER_EMAIL]: string;
-  [ElementForm.DATE]: Date;
+  [ElementForm.DATE]: string;
   [ElementForm.STATUS]: string;
   [ElementForm.CUSTOMER_INITIAL]: string;
 };
@@ -15,8 +15,8 @@ export enum ElementForm {
 }
 
 export enum StatusOptions {
-  PENDING = 'Pending',
   PAID = 'Paid',
+  PENDING = 'Pending',
   REFUNDED = 'Refunded',
   CANCELLED = 'Cancelled',
 }
