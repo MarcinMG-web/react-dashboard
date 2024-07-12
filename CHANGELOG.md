@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/MarcinMG-web/react-dashboard/compare/v0.1.6...v0.2.5) (2024-07-12)
+
 ### 0.1.6 (2024-07-12)
 
 ### Features
