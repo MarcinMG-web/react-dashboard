@@ -2,7 +2,7 @@ import { ElementFormValues } from '../../types/newElementFormTypes';
 import { formatDateBE } from './formatDateBE';
 
 export type ExpectedAPIFormat = {
-  id?: string;
+  id: string;
   date: string;
   status: string;
   customer: {
@@ -16,6 +16,7 @@ export const dataPayloadNewElement = (data: ElementFormValues): ExpectedAPIForma
   const { date, status, customerName, customerEmail, customerInitial } = data;
 
   const expectedAPIFormat = {
+    id: customerEmail,
     date: formatDateBE(date),
     status: status,
     customer: {

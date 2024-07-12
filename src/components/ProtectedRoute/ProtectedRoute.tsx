@@ -4,10 +4,10 @@ import MainApp from '../../pages/MainApp';
 
 export default function ProtectedRoute(): JSX.Element {
   const {
-    state: { currentUser },
+    state: { authorizedUser },
   } = useAppState();
 
-  if (!currentUser) {
+  if (!authorizedUser) {
     return <ErrorPages errorCode={403} />;
   }
   return <MainApp />;

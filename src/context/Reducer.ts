@@ -10,10 +10,10 @@ export const appReducer = (state: State, action: Action): State => {
         ...state,
         loading: action.payload,
       };
-    case 'SET_CURRENT_USER':
+    case 'SET_AUTHORIZED_USER':
       return {
         ...state,
-        currentUser: action.payload,
+        authorizedUser: action.payload,
       };
     case 'SET_REGISTER_APP':
       return {

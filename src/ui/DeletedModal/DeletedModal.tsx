@@ -13,7 +13,7 @@ import { useSnackbar } from 'notistack';
 
 export default function DeletedModal(): JSX.Element {
   const {
-    state: { openDeletedModal, selectedId },
+    state: { openDeletedModal, selectedId, authorizedUser },
     dispatch,
   } = useAppState();
 
@@ -21,16 +21,25 @@ export default function DeletedModal(): JSX.Element {
 
   const onClosed = () => dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: false });
 
-  const onSubmit = async () => {
-    try {
-      const customerDoc = doc(db, 'customers', selectedId);
-      await deleteDoc(customerDoc);
-      onClosed();
-      enqueueSnackbar('The item has been deleted!', { variant: 'success' });
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : String(error);
-      enqueueSnackbar(errorMessage, { variant: 'error' });
+  const onSubmit = () => {
+    // Check if authorized user and selectedId are defined
+    if (!authorizedUser?.email || !selectedId) {
+      enqueueSnackbar('User email or selected ID is missing!', { variant: 'error' });
+      return;
     }
+
+    // Create a reference to the document in the nested collection
+    const customerDoc = doc(db, 'customers', authorizedUser.email, 'users', selectedId);
+
+    // Delete the document
+    deleteDoc(customerDoc)
+      .then(() => {
+        onClosed();
+        enqueueSnackbar('The item has been deleted!', { variant: 'success' });
+      })
+      .catch((error) => {
+        enqueueSnackbar(error, { variant: 'error' });
+      });
   };
 
   return (

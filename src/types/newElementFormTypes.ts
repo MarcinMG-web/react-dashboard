@@ -15,8 +15,8 @@ export enum ElementForm {
 }
 
 export enum StatusOptions {
-  PENDING = 'Pending',
   PAID = 'Paid',
+  PENDING = 'Pending',
   REFUNDED = 'Refunded',
   CANCELLED = 'Cancelled',
 }

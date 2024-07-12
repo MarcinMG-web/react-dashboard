@@ -7,6 +7,7 @@ import { auth, googleProvider } from '../../api/firebase';
 import { useAppState } from '../../context/AppState';
 import RoutesEnum from '../../types/routesEnum';
 import GoogleIcon from '../../ui/GoogleIcon/GoogleIcon.tsx';
+import { createdNewCollection } from '../../api/createdNewCollection.ts';
 
 export default function AuthenticationProviders(): JSX.Element {
   const navigate = useNavigate();
@@ -17,12 +18,16 @@ export default function AuthenticationProviders(): JSX.Element {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleGoogleLogin = async () => {
-    await signInWithPopup(auth, googleProvider)
+  const handleGoogleLogin = () => {
+    signInWithPopup(auth, googleProvider)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        dispatch({ type: 'SET_CURRENT_USER', payload: user });
+
+        // Create a new collection post-registration
+        createdNewCollection(user);
+
+        dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
         navigate(RoutesEnum.APP);
         enqueueSnackbar('Login successful, good to see you again!', { variant: 'success' });
       })

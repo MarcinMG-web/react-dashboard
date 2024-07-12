@@ -18,7 +18,7 @@ import ChipColor from '../ChipColor';
 import { Status } from '../ChipColor/ChipColor';
 import { Button, Stack } from '@mui/joy';
 import { useAppState } from '../../context/AppState';
-import { customerCollectionRef } from '../../api/firebase';
+
 import useRealTimeData from '../../hooks/useRealTimeData';
 
 export default function OrderTable(): JSX.Element {
@@ -27,7 +27,7 @@ export default function OrderTable(): JSX.Element {
   const [order, setOrder] = useState<Order>('desc');
   const [selected, setSelected] = useState<string[]>([]);
 
-  const { rowsData, rowsDataLoading } = useRealTimeData(customerCollectionRef);
+  const { rowsData, rowsDataLoading } = useRealTimeData();
 
   useEffect(() => {
     if (rowsDataLoading) {
@@ -57,8 +57,6 @@ export default function OrderTable(): JSX.Element {
     dispatch({ type: 'SET_SELECTED_ID', payload: id });
     dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
   };
-
-  const slice = (id: string) => id.slice(0, 5);
 
   return (
     <>
@@ -138,7 +136,7 @@ export default function OrderTable(): JSX.Element {
             </tr>
           </thead>
           <tbody>
-            {rowsData.map((row) => (
+            {rowsData.map((row: DataRow, index: number) => (
               <tr key={row.id}>
                 <td style={{ textAlign: 'center', width: 120 }}>
                   <Checkbox
@@ -151,28 +149,28 @@ export default function OrderTable(): JSX.Element {
                   />
                 </td>
                 <td>
-                  <Typography level='body-xs'>{`INV-${slice(row.id)}`}</Typography>
+                  <Typography level='body-xs'>{`INV-${index + 1}`}</Typography>
                 </td>
                 <td>
-                  <Typography level='body-xs'>{row.date}</Typography>
+                  <Typography level='body-xs'>{row?.date}</Typography>
                 </td>
                 <td>
-                  <ChipColor status={row.status as Status} />
+                  <ChipColor status={row?.status as Status} />
                 </td>
                 <td>
                   <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                    <Avatar size='sm'>{row.customer.initial}</Avatar>
+                    <Avatar size='sm'>{row?.customer?.initial}</Avatar>
                     <div>
                       <Typography level='body-md' color='success'>
-                        {row.customer.name}
+                        {row?.customer?.name}
                       </Typography>
-                      <Typography level='body-xs'>{row.customer.email}</Typography>
+                      <Typography level='body-xs'>{row?.customer?.email}</Typography>
                     </div>
                   </Stack>
                 </td>
                 <td>
                   <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                    <Button color='neutral' variant='plain' size='md' onClick={() => onClickEditElement(row.id)}>
+                    <Button color='neutral' variant='plain' size='md' onClick={() => onClickEditElement(row?.id)}>
                       <EditIcon
                         sx={{
                           color: 'var(--joy-palette-warning-500, #9A5B13)',
@@ -180,7 +178,7 @@ export default function OrderTable(): JSX.Element {
                       />
                     </Button>
 
-                    <Button color='danger' variant='plain' size='md' onClick={() => onClickRemovedElement(row.id)}>
+                    <Button color='danger' variant='plain' size='md' onClick={() => onClickRemovedElement(row?.id)}>
                       <DeleteForever
                         sx={{
                           color: 'var(--joy-palette-danger-700, #7D1212)',
