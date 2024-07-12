@@ -19,6 +19,7 @@ import { ExpectedAPIFormat, dataPayloadNewElement } from '../../api/utils/dataPa
 import { useEffect } from 'react';
 import { expectedElementFormValues } from '../../api/utils/expectedFrontedData';
 import { useSnackbar } from 'notistack';
+import { DataRow } from '../../components/OrderTable/utils/data';
 
 export default function AddEditElementsModal(): JSX.Element {
   const {
@@ -53,7 +54,7 @@ export default function AddEditElementsModal(): JSX.Element {
     const emailAsId = expectedFormatData.customer.email;
 
     // Create a reference to the document with a custom ID
-    const docRef = doc(db, 'customers', authorizedUser?.email as string, 'users', emailAsId);
+    const docRef = doc(db, 'customers', authorizedUser!.email!, 'users', emailAsId);
 
     // Use setDoc instead of addDoc to set the custom ID
     setDoc(docRef, expectedFormatData)
@@ -69,9 +70,9 @@ export default function AddEditElementsModal(): JSX.Element {
   /**
    * EDIT ELEMENT:
    */
-  const getDocumentById = (id: string) => {
+  const getDocumentById = (id: DataRow['id']) => {
     // Create a reference to the collection
-    const ref = collection(db, 'customers', authorizedUser?.email as string, 'users');
+    const ref = collection(db, 'customers', authorizedUser!.email!, 'users');
 
     // Create a reference to the document by ID
     const docRef = doc(ref, id);
@@ -101,7 +102,7 @@ export default function AddEditElementsModal(): JSX.Element {
     const emailAsId = expectedFormatData.customer.email;
 
     // Create a reference to the document with the custom ID
-    const docRef = doc(db, 'customers', authorizedUser?.email as string, 'users', emailAsId);
+    const docRef = doc(db, 'customers', authorizedUser!.email!, 'users', emailAsId);
 
     // Update the document
     updateDoc(docRef, expectedFormatData)

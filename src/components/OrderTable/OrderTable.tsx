@@ -48,12 +48,12 @@ export default function OrderTable(): JSX.Element {
     setOrder(order === 'asc' ? 'desc' : 'asc');
   };
 
-  const onClickEditElement = (id: string) => {
+  const onClickEditElement = (id: DataRow['id']) => {
     dispatch({ type: 'SET_SELECTED_ID', payload: id });
     dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: true, isEdit: true } });
   };
 
-  const onClickRemovedElement = (id: string) => {
+  const onClickRemovedElement = (id: DataRow['id']) => {
     dispatch({ type: 'SET_SELECTED_ID', payload: id });
     dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
   };

@@ -22,7 +22,7 @@ export default function useRealTimeData(): UseRealTimeDataResult {
         const queryRef = query(userOrdersCollectionRef); // Firestore query based on the collection reference
 
         // Reference to the user's document in Firestore
-        const userDocRef = doc(db, 'customers', user?.email as string);
+        const userDocRef = doc(db, 'customers', user!.email!);
 
         // Subscribe to changes in the user's document
         const unsubscribeSnapshot = onSnapshot(
