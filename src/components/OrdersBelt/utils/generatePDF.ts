@@ -14,10 +14,6 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
   dayjs.extend(localizedFormat);
   const date = dayjs().format('LLLL');
 
-  // Font
-  doc.addFont('CustomFont.ttf', 'CustomFont', 'normal');
-  doc.setFont('CustomFont');
-
   // Title
   doc.setFontSize(22);
   doc.text('Orders:', 17, 20);
