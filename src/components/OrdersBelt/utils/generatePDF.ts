@@ -6,6 +6,7 @@ import 'jspdf-autotable';
 import { autoTable } from 'jspdf-autotable';
 import { enqueueSnackbar } from 'notistack';
 import { DataRow } from '../../OrderTable/utils/data';
+import { countStatus } from './countStatus';
 
 export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) => {
   const doc = new jsPDF();
@@ -48,15 +49,46 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
       customer.email,
       status,
     ]),
-
     theme: 'striped',
     headStyles: {
       fillColor: [31, 122, 31],
       textColor: [255, 255, 255],
       fontSize: 10,
     },
+    footStyles: {
+      fillColor: [31, 122, 31],
+      textColor: [255, 255, 255],
+      fontSize: 10,
+    },
   });
 
+  // Summary
+  const statusCounts = countStatus(rowsData);
+  // Position
+  const summaryStartY = (doc as jsPDF & { autoTable: autoTable }).lastAutoTable.finalY + 10;
+
+  const summaryData = Object.entries(statusCounts).map(([status, count]) => [status, count]);
+
+  (doc as jsPDF & { autoTable: autoTable }).autoTable({
+    startY: summaryStartY,
+    head: [['Status', 'Value']],
+    body: summaryData,
+    foot: [['Total', rowsData.length]],
+    theme: 'striped',
+    headStyles: {
+      fillColor: [31, 122, 31],
+      textColor: [255, 255, 255],
+      fontSize: 10,
+    },
+    footStyles: {
+      fillColor: [31, 122, 31],
+      textColor: [255, 255, 255],
+      fontSize: 10,
+    },
+  });
+
+  // Name file
   doc.save(`Orders-${date}`);
+
   enqueueSnackbar('Success download pdf file!', { variant: 'success' });
 };
