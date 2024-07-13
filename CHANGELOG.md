@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.2.6 (2024-07-13)
+
+### Features
+
+- add new form to add or eddit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
+- added downlad pdf files ([75ea9a8](https://github.com/MarcinMG-web/react-dashboard/commit/75ea9a854af2ba4e2d5956673b160f507784222d))
+
+### Bug Fixes
+
+- folder name ([e3dbecf](https://github.com/MarcinMG-web/react-dashboard/commit/e3dbecf283ee878b3f4720abb1437f04d7571f36))
+- type and chip pending status ([4aa0f22](https://github.com/MarcinMG-web/react-dashboard/commit/4aa0f22df6a6a7138f08b73e398f8c6d04ec3ff3))
+
 ### [0.2.5](https://github.com/MarcinMG-web/react-dashboard/compare/v0.1.6...v0.2.5) (2024-07-12)
 
 ### Features
