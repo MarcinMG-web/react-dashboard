@@ -8,6 +8,8 @@ import { enqueueSnackbar } from 'notistack';
 import { DataRow } from '../../OrderTable/utils/data';
 import { countStatus } from './countStatus';
 
+export type DocWithAutoTable = jsPDF & { autoTable: autoTable };
+
 export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) => {
   const doc = new jsPDF();
 
@@ -35,7 +37,7 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
 
   doc.addImage(imgData, 'PNG', imageX, imageY, imageWidth, imageHeight);
 
-  (doc as jsPDF & { autoTable: autoTable }).autoTable({
+  (doc as DocWithAutoTable).autoTable({
     startY: 44,
     head: [['Id', 'Date', 'Name', 'Email', 'Status']],
     body: rowsData.map(({ date, customer, status }, index) => [
@@ -61,15 +63,16 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
   // Summary
   const statusCounts = countStatus(rowsData);
   // Position
-  const summaryStartY = (doc as jsPDF & { autoTable: autoTable }).lastAutoTable.finalY + 10;
+  const summaryStartY = (doc as DocWithAutoTable).lastAutoTable.finalY + 10;
 
   const summaryData = Object.entries(statusCounts).map(([status, count]) => [status, count]);
+  const totalValues = rowsData.length;
 
-  (doc as jsPDF & { autoTable: autoTable }).autoTable({
+  (doc as DocWithAutoTable).autoTable({
     startY: summaryStartY,
     head: [['Status', 'Value']],
     body: summaryData,
-    foot: [['Total', rowsData.length]],
+    foot: [['Total', totalValues]],
     theme: 'striped',
     headStyles: {
       fillColor: [31, 122, 31],
