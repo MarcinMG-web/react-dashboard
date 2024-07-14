@@ -37,16 +37,19 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
 
   doc.addImage(imgData, 'PNG', imageX, imageY, imageWidth, imageHeight);
 
+  // Main content
+  const mainContent = rowsData.map(({ date, customer, status }, index) => [
+    `INV-${index + 1}`,
+    date,
+    customer.name,
+    customer.email,
+    status,
+  ]);
+
   (doc as DocWithAutoTable).autoTable({
     startY: 44,
     head: [['Id', 'Date', 'Name', 'Email', 'Status']],
-    body: rowsData.map(({ date, customer, status }, index) => [
-      `INV-${index + 1}`,
-      date,
-      customer.name,
-      customer.email,
-      status,
-    ]),
+    body: mainContent,
     theme: 'striped',
     headStyles: {
       fillColor: [31, 122, 31],
