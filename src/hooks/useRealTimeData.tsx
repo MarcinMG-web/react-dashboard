@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { onSnapshot, collection, query, FirestoreError, doc } from 'firebase/firestore';
 import { DataRow } from '../components/OrderTable/utils/data';
 import { auth, db } from '../api/firebase';
+import dayjs from 'dayjs';
 
 interface UseRealTimeDataResult {
   rowsData: DataRow[];
@@ -34,8 +35,16 @@ export default function useRealTimeData(): UseRealTimeDataResult {
                 const payload: DataRow[] = []; // Array to store fetched DataRow objects
 
                 querySnapshot.forEach((doc) => payload.push(doc.data() as DataRow)); // Push each document data into the payload array
-                setRowsData(payload); // Update state with fetched data
-                setRowsDataLoading(false); // Set loading state to false after data is fetched
+
+                // Sort the payload array by 'created' date in descending order
+                const newElementOnTop = payload.sort((a, b) => {
+                  const dateA = dayjs(a.created);
+                  const dateB = dayjs(b.created);
+                  return dateB.diff(dateA);
+                });
+
+                setRowsData(newElementOnTop);
+                setRowsDataLoading(false);
               });
             }
           },
