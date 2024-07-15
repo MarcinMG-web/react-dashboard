@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- add new form to add or eddit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
+- add new form to add or edit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
 - added posible to slecect stars and new invoice button ([666c177](https://github.com/MarcinMG-web/react-dashboard/commit/666c1772d419db0430fef6a3079d6b55234b6270))
 
 ### Bug Fixes
@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- add new form to add or eddit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
+- add new form to add or edit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
 - added downlad pdf files ([75ea9a8](https://github.com/MarcinMG-web/react-dashboard/commit/75ea9a854af2ba4e2d5956673b160f507784222d))
 
 ### Bug Fixes
