@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.2.8 (2024-07-15)
+
+### Features
+
+- added downlaod csv file ([fc82dd1](https://github.com/MarcinMG-web/react-dashboard/commit/fc82dd15b53dae5f33f3d94dbe640e0b1225220e))
+
 ### 0.2.7 (2024-07-15)
 
 ### Features

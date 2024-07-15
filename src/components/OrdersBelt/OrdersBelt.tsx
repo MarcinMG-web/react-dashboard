@@ -7,6 +7,8 @@ import { useAppState } from '../../context/AppState';
 import useRealTimeData from '../../hooks/useRealTimeData';
 import { generatePDF } from './utils/generatePDF';
 
+import { generatedCSV } from './utils/generatedCSV';
+
 export default function OrdersBelt(): JSX.Element {
   const {
     state: { authorizedUser },
@@ -49,7 +51,13 @@ export default function OrdersBelt(): JSX.Element {
         >
           Download PDF
         </Button>
-        <Button color='neutral' variant='outlined' startDecorator={<DownloadRoundedIcon />} size='sm'>
+        <Button
+          color='neutral'
+          variant='outlined'
+          startDecorator={<DownloadRoundedIcon />}
+          size='sm'
+          onClick={() => generatedCSV(rowsData)}
+        >
           Download CSV
         </Button>
         <Button color='success' startDecorator={<AddIcon />} size='sm' onClick={onClickAddNew}>
