@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.2.8 (2024-07-15)
+
+### Features
+
+- add new form to add or eddit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
+- added downlaod csv file ([fc82dd1](https://github.com/MarcinMG-web/react-dashboard/commit/fc82dd15b53dae5f33f3d94dbe640e0b1225220e))
+- added posible to slecect stars and new invoice button ([#9](https://github.com/MarcinMG-web/react-dashboard/issues/9)) ([4fe9454](https://github.com/MarcinMG-web/react-dashboard/commit/4fe9454487591559c910ad7019ac960dd9aa9396))
+
+### Bug Fixes
+
+- folder name ([e3dbecf](https://github.com/MarcinMG-web/react-dashboard/commit/e3dbecf283ee878b3f4720abb1437f04d7571f36))
+- type and chip pending status ([4aa0f22](https://github.com/MarcinMG-web/react-dashboard/commit/4aa0f22df6a6a7138f08b73e398f8c6d04ec3ff3))
+
 ### 0.2.7 (2024-07-15)
 
 ### Features
