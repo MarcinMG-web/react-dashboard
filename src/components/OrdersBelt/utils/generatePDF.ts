@@ -92,5 +92,5 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
   // Name file
   doc.save(`Orders-${date}`);
 
-  enqueueSnackbar('Success download pdf file!', { variant: 'success' });
+  enqueueSnackbar('Success download .pdf file!', { variant: 'success' });
 };
