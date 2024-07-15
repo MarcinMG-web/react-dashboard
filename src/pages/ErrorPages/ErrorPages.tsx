@@ -77,6 +77,7 @@ export default function ErrorPages({ errorCode }: ErrorPageProps) {
 
         <Typography level='body-sm'>{subTitle}</Typography>
         <Button
+          color='danger'
           sx={{
             mt: 3,
           }}

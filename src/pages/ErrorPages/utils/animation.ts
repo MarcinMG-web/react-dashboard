@@ -21,24 +21,24 @@ export const bounce = keyframes`
 
 export const AnimatedErrorOutlineIcon: StyledComponent<SvgIconProps> = styled(ErrorOutlineIcon)`
   font-size: 120px;
-  color: var(--color-myOrange);
+  color: var(--joy-palette-danger-500, #c41c1c);
   animation: ${bounce} 2s infinite;
 `;
 
 export const AnimatedLockPersonIcon: StyledComponent<SvgIconProps> = styled(LockPersonIcon)`
   font-size: 120px;
-  color: var(--color-myOrange);
+  color: var(--joy-palette-danger-500, #c41c1c);
   animation: ${bounce} 2s infinite;
 `;
 
 export const AnimatedReportProblemIcon: StyledComponent<SvgIconProps> = styled(ReportProblemIcon)`
   font-size: 120px;
-  color: var(--color-myOrange);
+  color: var(--joy-palette-danger-500, #c41c1c);
   animation: ${bounce} 2s infinite;
 `;
 
 export const AnimatedRunningWithErrorsIcon: StyledComponent<SvgIconProps> = styled(RunningWithErrorsIcon)`
   font-size: 120px;
-  color: var(--color-myOrange);
+  color: var(--joy-palette-danger-500, #c41c1c);
   animation: ${bounce} 2s infinite;
 `;
