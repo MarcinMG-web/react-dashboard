@@ -7,7 +7,6 @@ import Dashboard from './pages/Dashboard';
 import { auth } from './api/firebase';
 import { User } from 'firebase/auth';
 import { useAppState } from './context/AppState';
-import { theme } from './theme';
 import { SnackbarOrigin, SnackbarProvider } from 'notistack';
 import { StyledMaterialDesignContent, snackbarConfig } from './config/snackbarConfig';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -52,7 +51,7 @@ export default function App(): JSX.Element {
 
   return (
     <>
-      <CssVarsProvider theme={theme} defaultMode='dark' disableTransitionOnChange>
+      <CssVarsProvider defaultMode='dark' disableTransitionOnChange>
         <SnackbarProvider
           iconVariant={snackbarConfig.iconVariant}
           anchorOrigin={snackbarConfig.anchorOrigin as SnackbarOrigin}

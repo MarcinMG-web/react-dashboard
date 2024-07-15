@@ -2,8 +2,13 @@ import { Input, Select, Option, FormControl, FormLabel, Grid } from '@mui/joy';
 import { Controller, useFormContext } from 'react-hook-form';
 import ErrorMessage from '../../ui/ErrorMessage';
 import { ElementForm, ElementFormValues, StatusOptions } from '../../types/newElementFormTypes';
+import { useAppState } from '../../context/AppState';
 
 export default function NewElementForm(): JSX.Element {
+  const {
+    state: { openModalAddEditElements },
+  } = useAppState();
+
   const {
     register,
     control,
@@ -23,7 +28,12 @@ export default function NewElementForm(): JSX.Element {
       <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
         <FormControl error={!!errors?.customerEmail}>
           <FormLabel htmlFor={ElementForm.CUSTOMER_EMAIL}>Customer Email</FormLabel>
-          <Input id={ElementForm.CUSTOMER_EMAIL} type='email' {...register(ElementForm.CUSTOMER_EMAIL)} />
+          <Input
+            id={ElementForm.CUSTOMER_EMAIL}
+            type='email'
+            disabled={openModalAddEditElements.isEdit}
+            {...register(ElementForm.CUSTOMER_EMAIL)}
+          />
           {!!errors?.customerEmail && <ErrorMessage error={errors.customerEmail} />}
         </FormControl>
       </Grid>

@@ -1,31 +1,33 @@
+import { useState, useEffect } from 'react';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Link from '@mui/joy/Link';
 import Table from '@mui/joy/Table';
 import Sheet from '@mui/joy/Sheet';
-import Checkbox from '@mui/joy/Checkbox';
 import Typography from '@mui/joy/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import DeleteForever from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DescriptionIcon from '@mui/icons-material/Description';
 import EditIcon from '@mui/icons-material/Edit';
-import { DataRow, rows } from './utils/data';
+import { Button, Stack, Tooltip } from '@mui/joy';
+import { useAppState } from '../../context/AppState';
+import useRealTimeData from '../../hooks/useRealTimeData';
+import useLocalStorage from '../../hooks/useLocalStorage';
+import { DataRow } from './utils/data';
 import RowMenu from '../RowMenu';
 import TableFilters from '../TableFilters';
-import { ChangeEvent, useEffect, useState } from 'react';
 import { Order } from './utils/helper';
 import Pagination from '../Pagination';
 import ChipColor from '../ChipColor';
 import { Status } from '../ChipColor/ChipColor';
-import { Button, Stack } from '@mui/joy';
-import { useAppState } from '../../context/AppState';
-
-import useRealTimeData from '../../hooks/useRealTimeData';
 
 export default function OrderTable(): JSX.Element {
   const { dispatch } = useAppState();
 
   const [order, setOrder] = useState<Order>('desc');
-  const [selected, setSelected] = useState<string[]>([]);
+  const [selected, setSelected] = useLocalStorage('selectedStars', []);
 
   const { rowsData, rowsDataLoading } = useRealTimeData();
 
@@ -35,14 +37,6 @@ export default function OrderTable(): JSX.Element {
       dispatch({ type: 'SET_LOADING', payload: true });
     }
   }, [dispatch, rowsDataLoading]);
-
-  const setSelectedCheckBox = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelected(event.target.checked ? rows.map((row) => row.id) : []);
-  };
-
-  const handleCheckBoxChange = (event: ChangeEvent<HTMLInputElement>, row: DataRow) => {
-    setSelected((ids) => (event.target.checked ? [...ids, row.id] : ids.filter((itemId) => itemId !== row.id)));
-  };
 
   const setOrderInvoice = () => {
     setOrder(order === 'asc' ? 'desc' : 'asc');
@@ -56,6 +50,14 @@ export default function OrderTable(): JSX.Element {
   const onClickRemovedElement = (id: DataRow['id']) => {
     dispatch({ type: 'SET_SELECTED_ID', payload: id });
     dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
+  };
+
+  const handleStarClick = (row: DataRow) => {
+    if (selected.includes(row?.created)) {
+      setSelected(selected.filter((el: string) => el !== row?.created));
+    } else {
+      setSelected([...selected, row?.created]);
+    }
   };
 
   return (
@@ -75,6 +77,7 @@ export default function OrderTable(): JSX.Element {
       >
         <TableFilters />
       </Box>
+
       <Sheet
         className='OrderTableContainer'
         variant='outlined'
@@ -101,16 +104,7 @@ export default function OrderTable(): JSX.Element {
         >
           <thead>
             <tr>
-              <th style={{ width: 48, textAlign: 'center', padding: '12px 6px' }}>
-                <Checkbox
-                  size='sm'
-                  indeterminate={selected.length > 0 && selected.length !== rows.length}
-                  checked={selected.length === rows.length}
-                  onChange={(event) => setSelectedCheckBox(event)}
-                  color={selected.length > 0 || selected.length === rows.length ? 'primary' : undefined}
-                  sx={{ verticalAlign: 'text-bottom' }}
-                />
-              </th>
+              <th style={{ width: 48, textAlign: 'center', padding: '12px 6px' }}>Stars</th>
               <th style={{ width: 120, padding: '12px 6px' }}>
                 <Link
                   underline='none'
@@ -129,62 +123,68 @@ export default function OrderTable(): JSX.Element {
                   Invoice
                 </Link>
               </th>
-              <th style={{ width: 140, padding: '12px 6px' }}>Date</th>
-              <th style={{ width: 140, padding: '12px 6px' }}>Status</th>
-              <th style={{ width: 180, padding: '12px 6px' }}>Customer</th>
-              <th style={{ width: 90, padding: '12px 6px' }}>Action</th>
+              <th style={{ width: 140, padding: '10px 6px' }}>Date</th>
+              <th style={{ width: 140, padding: '10px 6px' }}>Status</th>
+              <th style={{ width: 140, padding: '10px 6px' }}>Customer</th>
+              <th style={{ width: 160, padding: '10px 6px' }}>Action</th>
             </tr>
           </thead>
           <tbody>
             {rowsData.map((row: DataRow, index: number) => (
               <tr key={row.id}>
-                <td style={{ textAlign: 'center', width: 120 }}>
-                  <Checkbox
-                    size='sm'
-                    checked={selected.includes(row.id)}
-                    color={selected.includes(row.id) ? 'primary' : undefined}
-                    onChange={(event) => handleCheckBoxChange(event, row)}
-                    slotProps={{ checkbox: { sx: { textAlign: 'left' } } }}
-                    sx={{ verticalAlign: 'text-bottom' }}
-                  />
+                <td style={{ textAlign: 'center', width: 48 }}>
+                  <Tooltip title='Select' color='warning' placement='top'>
+                    <Stack
+                      onClick={() => handleStarClick(row)}
+                      style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center' }}
+                    >
+                      {selected.includes(row?.created) ? <StarIcon color='warning' /> : <StarBorderIcon />}
+                    </Stack>
+                  </Tooltip>
                 </td>
                 <td>
                   <Typography level='body-xs'>{`INV-${index + 1}`}</Typography>
                 </td>
                 <td>
-                  <Typography level='body-xs'>{row?.date}</Typography>
+                  <Typography level='body-xs'>{row.date}</Typography>
                 </td>
                 <td>
-                  <ChipColor status={row?.status as Status} />
+                  <ChipColor status={row.status as Status} />
                 </td>
                 <td>
-                  <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                    <Avatar size='sm'>{row?.customer?.initial}</Avatar>
+                  <Stack direction='row' alignItems='center'>
+                    <Avatar size='sm'>{row.customer?.initial}</Avatar>
                     <div>
                       <Typography level='body-md' color='success'>
-                        {row?.customer?.name}
+                        {row.customer?.name}
                       </Typography>
-                      <Typography level='body-xs'>{row?.customer?.email}</Typography>
+                      <Typography level='body-xs'>{row.customer?.email}</Typography>
                     </div>
                   </Stack>
                 </td>
                 <td>
-                  <Stack sx={{ display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
-                    <Button color='neutral' variant='plain' size='md' onClick={() => onClickEditElement(row?.id)}>
-                      <EditIcon
-                        sx={{
-                          color: 'var(--joy-palette-warning-500, #9A5B13)',
-                        }}
-                      />
-                    </Button>
+                  <Stack direction='row' alignItems='center' spacing={1}>
+                    <Tooltip title='Edit' color='warning' placement='top-end'>
+                      <Button color='warning' variant='plain' size='md' onClick={() => onClickEditElement(row.id)}>
+                        <EditIcon color='warning' />
+                      </Button>
+                    </Tooltip>
 
-                    <Button color='danger' variant='plain' size='md' onClick={() => onClickRemovedElement(row?.id)}>
-                      <DeleteForever
-                        sx={{
-                          color: 'var(--joy-palette-danger-700, #7D1212)',
-                        }}
-                      />
-                    </Button>
+                    <Tooltip title='Delete' color='danger' placement='top-end'>
+                      <Button color='danger' variant='plain' size='md' onClick={() => onClickRemovedElement(row.id)}>
+                        <DeleteForeverIcon
+                          sx={{
+                            color: 'var(--joy-palette-danger-700, #7D1212)',
+                          }}
+                        />
+                      </Button>
+                    </Tooltip>
+
+                    <Tooltip title='Invoice' color='primary' placement='top-end'>
+                      <Button color='primary' variant='plain' size='md'>
+                        <DescriptionIcon />
+                      </Button>
+                    </Tooltip>
 
                     <RowMenu />
                   </Stack>
