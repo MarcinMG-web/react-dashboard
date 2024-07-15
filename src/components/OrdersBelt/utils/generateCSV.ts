@@ -3,7 +3,7 @@ import { DataRow } from '../../OrderTable/utils/data';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 
-export const generatedCSV = (rowsData: DataRow[]): void => {
+export const generateCSV = (rowsData: DataRow[]): void => {
   dayjs.extend(localizedFormat);
   const date = dayjs().format('LLLL');
 

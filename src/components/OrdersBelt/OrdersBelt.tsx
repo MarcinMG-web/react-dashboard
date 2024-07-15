@@ -6,8 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useAppState } from '../../context/AppState';
 import useRealTimeData from '../../hooks/useRealTimeData';
 import { generatePDF } from './utils/generatePDF';
-
-import { generatedCSV } from './utils/generatedCSV';
+import { generateCSV } from './utils/generateCSV';
 
 export default function OrdersBelt(): JSX.Element {
   const {
@@ -56,7 +55,7 @@ export default function OrdersBelt(): JSX.Element {
           variant='outlined'
           startDecorator={<DownloadRoundedIcon />}
           size='sm'
-          onClick={() => generatedCSV(rowsData)}
+          onClick={() => generateCSV(rowsData)}
         >
           Download CSV
         </Button>
