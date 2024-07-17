@@ -3,11 +3,11 @@ import { DataRow } from '../../OrderTable/utils/data';
 import dayjs from 'dayjs';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 
-export const generateCSV = (dataViewsWithFilters: DataRow[]): void => {
+export const generateCSV = (dataWithFilters: DataRow[]): void => {
   dayjs.extend(localizedFormat);
   const date = dayjs().format('LLLL');
 
-  const csv = `${generateSummary(dataViewsWithFilters)}\n\n${convertArrayToCSV(dataViewsWithFilters)}`;
+  const csv = `${generateSummary(dataWithFilters)}\n\n${convertArrayToCSV(dataWithFilters)}`;
 
   // Name file
   downloadCSV(csv, `Orders-${date}`);

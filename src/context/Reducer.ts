@@ -62,10 +62,10 @@ export const appReducer = (state: State, action: Action): State => {
         selectedCustomer: action.payload,
       };
 
-    case 'SET_DATA_VIEWS_WITH_FILTERS':
+    case 'SET_DATA_WITH_FILTERS':
       return {
         ...state,
-        dataViewsWithFilters: action.payload,
+        dataWithFilters: action.payload,
       };
 
     default: {

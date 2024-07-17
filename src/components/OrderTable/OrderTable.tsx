@@ -29,21 +29,18 @@ export default function OrderTable(): JSX.Element {
     state: { queryText, selectedStatus, selectedCustomer },
     dispatch,
   } = useAppState();
-
   const { rowsData, rowsDataLoading } = useRealTimeData();
 
-  const [order, setOrder] = useState('desc');
+  const [order, setOrder] = useState('descending');
   const [selected, setSelected] = useLocalStorage('selectedStars', []);
 
   // Filterer data
   const filteredRowsData = search(rowsData, queryText, selectedStatus, selectedCustomer);
 
-  const appearanceConditions = rowsDataLoading || filteredRowsData.length > 0;
-
   useEffect(() => {
-    dispatch({ type: 'SET_DATA_VIEWS_WITH_FILTERS', payload: filteredRowsData });
+    dispatch({ type: 'SET_DATA_WITH_FILTERS', payload: filteredRowsData });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, queryText, selectedStatus, selectedCustomer]);
+  }, [rowsDataLoading, dispatch, queryText, selectedStatus, selectedCustomer]);
 
   useEffect(() => {
     if (rowsDataLoading) {
@@ -54,7 +51,7 @@ export default function OrderTable(): JSX.Element {
   }, [rowsDataLoading]);
 
   const setOrderInvoice = () => {
-    setOrder(order === 'asc' ? 'desc' : 'asc');
+    setOrder(order === 'ascending' ? 'descending' : 'ascending');
     rowsData.reverse();
   };
 
@@ -75,6 +72,8 @@ export default function OrderTable(): JSX.Element {
       setSelected([...selected, row?.created]);
     }
   };
+
+  const appearanceConditions = rowsDataLoading || filteredRowsData.length > 0;
 
   return (
     <>
@@ -132,7 +131,7 @@ export default function OrderTable(): JSX.Element {
                   sx={{
                     '& svg': {
                       transition: '0.2s',
-                      transform: order === 'desc' ? 'rotate(0deg)' : 'rotate(180deg)',
+                      transform: order === 'descending' ? 'rotate(0deg)' : 'rotate(180deg)',
                     },
                   }}
                 >

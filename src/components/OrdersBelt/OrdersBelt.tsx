@@ -9,7 +9,7 @@ import { generateCSV } from './utils/generateCSV';
 
 export default function OrdersBelt(): JSX.Element {
   const {
-    state: { authorizedUser, dataViewsWithFilters },
+    state: { authorizedUser, dataWithFilters },
     dispatch,
   } = useAppState();
 
@@ -43,7 +43,7 @@ export default function OrdersBelt(): JSX.Element {
           variant='outlined'
           startDecorator={<DownloadRoundedIcon />}
           size='sm'
-          onClick={() => generatePDF(dataViewsWithFilters, authorizedUser)}
+          onClick={() => generatePDF(dataWithFilters, authorizedUser)}
         >
           Download PDF
         </Button>
@@ -52,7 +52,7 @@ export default function OrdersBelt(): JSX.Element {
           variant='outlined'
           startDecorator={<DownloadRoundedIcon />}
           size='sm'
-          onClick={() => generateCSV(dataViewsWithFilters)}
+          onClick={() => generateCSV(dataWithFilters)}
         >
           Download CSV
         </Button>

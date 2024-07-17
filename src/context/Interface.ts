@@ -12,5 +12,5 @@ export interface State {
   queryText: string;
   selectedStatus: string;
   selectedCustomer: string;
-  dataViewsWithFilters: DataRow[];
+  dataWithFilters: DataRow[];
 }

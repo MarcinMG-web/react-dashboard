@@ -10,7 +10,7 @@ import { countStatus } from './countStatus';
 
 export type DocWithAutoTable = jsPDF & { autoTable: autoTable };
 
-export const generatePDF = (dataViewsWithFilters: DataRow[], authorizedUser: User | null) => {
+export const generatePDF = (dataWithFilters: DataRow[], authorizedUser: User | null) => {
   const doc = new jsPDF();
 
   dayjs.extend(localizedFormat);
@@ -38,7 +38,7 @@ export const generatePDF = (dataViewsWithFilters: DataRow[], authorizedUser: Use
   doc.addImage(imgData, 'PNG', imageX, imageY, imageWidth, imageHeight);
 
   // Main content
-  const mainContent = dataViewsWithFilters.map(({ date, customer, status }, index) => [
+  const mainContent = dataWithFilters.map(({ date, customer, status }, index) => [
     `INV-${index + 1}`,
     date,
     customer.name,
@@ -64,12 +64,12 @@ export const generatePDF = (dataViewsWithFilters: DataRow[], authorizedUser: Use
   });
 
   // Summary
-  const statusCounts = countStatus(dataViewsWithFilters);
+  const statusCounts = countStatus(dataWithFilters);
   // Position
   const summaryStartY = (doc as DocWithAutoTable).lastAutoTable.finalY + 10;
 
   const summaryData = Object.entries(statusCounts).map(([status, count]) => [status, count]);
-  const totalValues = dataViewsWithFilters.length;
+  const totalValues = dataWithFilters.length;
 
   (doc as DocWithAutoTable).autoTable({
     startY: summaryStartY,

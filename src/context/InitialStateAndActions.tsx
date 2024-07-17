@@ -16,7 +16,7 @@ export const initialState: State = {
   queryText: '',
   selectedStatus: '',
   selectedCustomer: '',
-  dataViewsWithFilters: [],
+  dataWithFilters: [],
 };
 
 // Actions
@@ -30,6 +30,6 @@ export type Action =
   | { type: 'SET_QUERY_TEXT'; payload: string }
   | { type: 'SET_SELECTED_STATUS'; payload: string }
   | { type: 'SET_SELECTED_CUSTOMER'; payload: string }
-  | { type: 'SET_DATA_VIEWS_WITH_FILTERS'; payload: DataRow[] };
+  | { type: 'SET_DATA_WITH_FILTERS'; payload: DataRow[] };
 
 export type Dispatch = (action: Action) => void;
