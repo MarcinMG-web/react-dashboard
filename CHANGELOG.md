@@ -2,18 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.3.8 (2024-07-17)
+
+### Features
+
+- added possibility to search and filter data ([75ebf53](https://github.com/MarcinMG-web/react-dashboard/commit/75ebf537e69f6e65a586d1888fc8f6de8a7f33f2))
+
 ### 0.2.8 (2024-07-15)
 
 ### Features
 
-- added downlaod csv file ([fc82dd1](https://github.com/MarcinMG-web/react-dashboard/commit/fc82dd15b53dae5f33f3d94dbe640e0b1225220e))
+- added download csv file ([fc82dd1](https://github.com/MarcinMG-web/react-dashboard/commit/fc82dd15b53dae5f33f3d94dbe640e0b1225220e))
 
 ### 0.2.7 (2024-07-15)
 
 ### Features
 
 - add new form to add or edit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
-- added posible to slecect stars and new invoice button ([666c177](https://github.com/MarcinMG-web/react-dashboard/commit/666c1772d419db0430fef6a3079d6b55234b6270))
+- added possible to select stars and new invoice button ([666c177](https://github.com/MarcinMG-web/react-dashboard/commit/666c1772d419db0430fef6a3079d6b55234b6270))
 
 ### Bug Fixes
 
