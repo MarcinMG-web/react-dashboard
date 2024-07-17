@@ -1,7 +1,7 @@
 import { Input, Select, Option, FormControl, FormLabel, Grid } from '@mui/joy';
 import { Controller, useFormContext } from 'react-hook-form';
 import ErrorMessage from '../../ui/ErrorMessage';
-import { ElementForm, ElementFormValues, StatusOptions } from '../../types/newElementFormTypes';
+import { ElementForm, ElementFormValues, StatusOptionsEnum } from '../../types/newElementFormTypes';
 import { useAppState } from '../../context/AppState';
 
 export default function NewElementForm(): JSX.Element {
@@ -52,7 +52,7 @@ export default function NewElementForm(): JSX.Element {
                 placeholder='Select option...'
                 onChange={(_, value) => field.onChange(value)}
               >
-                {Object.entries(StatusOptions).map(([key, value]) => (
+                {Object.entries(StatusOptionsEnum).map(([key, value]) => (
                   <Option key={key} value={value}>
                     {value}
                   </Option>

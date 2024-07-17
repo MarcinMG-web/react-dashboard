@@ -10,7 +10,7 @@ import { countStatus } from './countStatus';
 
 export type DocWithAutoTable = jsPDF & { autoTable: autoTable };
 
-export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) => {
+export const generatePDF = (dataViewsWithFilters: DataRow[], authorizedUser: User | null) => {
   const doc = new jsPDF();
 
   dayjs.extend(localizedFormat);
@@ -27,7 +27,7 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
   doc.text(`by: ${authorizedUser?.email}`, 17, 35);
 
   // Img
-  const imgData = 'src/assets/monkey.png';
+  const imgData = 'src/assets/avatars.png';
   const imageWidth = 30;
   const imageHeight = 30;
   const pageWidth = 203;
@@ -38,7 +38,7 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
   doc.addImage(imgData, 'PNG', imageX, imageY, imageWidth, imageHeight);
 
   // Main content
-  const mainContent = rowsData.map(({ date, customer, status }, index) => [
+  const mainContent = dataViewsWithFilters.map(({ date, customer, status }, index) => [
     `INV-${index + 1}`,
     date,
     customer.name,
@@ -64,12 +64,12 @@ export const generatePDF = (rowsData: DataRow[], authorizedUser: User | null) =>
   });
 
   // Summary
-  const statusCounts = countStatus(rowsData);
+  const statusCounts = countStatus(dataViewsWithFilters);
   // Position
   const summaryStartY = (doc as DocWithAutoTable).lastAutoTable.finalY + 10;
 
   const summaryData = Object.entries(statusCounts).map(([status, count]) => [status, count]);
-  const totalValues = rowsData.length;
+  const totalValues = dataViewsWithFilters.length;
 
   (doc as DocWithAutoTable).autoTable({
     startY: summaryStartY,

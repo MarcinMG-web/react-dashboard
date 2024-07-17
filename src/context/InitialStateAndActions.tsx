@@ -1,5 +1,6 @@
 import { User } from 'firebase/auth';
 import { State } from './Interface';
+import { DataRow } from '../components/OrderTable/utils/data';
 
 // Initial State
 export const initialState: State = {
@@ -12,6 +13,10 @@ export const initialState: State = {
   },
   openDeletedModal: false,
   selectedId: '',
+  queryText: '',
+  selectedStatus: '',
+  selectedCustomer: '',
+  dataViewsWithFilters: [],
 };
 
 // Actions
@@ -21,6 +26,10 @@ export type Action =
   | { type: 'SET_REGISTER_APP'; payload: boolean }
   | { type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS'; payload: { modal: boolean; isEdit: boolean } }
   | { type: 'SET_OPEN_DELETED_MODAL'; payload: boolean }
-  | { type: 'SET_SELECTED_ID'; payload: string };
+  | { type: 'SET_SELECTED_ID'; payload: string }
+  | { type: 'SET_QUERY_TEXT'; payload: string }
+  | { type: 'SET_SELECTED_STATUS'; payload: string }
+  | { type: 'SET_SELECTED_CUSTOMER'; payload: string }
+  | { type: 'SET_DATA_VIEWS_WITH_FILTERS'; payload: DataRow[] };
 
 export type Dispatch = (action: Action) => void;

@@ -4,20 +4,17 @@ import Typography from '@mui/joy/Typography';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import AddIcon from '@mui/icons-material/Add';
 import { useAppState } from '../../context/AppState';
-import useRealTimeData from '../../hooks/useRealTimeData';
 import { generatePDF } from './utils/generatePDF';
 import { generateCSV } from './utils/generateCSV';
 
 export default function OrdersBelt(): JSX.Element {
   const {
-    state: { authorizedUser },
+    state: { authorizedUser, dataViewsWithFilters },
     dispatch,
   } = useAppState();
 
   const onClickAddNew = () =>
     dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: true, isEdit: false } });
-
-  const { rowsData } = useRealTimeData();
 
   return (
     <Box
@@ -46,7 +43,7 @@ export default function OrdersBelt(): JSX.Element {
           variant='outlined'
           startDecorator={<DownloadRoundedIcon />}
           size='sm'
-          onClick={() => generatePDF(rowsData, authorizedUser)}
+          onClick={() => generatePDF(dataViewsWithFilters, authorizedUser)}
         >
           Download PDF
         </Button>
@@ -55,7 +52,7 @@ export default function OrdersBelt(): JSX.Element {
           variant='outlined'
           startDecorator={<DownloadRoundedIcon />}
           size='sm'
-          onClick={() => generateCSV(rowsData)}
+          onClick={() => generateCSV(dataViewsWithFilters)}
         >
           Download CSV
         </Button>
