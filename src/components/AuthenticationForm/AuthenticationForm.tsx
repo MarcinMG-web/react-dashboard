@@ -43,7 +43,7 @@ export default function AuthenticationForm(): JSX.Element {
         createdNewCollection(user);
 
         dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
-        navigate(RoutesEnum.APP);
+        navigate(RoutesEnum.ORDERS);
         enqueueSnackbar('Registration completed successfully, let`s get started!', { variant: 'success' });
       })
       .catch((error) => {
@@ -59,7 +59,7 @@ export default function AuthenticationForm(): JSX.Element {
         // Signed up
         const user = userCredential.user;
         dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
-        navigate(RoutesEnum.APP);
+        navigate(RoutesEnum.ORDERS);
         enqueueSnackbar('Let`s get started!', { variant: 'success' });
       })
       .catch((error) => {

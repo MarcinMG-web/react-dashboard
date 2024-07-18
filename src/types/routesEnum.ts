@@ -1,7 +1,7 @@
 enum RoutesEnum {
-  DASHBOARD = '/',
+  LOGIN = '/',
   REGISTER = '/register',
-  APP = '/app',
+  ORDERS = '/orders',
   ANYTHING = '*',
 }
 
