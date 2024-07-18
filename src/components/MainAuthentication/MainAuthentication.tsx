@@ -2,7 +2,7 @@ import { Box, Divider, Stack } from '@mui/joy';
 import AuthenticationForm from '../AuthenticationForm';
 import AuthenticationProviders from '../AuthenticationProviders';
 
-export default function MainDashboard(): JSX.Element {
+export default function MainAuthentication(): JSX.Element {
   return (
     <Box
       component='main'

@@ -16,7 +16,7 @@ export default function Header(): JSX.Element {
   const logOut = async () => {
     await signOut(auth)
       .then(() => {
-        navigate(RoutesEnum.DASHBOARD);
+        navigate(RoutesEnum.LOGIN);
         dispatch({ type: 'SET_REGISTER_APP', payload: false });
         enqueueSnackbar('Logout completed successfully. See you next time!', { variant: 'success' });
       })
@@ -25,7 +25,7 @@ export default function Header(): JSX.Element {
       });
   };
 
-  const visibleLogoutButton = pathname === RoutesEnum.APP;
+  const visibleLogoutButton = pathname === RoutesEnum.ORDERS;
 
   return (
     <Box

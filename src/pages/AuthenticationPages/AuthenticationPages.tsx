@@ -2,9 +2,9 @@ import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Header from '../../ui/Header';
 import Footer from '../../ui/Footer';
-import MainDashboard from '../../components/MainDashboard/MainDashboard';
+import MainAuthentication from '../../components/MainAuthentication';
 
-export default function Dashboard(): JSX.Element {
+export default function AuthenticationPages(): JSX.Element {
   return (
     <>
       <CssBaseline />
@@ -36,7 +36,7 @@ export default function Dashboard(): JSX.Element {
           }}
         >
           <Header />
-          <MainDashboard />
+          <MainAuthentication />
           <Footer />
         </Box>
       </Box>

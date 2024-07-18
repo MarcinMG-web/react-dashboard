@@ -1,14 +1,14 @@
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import OrderTable from '../../components/OrderTable/OrderTable';
-import PageLocator from '../../components/PageLocator';
+import PageLocator from '../../ui/PageLocator';
 import Header from '../../ui/Header';
 import OrdersBelt from '../../components/OrdersBelt';
 import AddEditElementsModal from '../../ui/AddEditElementsModal';
 import { useAppState } from '../../context/AppState';
 import DeletedModal from '../../ui/DeletedModal';
 
-export default function MainApp(): JSX.Element {
+export default function OrdersPage(): JSX.Element {
   const {
     state: { openModalAddEditElements, openDeletedModal },
   } = useAppState();
@@ -42,7 +42,6 @@ export default function MainApp(): JSX.Element {
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <PageLocator />
           </Box>
-
           {openModalAddEditElements.modal && <AddEditElementsModal />}
           {openDeletedModal && <DeletedModal />}
           <OrdersBelt />

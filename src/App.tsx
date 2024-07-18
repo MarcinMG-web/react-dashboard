@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { CssVarsProvider } from '@mui/joy/styles';
 import RoutesEnum from './types/routesEnum';
 import ErrorPages from './pages/ErrorPages';
-import Dashboard from './pages/Dashboard';
+import AuthenticationPages from './pages/AuthenticationPages';
 import { auth } from './api/firebase';
 import { User } from 'firebase/auth';
 import { useAppState } from './context/AppState';
@@ -21,26 +21,27 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
-      if (pathname === RoutesEnum.REGISTER || user !== null) {
+      if (pathname === RoutesEnum.REGISTER && user !== null) {
         dispatch({ type: 'SET_REGISTER_APP', payload: true });
       }
     });
 
-    return () => unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [registerApp]);
+    return () => {
+      unsubscribe();
+    };
+  }, [dispatch, pathname, registerApp]);
 
   const routes = [
     {
       path: RoutesEnum.REGISTER,
-      component: <Dashboard />,
+      component: <AuthenticationPages />,
     },
     {
-      path: RoutesEnum.DASHBOARD,
-      component: <Dashboard />,
+      path: RoutesEnum.LOGIN,
+      component: <AuthenticationPages />,
     },
     {
-      path: RoutesEnum.APP,
+      path: RoutesEnum.ORDERS,
       component: <ProtectedRoute />,
     },
     {

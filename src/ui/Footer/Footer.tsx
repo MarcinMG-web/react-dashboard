@@ -8,7 +8,7 @@ export default function Footer(): JSX.Element {
     <Box component='footer' sx={{ py: 3 }}>
       <Typography level='body-xs' textAlign='center'>
         <h5>
-          © Dashboard App {year} Version: {packageJson.version}
+          © Invoice App {year} Version: {packageJson.version}
         </h5>
       </Typography>
     </Box>

@@ -1,6 +1,6 @@
 import { useAppState } from '../../context/AppState';
 import ErrorPages from '../../pages/ErrorPages';
-import MainApp from '../../pages/MainApp';
+import OrdersPage from '../../pages/OrdersPage';
 
 export default function ProtectedRoute(): JSX.Element {
   const {
@@ -10,5 +10,5 @@ export default function ProtectedRoute(): JSX.Element {
   if (!authorizedUser) {
     return <ErrorPages errorCode={403} />;
   }
-  return <MainApp />;
+  return <OrdersPage />;
 }

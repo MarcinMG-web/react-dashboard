@@ -28,7 +28,7 @@ export default function AuthenticationProviders(): JSX.Element {
         createdNewCollection(user);
 
         dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
-        navigate(RoutesEnum.APP);
+        navigate(RoutesEnum.ORDERS);
         enqueueSnackbar('Login successful, good to see you again!', { variant: 'success' });
       })
       .catch((error) => {
@@ -45,7 +45,7 @@ export default function AuthenticationProviders(): JSX.Element {
         <Typography level='body-sm'>
           New to company?{' '}
           {registerApp ? (
-            <Link href={RoutesEnum.DASHBOARD} level='title-sm'>
+            <Link href={RoutesEnum.LOGIN} level='title-sm'>
               Sign in!
             </Link>
           ) : (
