@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.3.9 (2024-07-18)
+
+### Features
+
+- added pagination per pages ([762c63a](https://github.com/MarcinMG-web/react-dashboard/commit/762c63af9501759e19928db5c284d9c3dae6547d))
+
 ### 0.3.8 (2024-07-17)
 
 ### Features

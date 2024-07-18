@@ -33,14 +33,15 @@ export default function OrderTable(): JSX.Element {
 
   const [order, setOrder] = useState('descending');
   const [selected, setSelected] = useLocalStorage('selectedStars', []);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // Filterer data
+  // Filtered data
   const filteredRowsData = search(rowsData, queryText, selectedStatus, selectedCustomer);
 
   useEffect(() => {
     dispatch({ type: 'SET_DATA_WITH_FILTERS', payload: filteredRowsData });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rowsDataLoading, dispatch, queryText, selectedStatus, selectedCustomer]);
+  }, [rowsDataLoading, rowsData, dispatch, queryText, selectedStatus, selectedCustomer]);
 
   useEffect(() => {
     if (rowsDataLoading) {
@@ -74,6 +75,10 @@ export default function OrderTable(): JSX.Element {
   };
 
   const appearanceConditions = rowsDataLoading || filteredRowsData.length > 0;
+
+  // Pagination
+  const itemsPerPage = 8;
+  const displayedRows = filteredRowsData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <>
@@ -147,7 +152,7 @@ export default function OrderTable(): JSX.Element {
 
           <tbody>
             {appearanceConditions ? (
-              filteredRowsData.map((row: DataRow, index: number) => (
+              displayedRows.map((row: DataRow, index: number) => (
                 <tr key={row.id}>
                   <td style={{ textAlign: 'center', width: 48 }}>
                     <Tooltip title='Select' color='warning' placement='top'>
@@ -219,7 +224,9 @@ export default function OrderTable(): JSX.Element {
         </Table>
       </Sheet>
 
-      {appearanceConditions && <Pagination />}
+      {appearanceConditions && (
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage} />
+      )}
     </>
   );
 }
