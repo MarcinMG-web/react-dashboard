@@ -75,7 +75,7 @@ export default function DeletedModal(): JSX.Element {
 
           <DialogActions>
             <Button variant='solid' color='danger' onClick={onSubmit}>
-              Discard notes
+              Delete
             </Button>
             <Button variant='outlined' color='neutral' onClick={onClosed}>
               Cancel
