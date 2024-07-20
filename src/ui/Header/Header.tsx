@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/joy';
+import { Box, Button, Tooltip } from '@mui/joy';
 import { useLocation } from 'react-router-dom';
 import { useAppState } from '../../context/AppState';
 import RoutesEnum from '../../types/routesEnum';
@@ -25,7 +25,7 @@ export default function Header(): JSX.Element {
         px: 1,
         py: 1,
         mr: 6,
-        ml: 7,
+        ml: 6,
       }}
     >
       {visibleLanguageAndChangeColor && (
@@ -39,13 +39,15 @@ export default function Header(): JSX.Element {
         <>
           <PageLocator />
 
-          <Button
-            variant='outlined'
-            color='neutral'
-            onClick={() => dispatch({ type: 'SET_SHOW_SIDEBAR', payload: true })}
-          >
-            <MenuTwoToneIcon />
-          </Button>
+          <Tooltip title='Menu' color='neutral' placement='top-end'>
+            <Button
+              variant='outlined'
+              color='neutral'
+              onClick={() => dispatch({ type: 'SET_SHOW_SIDEBAR', payload: true })}
+            >
+              <MenuTwoToneIcon />
+            </Button>
+          </Tooltip>
         </>
       )}
     </Box>
