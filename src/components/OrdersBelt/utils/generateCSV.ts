@@ -18,7 +18,10 @@ export const convertArrayToCSV = (array: DataRow[]): string => {
   // Main content
   const header = 'Orders\nId,Date,Name,Email,Status\n';
   const rows = array
-    .map(({ date, customer, status }, index) => `INV-${index + 1},${date},${customer.name},${customer.email},${status}`)
+    .map(
+      ({ invoice, customer }) =>
+        `INV-${invoice.number},${invoice.date},${customer.name},${customer.email},${invoice.status}`,
+    )
     .join('\n');
   return header + rows;
 };
@@ -26,7 +29,7 @@ export const convertArrayToCSV = (array: DataRow[]): string => {
 export const generateSummary = (array: DataRow[]): string => {
   // Summary
   const summary = array.reduce(
-    (acc, invoice) => {
+    (acc, { invoice }) => {
       if (!acc[invoice.status]) {
         acc[invoice.status] = 1;
       } else {

@@ -7,4 +7,5 @@ export const newElementSchema = yup.object().shape({
   [ElementForm.DATE]: yup.string().required('Date is required').typeError('Invalid date format'),
   [ElementForm.STATUS]: yup.string().required('Status is required'),
   [ElementForm.CUSTOMER_INITIAL]: yup.string().required('Customer Initial is required'),
+  [ElementForm.INVOICE_NUMBER]: yup.string().required('Invoice Number is required'),
 });

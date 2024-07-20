@@ -2,7 +2,7 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
-// import DescriptionIcon from '@mui/icons-material/Description'; TO DO: uncomment after add new feature
+import DescriptionIcon from '@mui/icons-material/Description';
 import Box from '@mui/joy/Box';
 import Divider from '@mui/joy/Divider';
 import Drawer from '@mui/joy/Drawer';
@@ -34,12 +34,11 @@ export default function Sidebar(): JSX.Element {
       icon: <ShoppingCartRoundedIcon color='success' />,
       redirect: RoutesEnum.ORDERS,
     },
-    // TO DO: Add new feature
-    // {
-    //   label: 'Invoice',
-    //   icon: <DescriptionIcon color='primary' />,
-    //   redirect: RoutesEnum.INVOICE,
-    // },
+    {
+      label: 'Invoice',
+      icon: <DescriptionIcon color='primary' />,
+      redirect: RoutesEnum.INVOICE,
+    },
   ];
 
   const itemsAdmin = [

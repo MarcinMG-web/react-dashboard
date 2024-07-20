@@ -152,7 +152,7 @@ export default function OrderTable(): JSX.Element {
 
           <tbody>
             {appearanceConditions ? (
-              displayedRows.map((row: DataRow, index: number) => (
+              displayedRows.map((row: DataRow) => (
                 <tr key={row.id}>
                   <td style={{ textAlign: 'center', width: 48 }}>
                     <Tooltip title='Select' color='warning' placement='top'>
@@ -165,22 +165,22 @@ export default function OrderTable(): JSX.Element {
                     </Tooltip>
                   </td>
                   <td>
-                    <Typography level='body-xs'>{`INV-${index + 1}`}</Typography>
+                    <Typography level='body-xs'>{`INV - ${row.invoice.number}`}</Typography>
                   </td>
                   <td>
-                    <Typography level='body-xs'>{row.date}</Typography>
+                    <Typography level='body-xs'>{row.invoice.date}</Typography>
                   </td>
                   <td>
-                    <ChipColor status={row.status as Status} />
+                    <ChipColor status={row.invoice.status as Status} />
                   </td>
                   <td>
                     <Stack direction='row' alignItems='center'>
-                      <Avatar size='sm'>{row.customer?.initial}</Avatar>
+                      <Avatar size='sm'>{row.customer.initial}</Avatar>
                       <div>
                         <Typography level='body-md' color='success'>
                           {row.customer?.name}
                         </Typography>
-                        <Typography level='body-xs'>{row.customer?.email}</Typography>
+                        <Typography level='body-xs'>{row.customer.email}</Typography>
                       </div>
                     </Stack>
                   </td>

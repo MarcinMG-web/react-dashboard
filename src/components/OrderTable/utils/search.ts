@@ -23,12 +23,14 @@ export const search = (
 
   return dataRow.filter((row) => {
     // Check if any query condition is met
-    const matchesSearch =
-      matchesQuery(row.customer.name) ||
-      matchesQuery(row.customer.email) ||
-      matchesQuery(row.customer.initial) ||
-      matchesQuery(row.date) ||
-      matchesQuery(row.status);
+    const matchesSearch = [
+      row.customer.name,
+      row.customer.email,
+      row.customer.initial,
+      row.invoice.date,
+      row.invoice.status,
+      row.invoice.number,
+    ].some(matchesQuery);
 
     // Check if the client name matches
     const matchesCustomer = matchesCustomerName(row.customer.name);
@@ -36,13 +38,13 @@ export const search = (
     // Filtering by selected status
     switch (selectedStatus) {
       case PAID:
-        return matchesSearch && matchesCustomer && row.status === PAID;
+        return matchesSearch && matchesCustomer && row.invoice.status === PAID;
       case PENDING:
-        return matchesSearch && matchesCustomer && row.status === PENDING;
+        return matchesSearch && matchesCustomer && row.invoice.status === PENDING;
       case REFUNDED:
-        return matchesSearch && matchesCustomer && row.status === REFUNDED;
+        return matchesSearch && matchesCustomer && row.invoice.status === REFUNDED;
       case CANCELLED:
-        return matchesSearch && matchesCustomer && row.status === CANCELLED;
+        return matchesSearch && matchesCustomer && row.invoice.status === CANCELLED;
       default:
         return matchesSearch && matchesCustomer;
     }
