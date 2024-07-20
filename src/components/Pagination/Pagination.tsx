@@ -59,7 +59,7 @@ export default function Pagination({ currentPage, setCurrentPage, itemsPerPage }
     <Box
       className='Pagination-laptopUp'
       sx={{
-        pt: 2,
+        pt: 1.5,
         gap: 1,
         [`& .${iconButtonClasses.root}`]: { borderRadius: '50%' },
         display: {
