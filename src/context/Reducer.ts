@@ -68,6 +68,12 @@ export const appReducer = (state: State, action: Action): State => {
         dataWithFilters: action.payload,
       };
 
+    case 'SET_SHOW_SIDEBAR':
+      return {
+        ...state,
+        showSidebar: action.payload,
+      };
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

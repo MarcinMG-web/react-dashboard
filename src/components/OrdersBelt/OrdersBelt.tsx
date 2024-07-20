@@ -20,6 +20,7 @@ export default function OrdersBelt(): JSX.Element {
     <Box
       sx={{
         display: 'flex',
+        mt: 3,
         mb: 1,
         gap: 1,
         flexDirection: { xs: 'column', sm: 'row' },

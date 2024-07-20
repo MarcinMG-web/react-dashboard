@@ -17,6 +17,7 @@ export const initialState: State = {
   selectedStatus: '',
   selectedCustomer: '',
   dataWithFilters: [],
+  showSidebar: false,
 };
 
 // Actions
@@ -30,6 +31,7 @@ export type Action =
   | { type: 'SET_QUERY_TEXT'; payload: string }
   | { type: 'SET_SELECTED_STATUS'; payload: string }
   | { type: 'SET_SELECTED_CUSTOMER'; payload: string }
-  | { type: 'SET_DATA_WITH_FILTERS'; payload: DataRow[] };
+  | { type: 'SET_DATA_WITH_FILTERS'; payload: DataRow[] }
+  | { type: 'SET_SHOW_SIDEBAR'; payload: boolean };
 
 export type Dispatch = (action: Action) => void;

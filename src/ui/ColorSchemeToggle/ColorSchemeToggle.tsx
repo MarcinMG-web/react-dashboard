@@ -22,7 +22,7 @@ export default function ColorSchemeToggle({ onClick, ...rest }: IconButtonProps)
       }}
       {...rest}
     >
-      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+      {mode === 'light' ? <DarkModeRoundedIcon color='primary' /> : <LightModeRoundedIcon color='warning' />}
     </IconButton>
   );
 }

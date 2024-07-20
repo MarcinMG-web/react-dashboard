@@ -13,4 +13,5 @@ export interface State {
   selectedStatus: string;
   selectedCustomer: string;
   dataWithFilters: DataRow[];
+  showSidebar: boolean;
 }
