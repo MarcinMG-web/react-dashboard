@@ -25,7 +25,7 @@ export default function Header(): JSX.Element {
         px: 1,
         py: 1,
         mr: 6,
-        ml: 6.5,
+        ml: 7,
       }}
     >
       {visibleLanguageAndChangeColor && (
