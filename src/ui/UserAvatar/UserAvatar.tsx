@@ -10,7 +10,10 @@ import { useAppState } from '../../context/AppState';
 import RoutesEnum from '../../types/routesEnum';
 
 export default function UserAvatar(): JSX.Element {
-  const { dispatch } = useAppState();
+  const {
+    state: { authorizedUser },
+    dispatch,
+  } = useAppState();
 
   const navigate = useNavigate();
 
@@ -33,8 +36,8 @@ export default function UserAvatar(): JSX.Element {
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', m: 2 }}>
       <Avatar variant='outlined' size='sm' src='src/assets/avatars.png' />
       <Box sx={{ minWidth: 0, flex: 1 }}>
-        <Typography level='title-sm'>Jon Do.</Typography>
-        <Typography level='body-xs'>jon@do.com</Typography>
+        <Typography level='title-sm'>{authorizedUser?.displayName}</Typography>
+        <Typography level='body-xs'>{authorizedUser?.email}</Typography>
       </Box>
       <IconButton size='sm' variant='plain' color='danger' onClick={logOut}>
         <LogoutRoundedIcon />

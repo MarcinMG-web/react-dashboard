@@ -21,7 +21,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
-      if (pathname === RoutesEnum.REGISTER && user !== null) {
+      if (pathname === RoutesEnum.REGISTER || user !== null) {
         dispatch({ type: 'SET_REGISTER_APP', payload: true });
       }
     });

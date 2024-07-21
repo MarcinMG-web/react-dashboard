@@ -30,6 +30,7 @@ export default function OrdersPage(): JSX.Element {
               sm: 'calc(12px + var(--Header-height))',
             },
             mr: 3,
+            ml: 3,
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
