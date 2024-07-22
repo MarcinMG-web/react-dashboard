@@ -38,12 +38,12 @@ export const generatePDF = (dataWithFilters: DataRow[], authorizedUser: User | n
   doc.addImage(imgData, 'PNG', imageX, imageY, imageWidth, imageHeight);
 
   // Main content
-  const mainContent = dataWithFilters.map(({ date, customer, status }, index) => [
-    `INV-${index + 1}`,
-    date,
+  const mainContent = dataWithFilters.map(({ invoice, customer }) => [
+    `INV- ${invoice.number}`,
+    invoice.date,
     customer.name,
     customer.email,
-    status,
+    invoice.status,
   ]);
 
   (doc as DocWithAutoTable).autoTable({

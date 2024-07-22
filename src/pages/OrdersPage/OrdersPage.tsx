@@ -4,15 +4,10 @@ import OrderTable from '../../components/OrderTable/OrderTable';
 import Header from '../../ui/Header';
 import OrdersBelt from '../../components/OrdersBelt';
 import AddEditElementsModal from '../../ui/AddEditElementsModal';
-import { useAppState } from '../../context/AppState';
 import DeletedModal from '../../ui/DeletedModal';
 import Sidebar from '../../ui/Sidebar';
 
 export default function OrdersPage(): JSX.Element {
-  const {
-    state: { openModalAddEditElements, openDeletedModal },
-  } = useAppState();
-
   return (
     <>
       <CssBaseline />
@@ -30,6 +25,7 @@ export default function OrdersPage(): JSX.Element {
               sm: 'calc(12px + var(--Header-height))',
             },
             mr: 3,
+            ml: 3,
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
@@ -37,8 +33,9 @@ export default function OrdersPage(): JSX.Element {
             gap: 1,
           }}
         >
-          {openModalAddEditElements.modal && <AddEditElementsModal />}
-          {openDeletedModal && <DeletedModal />}
+          <AddEditElementsModal />
+          <DeletedModal />
+
           <OrdersBelt />
           <OrderTable />
         </Box>

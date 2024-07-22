@@ -4,6 +4,7 @@ export type ElementFormValues = {
   [ElementForm.DATE]: string;
   [ElementForm.STATUS]: string;
   [ElementForm.CUSTOMER_INITIAL]: string;
+  [ElementForm.INVOICE_NUMBER]: string;
 };
 
 export enum ElementForm {
@@ -12,6 +13,7 @@ export enum ElementForm {
   DATE = 'date',
   STATUS = 'status',
   CUSTOMER_INITIAL = 'customerInitial',
+  INVOICE_NUMBER = 'invoiceNumber',
 }
 
 export enum StatusOptionsEnum {

@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.4.10 (2024-07-22)
+
+### Features
+
+- added INV number ([43d5193](https://github.com/MarcinMG-web/react-dashboard/commit/43d51931338b39f9f9b516a033f1a3d1e2be5285))
+
+### Bug Fixes
+
+- bug with open modals ([9ddd64a](https://github.com/MarcinMG-web/react-dashboard/commit/9ddd64a6b28f00f72af69909f160c3ff2cee76f7))
+- detected bugs ([b0aac40](https://github.com/MarcinMG-web/react-dashboard/commit/b0aac40b3dc652b32d17c05c99cd694ff9494065))
+- folder name ([c891c42](https://github.com/MarcinMG-web/react-dashboard/commit/c891c423f27043569971acf026e2d2a5543e15af))
+- folder name ([e3dbecf](https://github.com/MarcinMG-web/react-dashboard/commit/e3dbecf283ee878b3f4720abb1437f04d7571f36))
+- name of deleted modal ([f2bcf83](https://github.com/MarcinMG-web/react-dashboard/commit/f2bcf833d9ddc42de0a0dd8e2ea095d4b7d0296c))
+- type and chip pending status ([4aa0f22](https://github.com/MarcinMG-web/react-dashboard/commit/4aa0f22df6a6a7138f08b73e398f8c6d04ec3ff3))
+
 ### 0.4.9 (2024-07-18)
 
 ### Features
