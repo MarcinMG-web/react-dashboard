@@ -7,11 +7,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 - add base on invoice page ([0b52c25](https://github.com/MarcinMG-web/react-dashboard/commit/0b52c25aa5d88f80a1c1b4fccb1376307a1f373a))
-- add new form to add or eddit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
-- added page locatore and fix name of routes, app ([#13](https://github.com/MarcinMG-web/react-dashboard/issues/13)) ([0f27853](https://github.com/MarcinMG-web/react-dashboard/commit/0f27853922229aa0edcdb4dd0e00cfa6858cb76f))
-- added pagination per pages ([#12](https://github.com/MarcinMG-web/react-dashboard/issues/12)) ([8e8c461](https://github.com/MarcinMG-web/react-dashboard/commit/8e8c4614278a00269c70383487404f963474ad07))
-- added posible to slecect stars and new invoice button ([#9](https://github.com/MarcinMG-web/react-dashboard/issues/9)) ([4fe9454](https://github.com/MarcinMG-web/react-dashboard/commit/4fe9454487591559c910ad7019ac960dd9aa9396))
-- added psible to search and filter data ([#11](https://github.com/MarcinMG-web/react-dashboard/issues/11)) ([ab05515](https://github.com/MarcinMG-web/react-dashboard/commit/ab055153231c48a3295495e436c285c8667228ea))
 
 ### Bug Fixes
 
