@@ -1,8 +1,12 @@
+import { ReactNode } from 'react';
 import { useAppState } from '../../context/AppState';
 import ErrorPages from '../../pages/ErrorPages';
-import OrdersPage from '../../pages/OrdersPage';
 
-export default function ProtectedRoute(): JSX.Element {
+interface ProtectedRouteProps {
+  children: ReactNode;
+}
+
+export default function ProtectedRoute({ children }: ProtectedRouteProps): JSX.Element {
   const {
     state: { authorizedUser },
   } = useAppState();
@@ -10,5 +14,5 @@ export default function ProtectedRoute(): JSX.Element {
   if (!authorizedUser) {
     return <ErrorPages errorCode={403} />;
   }
-  return <OrdersPage />;
+  return <>{children}</>;
 }

@@ -10,6 +10,8 @@ import { useAppState } from './context/AppState';
 import { SnackbarOrigin, SnackbarProvider } from 'notistack';
 import { StyledMaterialDesignContent, snackbarConfig } from './config/snackbarConfig';
 import ProtectedRoute from './components/ProtectedRoute';
+import OrdersPage from './pages/OrdersPage';
+import InvoicePage from './pages/InvoicePage';
 
 export default function App(): JSX.Element {
   const {
@@ -42,7 +44,19 @@ export default function App(): JSX.Element {
     },
     {
       path: RoutesEnum.ORDERS,
-      component: <ProtectedRoute />,
+      component: (
+        <ProtectedRoute>
+          <OrdersPage />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: RoutesEnum.INVOICE,
+      component: (
+        <ProtectedRoute>
+          <InvoicePage />
+        </ProtectedRoute>
+      ),
     },
     {
       path: RoutesEnum.ANYTHING,

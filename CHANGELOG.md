@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.4.11 (2024-07-22)
+
+### Features
+
+- add base on invoice page ([0b52c25](https://github.com/MarcinMG-web/react-dashboard/commit/0b52c25aa5d88f80a1c1b4fccb1376307a1f373a))
+
+### Bug Fixes
+
+- folder name ([c891c42](https://github.com/MarcinMG-web/react-dashboard/commit/c891c423f27043569971acf026e2d2a5543e15af))
+- folder name ([e3dbecf](https://github.com/MarcinMG-web/react-dashboard/commit/e3dbecf283ee878b3f4720abb1437f04d7571f36))
+- type and chip pending status ([4aa0f22](https://github.com/MarcinMG-web/react-dashboard/commit/4aa0f22df6a6a7138f08b73e398f8c6d04ec3ff3))
+
 ### 0.4.10 (2024-07-22)
 
 ### Features

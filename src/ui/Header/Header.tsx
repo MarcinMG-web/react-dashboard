@@ -11,8 +11,8 @@ export default function Header(): JSX.Element {
   const { dispatch } = useAppState();
   const { pathname } = useLocation();
 
-  const visibleLogoutMenu = pathname === RoutesEnum.ORDERS;
   const visibleLanguageAndChangeColorArray = [RoutesEnum.LOGIN, RoutesEnum.REGISTER];
+
   const visibleLanguageAndChangeColor = visibleLanguageAndChangeColorArray.includes(pathname as RoutesEnum);
 
   return (
@@ -28,14 +28,12 @@ export default function Header(): JSX.Element {
         ml: 6,
       }}
     >
-      {visibleLanguageAndChangeColor && (
+      {visibleLanguageAndChangeColor ? (
         <>
           <LanguageToggle />
           <ColorSchemeToggle />
         </>
-      )}
-
-      {visibleLogoutMenu && (
+      ) : (
         <>
           <PageLocator />
 
