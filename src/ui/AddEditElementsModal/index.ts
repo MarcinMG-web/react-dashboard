@@ -1,1 +1,1 @@
-export { default } from './AddEditElementsModal';
+export { default } from './AddEditElementsModal'

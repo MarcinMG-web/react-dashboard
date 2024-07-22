@@ -1,6 +1,6 @@
-import { User } from 'firebase/auth';
-import { State } from './Interface';
-import { DataRow } from '../components/OrderTable/utils/data';
+import { User } from 'firebase/auth'
+import { State } from './Interface'
+import { DataRow } from '../components/OrderTable/utils/data'
 
 // Initial State
 export const initialState: State = {
@@ -18,7 +18,7 @@ export const initialState: State = {
   selectedCustomer: '',
   dataWithFilters: [],
   showSidebar: false,
-};
+}
 
 // Actions
 export type Action =
@@ -32,6 +32,6 @@ export type Action =
   | { type: 'SET_SELECTED_STATUS'; payload: string }
   | { type: 'SET_SELECTED_CUSTOMER'; payload: string }
   | { type: 'SET_DATA_WITH_FILTERS'; payload: DataRow[] }
-  | { type: 'SET_SHOW_SIDEBAR'; payload: boolean };
+  | { type: 'SET_SHOW_SIDEBAR'; payload: boolean }
 
-export type Dispatch = (action: Action) => void;
+export type Dispatch = (action: Action) => void

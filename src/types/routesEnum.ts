@@ -8,4 +8,4 @@ enum RoutesEnum {
   ANYTHING = '*',
 }
 
-export default RoutesEnum;
+export default RoutesEnum

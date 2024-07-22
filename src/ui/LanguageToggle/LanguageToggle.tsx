@@ -1,4 +1,4 @@
-import { Box, Link } from '@mui/joy';
+import { Box, Link } from '@mui/joy'
 
 export default function LanguageToggle(): JSX.Element {
   return (
@@ -11,5 +11,5 @@ export default function LanguageToggle(): JSX.Element {
         PL
       </Link>
     </Box>
-  );
+  )
 }

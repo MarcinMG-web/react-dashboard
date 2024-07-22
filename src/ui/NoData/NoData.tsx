@@ -1,6 +1,6 @@
-import Typography from '@mui/material/Typography';
-import DraftsTwoToneIcon from '@mui/icons-material/DraftsTwoTone';
-import { Stack } from '@mui/joy';
+import Typography from '@mui/material/Typography'
+import DraftsTwoToneIcon from '@mui/icons-material/DraftsTwoTone'
+import { Stack } from '@mui/joy'
 
 export default function NoData(): JSX.Element {
   return (
@@ -10,5 +10,5 @@ export default function NoData(): JSX.Element {
         No Data
       </Typography>
     </Stack>
-  );
+  )
 }

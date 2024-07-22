@@ -1,5 +1,5 @@
-import * as yup from 'yup';
-import { ElementForm } from '../types/newElementFormTypes';
+import * as yup from 'yup'
+import { ElementForm } from '../types/newElementFormTypes'
 
 export const newElementSchema = yup.object().shape({
   [ElementForm.CUSTOMER_NAME]: yup.string().required('Customer Name is required'),
@@ -8,4 +8,4 @@ export const newElementSchema = yup.object().shape({
   [ElementForm.STATUS]: yup.string().required('Status is required'),
   [ElementForm.CUSTOMER_INITIAL]: yup.string().required('Customer Initial is required'),
   [ElementForm.INVOICE_NUMBER]: yup.string().required('Invoice Number is required'),
-});
+})

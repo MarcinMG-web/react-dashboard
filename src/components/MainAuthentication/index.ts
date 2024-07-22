@@ -1,1 +1,1 @@
-export { default } from './MainAuthentication';
+export { default } from './MainAuthentication'

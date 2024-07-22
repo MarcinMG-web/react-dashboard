@@ -1,8 +1,8 @@
-import { Box, Typography } from '@mui/joy';
-import packageJson from '../../../package.json';
+import { Box, Typography } from '@mui/joy'
+import packageJson from '../../../package.json'
 
 export default function Footer(): JSX.Element {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear()
 
   return (
     <Box component='footer' sx={{ py: 3 }}>
@@ -12,5 +12,5 @@ export default function Footer(): JSX.Element {
         </h5>
       </Typography>
     </Box>
-  );
+  )
 }

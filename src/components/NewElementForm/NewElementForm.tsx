@@ -1,19 +1,19 @@
-import { Input, Select, Option, FormControl, FormLabel, Grid } from '@mui/joy';
-import { Controller, useFormContext } from 'react-hook-form';
-import ErrorMessage from '../../ui/ErrorMessage';
-import { ElementForm, ElementFormValues, StatusOptionsEnum } from '../../types/newElementFormTypes';
-import { useAppState } from '../../context/AppState';
+import { Input, Select, Option, FormControl, FormLabel, Grid } from '@mui/joy'
+import { Controller, useFormContext } from 'react-hook-form'
+import ErrorMessage from '../../ui/ErrorMessage'
+import { ElementForm, ElementFormValues, StatusOptionsEnum } from '../../types/newElementFormTypes'
+import { useAppState } from '../../context/AppState'
 
 export default function NewElementForm(): JSX.Element {
   const {
     state: { openModalAddEditElements },
-  } = useAppState();
+  } = useAppState()
 
   const {
     register,
     control,
     formState: { errors },
-  } = useFormContext<ElementFormValues>();
+  } = useFormContext<ElementFormValues>()
 
   return (
     <Grid container spacing={2} sx={{ width: '100%', margin: 0 }}>
@@ -88,5 +88,5 @@ export default function NewElementForm(): JSX.Element {
         </FormControl>
       </Grid>
     </Grid>
-  );
+  )
 }

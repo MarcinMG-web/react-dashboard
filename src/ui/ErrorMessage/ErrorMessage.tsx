@@ -1,10 +1,10 @@
-import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
-import { FormHelperText } from '@mui/joy';
+import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded'
+import { FormHelperText } from '@mui/joy'
 
 interface ErrorMessageProps {
   error?: {
-    message?: string;
-  };
+    message?: string
+  }
 }
 
 export default function ErrorMessage({ error }: ErrorMessageProps): JSX.Element {
@@ -13,5 +13,5 @@ export default function ErrorMessage({ error }: ErrorMessageProps): JSX.Element 
       <WarningAmberRoundedIcon />
       {error?.message}
     </FormHelperText>
-  );
+  )
 }

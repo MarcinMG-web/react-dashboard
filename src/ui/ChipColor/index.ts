@@ -1,1 +1,1 @@
-export { default } from './ChipColor';
+export { default } from './ChipColor'

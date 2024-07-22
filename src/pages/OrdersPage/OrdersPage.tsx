@@ -1,11 +1,11 @@
-import CssBaseline from '@mui/joy/CssBaseline';
-import Box from '@mui/joy/Box';
-import OrderTable from '../../components/OrderTable/OrderTable';
-import Header from '../../ui/Header';
-import OrdersBelt from '../../components/OrdersBelt';
-import AddEditElementsModal from '../../ui/AddEditElementsModal';
-import DeletedModal from '../../ui/DeletedModal';
-import Sidebar from '../../ui/Sidebar';
+import CssBaseline from '@mui/joy/CssBaseline'
+import Box from '@mui/joy/Box'
+import OrderTable from '../../components/OrderTable/OrderTable'
+import Header from '../../ui/Header'
+import OrdersBelt from '../../components/OrdersBelt'
+import AddEditElementsModal from '../../ui/AddEditElementsModal'
+import DeletedModal from '../../ui/DeletedModal'
+import Sidebar from '../../ui/Sidebar'
 
 export default function OrdersPage(): JSX.Element {
   return (
@@ -41,5 +41,5 @@ export default function OrdersPage(): JSX.Element {
         </Box>
       </Box>
     </>
-  );
+  )
 }

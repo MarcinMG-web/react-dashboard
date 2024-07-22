@@ -1,1 +1,1 @@
-export { default } from './OrdersBelt';
+export { default } from './OrdersBelt'

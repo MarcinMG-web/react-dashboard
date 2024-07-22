@@ -1,84 +1,84 @@
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
-import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone';
-import DescriptionIcon from '@mui/icons-material/Description';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { Button, Stack, Tooltip } from '@mui/joy';
-import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
-import Link from '@mui/joy/Link';
-import Sheet from '@mui/joy/Sheet';
-import Table from '@mui/joy/Table';
-import Typography from '@mui/joy/Typography';
-import { useEffect, useState } from 'react';
-import { useAppState } from '../../context/AppState';
-import useLocalStorage from '../../hooks/useLocalStorage';
-import useRealTimeData from '../../hooks/useRealTimeData';
-import NoData from '../../ui/NoData';
-import ChipColor from '../../ui/ChipColor';
-import { Status } from '../../ui/ChipColor/ChipColor';
-import Pagination from '../Pagination';
-import RowMenu from '../RowMenu';
-import TableFilters from '../TableFilters';
-import { DataRow } from './utils/data';
-import { search } from './utils/search';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone'
+import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone'
+import DescriptionIcon from '@mui/icons-material/Description'
+import StarIcon from '@mui/icons-material/Star'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
+import { Button, Stack, Tooltip } from '@mui/joy'
+import Avatar from '@mui/joy/Avatar'
+import Box from '@mui/joy/Box'
+import Link from '@mui/joy/Link'
+import Sheet from '@mui/joy/Sheet'
+import Table from '@mui/joy/Table'
+import Typography from '@mui/joy/Typography'
+import { useEffect, useState } from 'react'
+import { useAppState } from '../../context/AppState'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import useRealTimeData from '../../hooks/useRealTimeData'
+import NoData from '../../ui/NoData'
+import ChipColor from '../../ui/ChipColor'
+import { Status } from '../../ui/ChipColor/ChipColor'
+import Pagination from '../Pagination'
+import RowMenu from '../RowMenu'
+import TableFilters from '../TableFilters'
+import { DataRow } from './utils/data'
+import { search } from './utils/search'
 
 export default function OrderTable(): JSX.Element {
   const {
     state: { queryText, selectedStatus, selectedCustomer },
     dispatch,
-  } = useAppState();
-  const { rowsData, rowsDataLoading } = useRealTimeData();
+  } = useAppState()
+  const { rowsData, rowsDataLoading } = useRealTimeData()
 
-  const [order, setOrder] = useState('descending');
-  const [selected, setSelected] = useLocalStorage('selectedStars', []);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [order, setOrder] = useState('descending')
+  const [selected, setSelected] = useLocalStorage('selectedStars', [])
+  const [currentPage, setCurrentPage] = useState(1)
 
   // Filtered data
-  const filteredRowsData = search(rowsData, queryText, selectedStatus, selectedCustomer);
+  const filteredRowsData = search(rowsData, queryText, selectedStatus, selectedCustomer)
 
   useEffect(() => {
-    dispatch({ type: 'SET_DATA_WITH_FILTERS', payload: filteredRowsData });
+    dispatch({ type: 'SET_DATA_WITH_FILTERS', payload: filteredRowsData })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rowsDataLoading, rowsData, dispatch, queryText, selectedStatus, selectedCustomer]);
+  }, [rowsDataLoading, rowsData, dispatch, queryText, selectedStatus, selectedCustomer])
 
   useEffect(() => {
     if (rowsDataLoading) {
       // To Do: For skeleton
-      dispatch({ type: 'SET_LOADING', payload: true });
+      dispatch({ type: 'SET_LOADING', payload: true })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rowsDataLoading]);
+  }, [rowsDataLoading])
 
   const setOrderInvoice = () => {
-    setOrder(order === 'ascending' ? 'descending' : 'ascending');
-    rowsData.reverse();
-  };
+    setOrder(order === 'ascending' ? 'descending' : 'ascending')
+    rowsData.reverse()
+  }
 
   const onClickEditElement = (id: DataRow['id']) => {
-    dispatch({ type: 'SET_SELECTED_ID', payload: id });
-    dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: true, isEdit: true } });
-  };
+    dispatch({ type: 'SET_SELECTED_ID', payload: id })
+    dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: true, isEdit: true } })
+  }
 
   const onClickRemovedElement = (id: DataRow['id']) => {
-    dispatch({ type: 'SET_SELECTED_ID', payload: id });
-    dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true });
-  };
+    dispatch({ type: 'SET_SELECTED_ID', payload: id })
+    dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true })
+  }
 
   const handleStarClick = (row: DataRow) => {
     if (selected.includes(row?.created)) {
-      setSelected(selected.filter((el: string) => el !== row?.created));
+      setSelected(selected.filter((el: string) => el !== row?.created))
     } else {
-      setSelected([...selected, row?.created]);
+      setSelected([...selected, row?.created])
     }
-  };
+  }
 
-  const appearanceConditions = rowsDataLoading || filteredRowsData.length > 0;
+  const appearanceConditions = rowsDataLoading || filteredRowsData.length > 0
 
   // Pagination
-  const itemsPerPage = 8;
-  const displayedRows = filteredRowsData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const itemsPerPage = 8
+  const displayedRows = filteredRowsData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
 
   return (
     <>
@@ -228,5 +228,5 @@ export default function OrderTable(): JSX.Element {
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} itemsPerPage={itemsPerPage} />
       )}
     </>
-  );
+  )
 }

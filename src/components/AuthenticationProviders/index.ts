@@ -1,1 +1,1 @@
-export { default } from './AuthenticationProviders';
+export { default } from './AuthenticationProviders'

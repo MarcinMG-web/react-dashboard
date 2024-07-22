@@ -1,31 +1,31 @@
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
-import DescriptionIcon from '@mui/icons-material/Description';
-import Box from '@mui/joy/Box';
-import Divider from '@mui/joy/Divider';
-import Drawer from '@mui/joy/Drawer';
-import Input from '@mui/joy/Input';
-import List from '@mui/joy/List';
-import { listItemButtonClasses } from '@mui/joy/ListItemButton';
-import ModalClose from '@mui/joy/ModalClose';
-import ColorSchemeToggle from '../ColorSchemeToggle';
-import { useAppState } from '../../context/AppState';
-import { useMediaQuery } from '@mui/material';
-import RoutesEnum from '../../types/routesEnum';
-import LanguageToggle from '../LanguageToggle';
-import UserAvatar from '../UserAvatar';
-import MenuCards from '../MenuCards';
-import MenuItems from '../MenuItems';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded'
+import SupportRoundedIcon from '@mui/icons-material/SupportRounded'
+import DescriptionIcon from '@mui/icons-material/Description'
+import Box from '@mui/joy/Box'
+import Divider from '@mui/joy/Divider'
+import Drawer from '@mui/joy/Drawer'
+import Input from '@mui/joy/Input'
+import List from '@mui/joy/List'
+import { listItemButtonClasses } from '@mui/joy/ListItemButton'
+import ModalClose from '@mui/joy/ModalClose'
+import ColorSchemeToggle from '../ColorSchemeToggle'
+import { useAppState } from '../../context/AppState'
+import { useMediaQuery } from '@mui/material'
+import RoutesEnum from '../../types/routesEnum'
+import LanguageToggle from '../LanguageToggle'
+import UserAvatar from '../UserAvatar'
+import MenuCards from '../MenuCards'
+import MenuItems from '../MenuItems'
 
 export default function Sidebar(): JSX.Element {
   const {
     state: { showSidebar },
     dispatch,
-  } = useAppState();
+  } = useAppState()
 
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery('(max-width:600px)')
 
   const items = [
     {
@@ -38,7 +38,7 @@ export default function Sidebar(): JSX.Element {
       icon: <DescriptionIcon color='primary' />,
       redirect: RoutesEnum.INVOICE,
     },
-  ];
+  ]
 
   const itemsAdmin = [
     {
@@ -51,7 +51,7 @@ export default function Sidebar(): JSX.Element {
       icon: <SettingsRoundedIcon />,
       redirect: RoutesEnum.SETTINGS,
     },
-  ];
+  ]
 
   return (
     <Drawer
@@ -131,5 +131,5 @@ export default function Sidebar(): JSX.Element {
 
       <UserAvatar />
     </Drawer>
-  );
+  )
 }

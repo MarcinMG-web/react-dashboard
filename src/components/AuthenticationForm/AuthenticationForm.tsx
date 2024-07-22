@@ -1,25 +1,25 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Checkbox, FormControl, FormLabel, Input, Stack } from '@mui/joy';
-import Link from '@mui/joy/Link';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../../api/firebase.ts';
-import { useAppState } from '../../context/AppState.tsx';
-import { authSchema } from '../../schema/authenticationFormSchema.ts';
-import { AuthForm, FormValues } from '../../types/authenticationFormTypes.ts';
-import RoutesEnum from '../../types/routesEnum.ts';
-import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage.tsx';
-import { useSnackbar } from 'notistack';
-import { createdNewCollection } from '../../api/createdNewCollection.ts';
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Box, Button, Checkbox, FormControl, FormLabel, Input, Stack } from '@mui/joy'
+import Link from '@mui/joy/Link'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { auth } from '../../api/firebase.ts'
+import { useAppState } from '../../context/AppState.tsx'
+import { authSchema } from '../../schema/authenticationFormSchema.ts'
+import { AuthForm, FormValues } from '../../types/authenticationFormTypes.ts'
+import RoutesEnum from '../../types/routesEnum.ts'
+import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage.tsx'
+import { useSnackbar } from 'notistack'
+import { createdNewCollection } from '../../api/createdNewCollection.ts'
 
 export default function AuthenticationForm(): JSX.Element {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const {
     state: { registerApp },
     dispatch,
-  } = useAppState();
+  } = useAppState()
 
   const {
     register,
@@ -27,45 +27,45 @@ export default function AuthenticationForm(): JSX.Element {
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(authSchema),
-  });
+  })
 
-  const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar()
 
   const onSubmitRegistration = async (data: FormValues) => {
-    const { email, password } = data;
+    const { email, password } = data
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
-        const user = userCredential.user;
+        const user = userCredential.user
 
         // Create a new collection post-registration
-        createdNewCollection(user);
+        createdNewCollection(user)
 
-        dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
-        navigate(RoutesEnum.ORDERS);
-        enqueueSnackbar('Registration completed successfully, let`s get started!', { variant: 'success' });
+        dispatch({ type: 'SET_AUTHORIZED_USER', payload: user })
+        navigate(RoutesEnum.ORDERS)
+        enqueueSnackbar('Registration completed successfully, let`s get started!', { variant: 'success' })
       })
       .catch((error) => {
-        enqueueSnackbar(error.message, { variant: 'error' });
-      });
-  };
+        enqueueSnackbar(error.message, { variant: 'error' })
+      })
+  }
 
   const onSubmitLogIn = async (data: FormValues) => {
-    const { email, password } = data;
+    const { email, password } = data
 
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
-        const user = userCredential.user;
-        dispatch({ type: 'SET_AUTHORIZED_USER', payload: user });
-        navigate(RoutesEnum.ORDERS);
-        enqueueSnackbar('Let`s get started!', { variant: 'success' });
+        const user = userCredential.user
+        dispatch({ type: 'SET_AUTHORIZED_USER', payload: user })
+        navigate(RoutesEnum.ORDERS)
+        enqueueSnackbar('Let`s get started!', { variant: 'success' })
       })
       .catch((error) => {
-        enqueueSnackbar(error.message, { variant: 'error' });
-      });
-  };
+        enqueueSnackbar(error.message, { variant: 'error' })
+      })
+  }
 
   return (
     <form onSubmit={registerApp ? handleSubmit(onSubmitRegistration) : handleSubmit(onSubmitLogIn)}>
@@ -100,5 +100,5 @@ export default function AuthenticationForm(): JSX.Element {
         </Button>
       </Stack>
     </form>
-  );
+  )
 }

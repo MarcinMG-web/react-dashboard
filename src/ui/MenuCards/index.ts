@@ -1,1 +1,1 @@
-export { default } from './MenuCards';
+export { default } from './MenuCards'

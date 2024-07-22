@@ -1,5 +1,5 @@
-import { Dropdown, MenuButton, IconButton, Menu, MenuItem, Divider } from '@mui/joy';
-import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
+import { Dropdown, MenuButton, IconButton, Menu, MenuItem, Divider } from '@mui/joy'
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
 export default function RowMenu(): JSX.Element {
   const menuItems = [
@@ -12,7 +12,7 @@ export default function RowMenu(): JSX.Element {
     {
       name: 'Move',
     },
-  ];
+  ]
 
   return (
     <Dropdown>
@@ -27,5 +27,5 @@ export default function RowMenu(): JSX.Element {
         <MenuItem color='danger'>Delete</MenuItem>
       </Menu>
     </Dropdown>
-  );
+  )
 }

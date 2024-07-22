@@ -1,1 +1,1 @@
-export { default } from './PageLocator';
+export { default } from './PageLocator'

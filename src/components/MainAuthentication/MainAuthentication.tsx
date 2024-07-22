@@ -1,6 +1,6 @@
-import { Box, Divider, Stack } from '@mui/joy';
-import AuthenticationForm from '../AuthenticationForm';
-import AuthenticationProviders from '../AuthenticationProviders';
+import { Box, Divider, Stack } from '@mui/joy'
+import AuthenticationForm from '../AuthenticationForm'
+import AuthenticationProviders from '../AuthenticationProviders'
 
 export default function MainAuthentication(): JSX.Element {
   return (
@@ -42,5 +42,5 @@ export default function MainAuthentication(): JSX.Element {
         <AuthenticationForm />
       </Stack>
     </Box>
-  );
+  )
 }

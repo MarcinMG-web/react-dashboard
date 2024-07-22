@@ -1,1 +1,1 @@
-export { default } from './GoogleIcon';
+export { default } from './GoogleIcon'

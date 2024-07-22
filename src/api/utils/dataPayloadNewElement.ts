@@ -1,24 +1,24 @@
-import dayjs from 'dayjs';
-import { ElementFormValues } from '../../types/newElementFormTypes';
-import { formatDateBE } from './formatDateBE';
+import dayjs from 'dayjs'
+import { ElementFormValues } from '../../types/newElementFormTypes'
+import { formatDateBE } from './formatDateBE'
 
 export type ExpectedAPIFormat = {
-  id: string;
-  created: string;
+  id: string
+  created: string
   invoice: {
-    number: string;
-    date: string;
-    status: string;
-  };
+    number: string
+    date: string
+    status: string
+  }
   customer: {
-    initial: string;
-    name: string;
-    email: string;
-  };
-};
+    initial: string
+    name: string
+    email: string
+  }
+}
 
 export const dataPayloadNewElement = (data: ElementFormValues): ExpectedAPIFormat => {
-  const { invoiceNumber, date, status, customerName, customerEmail, customerInitial } = data;
+  const { invoiceNumber, date, status, customerName, customerEmail, customerInitial } = data
 
   const expectedAPIFormat = {
     id: customerEmail,
@@ -33,7 +33,7 @@ export const dataPayloadNewElement = (data: ElementFormValues): ExpectedAPIForma
       name: customerName,
       email: customerEmail,
     },
-  };
+  }
 
-  return expectedAPIFormat;
-};
+  return expectedAPIFormat
+}

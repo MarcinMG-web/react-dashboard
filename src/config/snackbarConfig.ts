@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { MaterialDesignContent } from 'notistack';
+import styled from '@emotion/styled'
+import { MaterialDesignContent } from 'notistack'
 
 export const snackbarConfig = {
   iconVariant: {
@@ -10,7 +10,7 @@ export const snackbarConfig = {
   },
   anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
   autoHideDuration: 5000,
-};
+}
 
 export const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
   '&.notistack-MuiContent-success': {
@@ -28,4 +28,4 @@ export const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => (
   '&.notistack-MuiContent-warning': {
     fontWeight: 600,
   },
-}));
+}))

@@ -1,10 +1,10 @@
-import { ElementForm, ElementFormValues } from '../../types/newElementFormTypes';
-import { ExpectedAPIFormat } from './dataPayloadNewElement';
+import { ElementForm, ElementFormValues } from '../../types/newElementFormTypes'
+import { ExpectedAPIFormat } from './dataPayloadNewElement'
 
 export const expectedElementFormValues = (data: ExpectedAPIFormat): ElementFormValues => {
-  const { invoice, customer } = data;
-  const { name, email, initial } = customer;
-  const { number, status, date } = invoice;
+  const { invoice, customer } = data
+  const { name, email, initial } = customer
+  const { number, status, date } = invoice
 
   const expectedFrontendData = {
     [ElementForm.CUSTOMER_NAME]: name,
@@ -13,7 +13,7 @@ export const expectedElementFormValues = (data: ExpectedAPIFormat): ElementFormV
     [ElementForm.INVOICE_NUMBER]: number,
     [ElementForm.STATUS]: status,
     [ElementForm.DATE]: date,
-  };
+  }
 
-  return expectedFrontendData;
-};
+  return expectedFrontendData
+}

@@ -1,7 +1,7 @@
 export type FormValues = {
-  [AuthForm.EMAIL]: string;
-  [AuthForm.PASSWORD]: string;
-};
+  [AuthForm.EMAIL]: string
+  [AuthForm.PASSWORD]: string
+}
 
 export enum AuthForm {
   EMAIL = 'email',

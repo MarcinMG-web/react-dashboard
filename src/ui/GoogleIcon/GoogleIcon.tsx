@@ -1,4 +1,4 @@
-import SvgIcon from '@mui/joy/SvgIcon';
+import SvgIcon from '@mui/joy/SvgIcon'
 
 export default function GoogleIcon(): JSX.Element {
   return (
@@ -22,5 +22,5 @@ export default function GoogleIcon(): JSX.Element {
         />
       </g>
     </SvgIcon>
-  );
+  )
 }

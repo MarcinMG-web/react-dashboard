@@ -1,14 +1,14 @@
-import { ListItem, ListItemButton } from '@mui/joy';
-import { useNavigate } from 'react-router-dom';
+import { ListItem, ListItemButton } from '@mui/joy'
+import { useNavigate } from 'react-router-dom'
 
 interface MenuItemsProps {
-  label: string;
-  icon: JSX.Element;
-  redirect: string;
+  label: string
+  icon: JSX.Element
+  redirect: string
 }
 
 export default function MenuItems({ label, icon, redirect }: MenuItemsProps): JSX.Element {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <ListItem
@@ -24,5 +24,5 @@ export default function MenuItems({ label, icon, redirect }: MenuItemsProps): JS
         {label}
       </ListItemButton>
     </ListItem>
-  );
+  )
 }

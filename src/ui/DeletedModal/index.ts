@@ -1,1 +1,1 @@
-export { default } from './DeletedModal.tsx';
+export { default } from './DeletedModal.tsx'

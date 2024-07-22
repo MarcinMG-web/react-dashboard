@@ -1,7 +1,7 @@
-import Box from '@mui/joy/Box';
-import CssBaseline from '@mui/joy/CssBaseline';
-import Header from '../../ui/Header';
-import Sidebar from '../../ui/Sidebar';
+import Box from '@mui/joy/Box'
+import CssBaseline from '@mui/joy/CssBaseline'
+import Header from '../../ui/Header'
+import Sidebar from '../../ui/Sidebar'
 
 export default function InvoicePage(): JSX.Element {
   return (
@@ -19,5 +19,5 @@ export default function InvoicePage(): JSX.Element {
         </Box>
       </Box>
     </>
-  );
+  )
 }

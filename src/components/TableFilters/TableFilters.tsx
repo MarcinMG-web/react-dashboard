@@ -1,25 +1,25 @@
-import SearchIcon from '@mui/icons-material/Search';
-import { FormControl, FormLabel, Input, Option, Select } from '@mui/joy';
-import { useAppState } from '../../context/AppState';
-import useRealTimeData from '../../hooks/useRealTimeData';
-import { StatusOptionsEnum } from '../../types/newElementFormTypes';
+import SearchIcon from '@mui/icons-material/Search'
+import { FormControl, FormLabel, Input, Option, Select } from '@mui/joy'
+import { useAppState } from '../../context/AppState'
+import useRealTimeData from '../../hooks/useRealTimeData'
+import { StatusOptionsEnum } from '../../types/newElementFormTypes'
 
 export default function TableFilters(): JSX.Element {
-  const { rowsData } = useRealTimeData();
+  const { rowsData } = useRealTimeData()
   const {
     state: { queryText },
     dispatch,
-  } = useAppState();
+  } = useAppState()
 
   const optionsCustomer = rowsData.map(({ customer }) => ({
     value: customer.name,
     description: customer.name,
-  }));
+  }))
 
   // Prepare customers with out repetition
   const customerOptionsWithoutRepetition = [...new Set(optionsCustomer.map((option) => JSON.stringify(option)))].map(
     (unique) => JSON.parse(unique),
-  );
+  )
 
   return (
     <>
@@ -69,5 +69,5 @@ export default function TableFilters(): JSX.Element {
         </Select>
       </FormControl>
     </>
-  );
+  )
 }

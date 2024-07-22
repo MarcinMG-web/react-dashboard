@@ -1,8 +1,8 @@
-import Box from '@mui/joy/Box';
-import CssBaseline from '@mui/joy/CssBaseline';
-import Header from '../../ui/Header';
-import Footer from '../../ui/Footer';
-import MainAuthentication from '../../components/MainAuthentication';
+import Box from '@mui/joy/Box'
+import CssBaseline from '@mui/joy/CssBaseline'
+import Header from '../../ui/Header'
+import Footer from '../../ui/Footer'
+import MainAuthentication from '../../components/MainAuthentication'
 
 export default function AuthenticationPages(): JSX.Element {
   return (
@@ -62,5 +62,5 @@ export default function AuthenticationPages(): JSX.Element {
         })}
       />
     </>
-  );
+  )
 }

@@ -1,17 +1,17 @@
 export type DataRow = {
-  id: string;
-  created: string;
+  id: string
+  created: string
   invoice: {
-    number: string;
-    date: string;
-    status: string;
-  };
+    number: string
+    date: string
+    status: string
+  }
   customer: {
-    initial: string;
-    name: string;
-    email: string;
-  };
-};
+    initial: string
+    name: string
+    email: string
+  }
+}
 
 // For test pagination to removed after finish
 export const rows: DataRow[] = [
@@ -323,4 +323,4 @@ export const rows: DataRow[] = [
       email: 'brad123@email.com',
     },
   },
-];
+]

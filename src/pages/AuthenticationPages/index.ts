@@ -1,1 +1,1 @@
-export { default } from './AuthenticationPages';
+export { default } from './AuthenticationPages'

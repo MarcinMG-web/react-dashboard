@@ -1,1 +1,1 @@
-export { default } from './NewElementForm';
+export { default } from './NewElementForm'

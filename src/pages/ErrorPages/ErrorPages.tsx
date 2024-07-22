@@ -1,19 +1,19 @@
-import { Button, Stack } from '@mui/joy';
-import CssBaseline from '@mui/joy/CssBaseline';
-import Typography from '@mui/joy/Typography';
-import { useNavigate } from 'react-router-dom';
-import { ErrorCode, ErrorPageProps } from './utils/types';
+import { Button, Stack } from '@mui/joy'
+import CssBaseline from '@mui/joy/CssBaseline'
+import Typography from '@mui/joy/Typography'
+import { useNavigate } from 'react-router-dom'
+import { ErrorCode, ErrorPageProps } from './utils/types'
 import {
   AnimatedErrorOutlineIcon,
   AnimatedLockPersonIcon,
   AnimatedReportProblemIcon,
   AnimatedRunningWithErrorsIcon,
-} from './utils/animation';
+} from './utils/animation'
 
 export default function ErrorPages({ errorCode }: ErrorPageProps) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const redirect = () => navigate(-1);
+  const redirect = () => navigate(-1)
 
   const displayError = (errorCode?: ErrorCode) => {
     switch (errorCode) {
@@ -23,7 +23,7 @@ export default function ErrorPages({ errorCode }: ErrorPageProps) {
           title: 'Bad Request',
           subTitle: 'The server could not understand the request due to invalid syntax.',
           icon: <AnimatedErrorOutlineIcon />,
-        };
+        }
 
       case 403:
         return {
@@ -31,7 +31,7 @@ export default function ErrorPages({ errorCode }: ErrorPageProps) {
           title: 'Forbidden',
           subTitle: 'Sorry, you are not authorized to access this page.',
           icon: <AnimatedLockPersonIcon />,
-        };
+        }
 
       case 404:
         return {
@@ -39,7 +39,7 @@ export default function ErrorPages({ errorCode }: ErrorPageProps) {
           title: 'Not Found',
           subTitle: 'Sorry, the page you visited does not exist.',
           icon: <AnimatedReportProblemIcon />,
-        };
+        }
 
       default:
         return {
@@ -47,11 +47,11 @@ export default function ErrorPages({ errorCode }: ErrorPageProps) {
           title: 'Internal Server Error',
           subTitle: 'Sorry, something went wrong.',
           icon: <AnimatedRunningWithErrorsIcon />,
-        };
+        }
     }
-  };
+  }
 
-  const { status, title, subTitle, icon } = displayError(errorCode);
+  const { status, title, subTitle, icon } = displayError(errorCode)
 
   return (
     <>
@@ -87,5 +87,5 @@ export default function ErrorPages({ errorCode }: ErrorPageProps) {
         </Button>
       </Stack>
     </>
-  );
+  )
 }

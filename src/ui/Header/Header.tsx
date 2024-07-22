@@ -1,19 +1,19 @@
-import { Box, Button, Tooltip } from '@mui/joy';
-import { useLocation } from 'react-router-dom';
-import { useAppState } from '../../context/AppState';
-import RoutesEnum from '../../types/routesEnum';
-import ColorSchemeToggle from '../ColorSchemeToggle';
-import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone';
-import PageLocator from '../PageLocator';
-import LanguageToggle from '../LanguageToggle';
+import { Box, Button, Tooltip } from '@mui/joy'
+import { useLocation } from 'react-router-dom'
+import { useAppState } from '../../context/AppState'
+import RoutesEnum from '../../types/routesEnum'
+import ColorSchemeToggle from '../ColorSchemeToggle'
+import MenuTwoToneIcon from '@mui/icons-material/MenuTwoTone'
+import PageLocator from '../PageLocator'
+import LanguageToggle from '../LanguageToggle'
 
 export default function Header(): JSX.Element {
-  const { dispatch } = useAppState();
-  const { pathname } = useLocation();
+  const { dispatch } = useAppState()
+  const { pathname } = useLocation()
 
-  const visibleLanguageAndChangeColorArray = [RoutesEnum.LOGIN, RoutesEnum.REGISTER];
+  const visibleLanguageAndChangeColorArray = [RoutesEnum.LOGIN, RoutesEnum.REGISTER]
 
-  const visibleLanguageAndChangeColor = visibleLanguageAndChangeColorArray.includes(pathname as RoutesEnum);
+  const visibleLanguageAndChangeColor = visibleLanguageAndChangeColorArray.includes(pathname as RoutesEnum)
 
   return (
     <Box
@@ -49,5 +49,5 @@ export default function Header(): JSX.Element {
         </>
       )}
     </Box>
-  );
+  )
 }

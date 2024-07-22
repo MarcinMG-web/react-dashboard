@@ -1,1 +1,1 @@
-export { default } from './RowMenu';
+export { default } from './RowMenu'

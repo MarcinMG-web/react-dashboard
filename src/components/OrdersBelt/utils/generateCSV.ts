@@ -1,59 +1,59 @@
-import { enqueueSnackbar } from 'notistack';
-import { DataRow } from '../../OrderTable/utils/data';
-import dayjs from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { enqueueSnackbar } from 'notistack'
+import { DataRow } from '../../OrderTable/utils/data'
+import dayjs from 'dayjs'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
 
 export const generateCSV = (dataWithFilters: DataRow[]): void => {
-  dayjs.extend(localizedFormat);
-  const date = dayjs().format('LLLL');
+  dayjs.extend(localizedFormat)
+  const date = dayjs().format('LLLL')
 
-  const csv = `${generateSummary(dataWithFilters)}\n\n${convertArrayToCSV(dataWithFilters)}`;
+  const csv = `${generateSummary(dataWithFilters)}\n\n${convertArrayToCSV(dataWithFilters)}`
 
   // Name file
-  downloadCSV(csv, `Orders-${date}`);
-  enqueueSnackbar('Success download .csv file!', { variant: 'success' });
-};
+  downloadCSV(csv, `Orders-${date}`)
+  enqueueSnackbar('Success download .csv file!', { variant: 'success' })
+}
 
 export const convertArrayToCSV = (array: DataRow[]): string => {
   // Main content
-  const header = 'Orders\nId,Date,Name,Email,Status\n';
+  const header = 'Orders\nId,Date,Name,Email,Status\n'
   const rows = array
     .map(
       ({ invoice, customer }) =>
         `INV-${invoice.number},${invoice.date},${customer.name},${customer.email},${invoice.status}`,
     )
-    .join('\n');
-  return header + rows;
-};
+    .join('\n')
+  return header + rows
+}
 
 export const generateSummary = (array: DataRow[]): string => {
   // Summary
   const summary = array.reduce(
     (acc, { invoice }) => {
       if (!acc[invoice.status]) {
-        acc[invoice.status] = 1;
+        acc[invoice.status] = 1
       } else {
-        acc[invoice.status]++;
+        acc[invoice.status]++
       }
-      return acc;
+      return acc
     },
     {} as { [key: string]: number },
-  );
+  )
 
   const summaryRows = Object.entries(summary)
     .map(([status, count]) => `${status}: ${count}`)
-    .join(', ');
+    .join(', ')
 
-  return `Summary\n${summaryRows}`;
-};
+  return `Summary\n${summaryRows}`
+}
 
 export const downloadCSV = (csv: string, filename: string): void => {
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const link = document.createElement('a');
-  const url = URL.createObjectURL(blob);
-  link.setAttribute('href', url);
-  link.setAttribute('download', filename);
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+  const link = document.createElement('a')
+  const url = URL.createObjectURL(blob)
+  link.setAttribute('href', url)
+  link.setAttribute('download', filename)
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
