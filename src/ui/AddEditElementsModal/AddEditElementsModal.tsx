@@ -39,6 +39,7 @@ export default function AddEditElementsModal(): JSX.Element {
     if (openModalAddEditElements.isEdit && selectedId) {
       getDocumentById(selectedId)
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModalAddEditElements.isEdit, selectedId])
 
