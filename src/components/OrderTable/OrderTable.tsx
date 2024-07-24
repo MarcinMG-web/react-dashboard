@@ -1,6 +1,6 @@
 import Box from '@mui/joy/Box'
 import Table from '@mui/joy/Table'
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useAppState } from '../../context/AppState'
 import useRealTimeData from '../../hooks/useRealTimeData'
 import NoData from '../../ui/NoData'
@@ -24,9 +24,11 @@ export default function OrderTable(): JSX.Element {
 
   // Filtered data
   const filteredRowsData = search(rowsData, queryText, selectedStatus, selectedCustomer)
-  useEffect(() => {
+
+  useMemo(() => {
     dispatch({ type: 'SET_DATA_WITH_FILTERS', payload: filteredRowsData })
-  }, [rowsDataLoading, rowsData, dispatch, queryText, selectedStatus, selectedCustomer, filteredRowsData])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rowsData, queryText, selectedStatus, selectedCustomer])
 
   const renderTableBody = () => {
     switch (true) {

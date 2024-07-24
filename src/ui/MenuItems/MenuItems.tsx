@@ -17,7 +17,7 @@ export default function MenuItems({ label, icon, redirect }: MenuItemsProps): JS
           border: '1px solid green',
         },
       }}
-      key={label}
+      key={redirect}
     >
       <ListItemButton onClick={() => navigate(redirect)} disabled={true}>
         {icon}
