@@ -88,7 +88,7 @@ export default function OrderTable(): JSX.Element {
             '--TableCell-paddingX': '8px',
           }}
         >
-          <thead>{rowsDataLoading ? <SkeletonHeadTable /> : <HeadTable rowsData={rowsData} />}</thead>
+          <thead>{rowsDataLoading ? <SkeletonHeadTable /> : <HeadTable />}</thead>
 
           <tbody>{renderTableBody()}</tbody>
         </Table>

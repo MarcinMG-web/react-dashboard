@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import Link from '@mui/joy/Link'
-import { DataRow } from '../OrderTable/utils/data'
+import useRealTimeData from '../../hooks/useRealTimeData'
 
-interface HeadTableProps {
-  rowsData: DataRow[]
-}
+export default function HeadTable(): JSX.Element {
+  const { rowsData } = useRealTimeData()
 
-export default function HeadTable({ rowsData }: HeadTableProps): JSX.Element {
   const [order, setOrder] = useState('descending')
 
   const setOrderInvoice = () => {
