@@ -38,7 +38,7 @@ export default function HeadTable(): JSX.Element {
       <th style={{ width: 140, padding: '10px 6px' }}>Date</th>
       <th style={{ width: 140, padding: '10px 6px' }}>Status</th>
       <th style={{ width: 140, padding: '10px 6px' }}>Customer</th>
-      <th style={{ width: 160, padding: '10px 6px' }}>Action</th>
+      <th style={{ width: 120, padding: '10px 6px' }}>Action</th>
     </tr>
   )
 }
