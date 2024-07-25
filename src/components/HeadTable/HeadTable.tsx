@@ -1,18 +1,12 @@
-import { useState } from 'react'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import Link from '@mui/joy/Link'
-import useRealTimeData from '../../hooks/useRealTimeData'
 
-export default function HeadTable(): JSX.Element {
-  const { rowsData } = useRealTimeData()
+interface HeadTableProps {
+  setOrderInvoice: () => void
+  order: string
+}
 
-  const [order, setOrder] = useState('descending')
-
-  const setOrderInvoice = () => {
-    setOrder(order === 'ascending' ? 'descending' : 'ascending')
-    rowsData.reverse()
-  }
-
+export default function HeadTable({ setOrderInvoice, order }: HeadTableProps): JSX.Element {
   return (
     <tr>
       <th style={{ width: 48, textAlign: 'center', padding: '12px 6px' }}>Stars</th>

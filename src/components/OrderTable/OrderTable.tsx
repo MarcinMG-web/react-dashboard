@@ -20,6 +20,13 @@ export default function OrderTable(): JSX.Element {
   } = useAppState()
   const { rowsData, rowsDataLoading } = useRealTimeData()
 
+  const [order, setOrder] = useState('descending')
+
+  const setOrderInvoice = () => {
+    setOrder(order === 'ascending' ? 'descending' : 'ascending')
+    rowsData.reverse()
+  }
+
   const [currentPage, setCurrentPage] = useState(1)
 
   // Filtered data
@@ -91,7 +98,9 @@ export default function OrderTable(): JSX.Element {
             '--TableCell-paddingX': '8px',
           }}
         >
-          <thead>{rowsDataLoading ? <SkeletonHeadTable /> : <HeadTable />}</thead>
+          <thead>
+            {rowsDataLoading ? <SkeletonHeadTable /> : <HeadTable setOrderInvoice={setOrderInvoice} order={order} />}
+          </thead>
 
           <tbody>{renderTableBody()}</tbody>
         </Table>
