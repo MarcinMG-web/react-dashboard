@@ -104,7 +104,7 @@ export default function Sidebar(): JSX.Element {
         }}
       >
         {items.map(({ label, icon, redirect }) => (
-          <MenuCards label={label} icon={icon} redirect={redirect} />
+          <MenuCards label={label} icon={icon} redirect={redirect} key={label} />
         ))}
 
         <List
@@ -118,7 +118,7 @@ export default function Sidebar(): JSX.Element {
           }}
         >
           {itemsAdmin.map(({ label, icon, redirect }) => (
-            <MenuItems label={label} icon={icon} redirect={redirect} />
+            <MenuItems label={label} icon={icon} redirect={redirect} key={label} />
           ))}
         </List>
       </Box>

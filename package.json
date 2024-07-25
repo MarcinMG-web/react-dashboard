@@ -1,7 +1,7 @@
 {
   "name": "react-dashboard",
   "private": true,
-  "version": "0.4.11",
+  "version": "0.4.12",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -22,6 +22,7 @@
     "@mui/joy": "^5.0.0-beta.36",
     "@mui/material": "^5.15.19",
     "axios": "^1.7.2",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.11",
     "firebase": "^10.12.2",
     "jspdf": "^2.5.1",
@@ -34,6 +35,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/jspdf": "^2.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

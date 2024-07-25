@@ -19,7 +19,6 @@ export default function MenuCards({ label, icon, redirect }: MenuCardsProps): JS
 
   return (
     <Card
-      key={label}
       sx={{
         boxShadow: 'none',
         m: 0.6,

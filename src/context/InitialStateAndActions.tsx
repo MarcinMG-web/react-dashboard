@@ -4,7 +4,7 @@ import { DataRow } from '../components/OrderTable/utils/data'
 
 // Initial State
 export const initialState: State = {
-  loading: false,
+  loading: true,
   authorizedUser: null,
   registerApp: false,
   openModalAddEditElements: {

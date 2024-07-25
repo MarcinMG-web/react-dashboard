@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.4.12 (2024-07-25)
+
+### Features
+
+- add sceleton for main table ([c9322d8](https://github.com/MarcinMG-web/react-dashboard/commit/c9322d8c0c24b22bd8fd894fea4a9c5ae214a359))
+
+### Bug Fixes
+
+- bug with order invoice ([77da3a7](https://github.com/MarcinMG-web/react-dashboard/commit/77da3a7e4445c4dd2ba5c27cc1e0199bf0f28d34))
+
 ### 0.4.11 (2024-07-22)
 
 ### Features
