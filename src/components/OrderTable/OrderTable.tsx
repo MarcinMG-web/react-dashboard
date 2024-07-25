@@ -27,8 +27,9 @@ export default function OrderTable(): JSX.Element {
 
   useMemo(() => {
     dispatch({ type: 'SET_DATA_WITH_FILTERS', payload: filteredRowsData })
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rowsData, queryText, selectedStatus, selectedCustomer])
+  }, [rowsDataLoading, queryText, selectedStatus, selectedCustomer])
 
   const renderTableBody = () => {
     switch (true) {
