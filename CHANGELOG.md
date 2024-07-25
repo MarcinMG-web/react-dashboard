@@ -6,21 +6,11 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-- add base on invoice page ([#16](https://github.com/MarcinMG-web/react-dashboard/issues/16)) ([39e5244](https://github.com/MarcinMG-web/react-dashboard/commit/39e524477a7a81f1e30cc9121b9a5e25f0ff75c5))
-- add cyrypto and fix browser console error ([9b031ca](https://github.com/MarcinMG-web/react-dashboard/commit/9b031cae8ffbb5d663ad1318814b1f7a1488c558))
-- add new form to add or eddit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
 - add sceleton for main table ([c9322d8](https://github.com/MarcinMG-web/react-dashboard/commit/c9322d8c0c24b22bd8fd894fea4a9c5ae214a359))
-- added page locatore and fix name of routes, app ([#13](https://github.com/MarcinMG-web/react-dashboard/issues/13)) ([0f27853](https://github.com/MarcinMG-web/react-dashboard/commit/0f27853922229aa0edcdb4dd0e00cfa6858cb76f))
-- added pagination per pages ([#12](https://github.com/MarcinMG-web/react-dashboard/issues/12)) ([8e8c461](https://github.com/MarcinMG-web/react-dashboard/commit/8e8c4614278a00269c70383487404f963474ad07))
-- added posible to slecect stars and new invoice button ([#9](https://github.com/MarcinMG-web/react-dashboard/issues/9)) ([4fe9454](https://github.com/MarcinMG-web/react-dashboard/commit/4fe9454487591559c910ad7019ac960dd9aa9396))
-- added psible to search and filter data ([#11](https://github.com/MarcinMG-web/react-dashboard/issues/11)) ([ab05515](https://github.com/MarcinMG-web/react-dashboard/commit/ab055153231c48a3295495e436c285c8667228ea))
 
 ### Bug Fixes
 
 - bug with order invoice ([77da3a7](https://github.com/MarcinMG-web/react-dashboard/commit/77da3a7e4445c4dd2ba5c27cc1e0199bf0f28d34))
-- folder name ([c891c42](https://github.com/MarcinMG-web/react-dashboard/commit/c891c423f27043569971acf026e2d2a5543e15af))
-- folder name ([e3dbecf](https://github.com/MarcinMG-web/react-dashboard/commit/e3dbecf283ee878b3f4720abb1437f04d7571f36))
-- type and chip pending status ([4aa0f22](https://github.com/MarcinMG-web/react-dashboard/commit/4aa0f22df6a6a7138f08b73e398f8c6d04ec3ff3))
 
 ### 0.4.11 (2024-07-22)
 
