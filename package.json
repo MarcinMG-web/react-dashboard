@@ -25,6 +25,7 @@
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.11",
     "firebase": "^10.12.2",
+    "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
     "notistack": "^3.0.1",
@@ -32,7 +33,6 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.0",
     "react-router-dom": "^6.24.0",
-    "react-to-print": "^2.15.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {

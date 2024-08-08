@@ -38,7 +38,7 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
       </FormControl>
       <FormControl error={!!errors[WITHIN]} sx={{ marginTop: 2 }}>
         <FormLabel htmlFor={WITHIN}>Within</FormLabel>
-        <Input size='sm' id={WITHIN} sx={{ width: '50%' }} startDecorator=' WITHIN ' {...register(WITHIN)} />
+        <Input size='sm' id={WITHIN} sx={{ width: '50%' }} startDecorator=' Within ' {...register(WITHIN)} />
         {!!errors[WITHIN] && <ErrorMessage error={errors[WITHIN]} />}
       </FormControl>
       <FormControl error={!!errors[DEADLINE_OF_PAYMENT]} sx={{ marginTop: 2 }}>

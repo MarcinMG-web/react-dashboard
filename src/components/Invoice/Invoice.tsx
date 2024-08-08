@@ -4,6 +4,8 @@ import NoData from '../../ui/NoData'
 import { calculateTotals, calculateValues } from '../InvoicesListed/utils/calculateValues'
 import { InvoiceFields, Row } from '../../types/invoiceFormTypes'
 
+import { useRef } from 'react'
+
 export default function Invoice(): JSX.Element {
   const { watch } = useFormContext()
 
@@ -26,6 +28,7 @@ export default function Invoice(): JSX.Element {
   const deadlineOfPayment = watch(InvoiceFields.DEADLINE_OF_PAYMENT)
   const bankAccountNumber = watch(InvoiceFields.BANK_ACCOUNT_NUMBER)
   const notes = watch(InvoiceFields.NOTES)
+  const componentRef = useRef<HTMLDivElement>(null)
 
   return (
     <Box
@@ -34,6 +37,7 @@ export default function Invoice(): JSX.Element {
         margin: '5px',
         padding: '20px',
       }}
+      ref={componentRef}
     >
       <Stack spacing={2}>
         <Stack direction='row' spacing={2} justifyContent='space-between' alignItems='center'>

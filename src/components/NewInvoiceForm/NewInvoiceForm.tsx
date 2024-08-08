@@ -7,17 +7,19 @@ import InvoicePaymentAndPreferences from '../InvoicePaymentAndPreferences'
 
 export default function NewInvoiceForm(): JSX.Element {
   return (
-    <Box sx={{ padding: '10px' }}>
-      {/** Date */}
-      <InvoiceHeader />
-      {/** Seller / Buyer*/}
-      <InvoiceSellerBuyer />
-      {/** Main */}
-      <InvoicesListed />
-      {/** Payment and preferences*/}
-      <InvoicePaymentAndPreferences />
-      {/** Notes */}
-      <InvoiceNotes />
-    </Box>
+    <>
+      <Box sx={{ padding: '10px' }}>
+        {/** Date */}
+        <InvoiceHeader />
+        {/** Seller / Buyer */}
+        <InvoiceSellerBuyer />
+        {/** Main */}
+        <InvoicesListed />
+        {/** Payment and preferences */}
+        <InvoicePaymentAndPreferences />
+        {/** Notes */}
+        <InvoiceNotes />
+      </Box>
+    </>
   )
 }
