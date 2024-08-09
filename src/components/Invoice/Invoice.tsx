@@ -4,8 +4,6 @@ import NoData from '../../ui/NoData'
 import { calculateTotals, calculateValues } from '../InvoicesListed/utils/calculateValues'
 import { InvoiceFields, Row } from '../../types/invoiceFormTypes'
 
-import { useRef } from 'react'
-
 export default function Invoice(): JSX.Element {
   const { watch } = useFormContext()
 
@@ -28,16 +26,15 @@ export default function Invoice(): JSX.Element {
   const deadlineOfPayment = watch(InvoiceFields.DEADLINE_OF_PAYMENT)
   const bankAccountNumber = watch(InvoiceFields.BANK_ACCOUNT_NUMBER)
   const notes = watch(InvoiceFields.NOTES)
-  const componentRef = useRef<HTMLDivElement>(null)
 
   return (
     <Box
       sx={{
-        height: '97vh',
-        margin: '5px',
+        height: '90vh',
+        margin: '25px',
         padding: '20px',
+        // border: '1px solid black',
       }}
-      ref={componentRef}
     >
       <Stack spacing={2}>
         <Stack direction='row' spacing={2} justifyContent='space-between' alignItems='center'>
@@ -76,7 +73,7 @@ export default function Invoice(): JSX.Element {
         <Box sx={{ marginTop: '5vh' }}>
           <Table borderAxis='xBetween'>
             <thead>
-              <tr>
+              <tr style={{ fontWeight: '100' }}>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Quantity</th>
@@ -92,7 +89,7 @@ export default function Invoice(): JSX.Element {
                 watchedRows.map((row: Row, index: number) => {
                   const { netValue, vatAmount, grossValue } = calculateValues(row)
                   return (
-                    <tr key={row.id}>
+                    <tr key={row.id} style={{ fontWeight: '500' }}>
                       <td>{index + 1}</td>
                       <td>{row.name}</td>
                       <td>{row.quantity}</td>
@@ -127,7 +124,9 @@ export default function Invoice(): JSX.Element {
         </Stack>
 
         <Stack alignItems='center'>
-          <Typography level='body-sm'>{notes}</Typography>
+          <Typography sx={{ marginTop: '20px' }} level='body-sm'>
+            {notes}
+          </Typography>
         </Stack>
       </Stack>
     </Box>

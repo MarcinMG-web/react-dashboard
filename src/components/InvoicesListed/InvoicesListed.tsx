@@ -27,14 +27,18 @@ export default function InvoicesListed(): JSX.Element {
     })
   }
 
-  const removeRow = (index: number) => {
-    remove(index)
-  }
+  const removeRow = (index: number) => remove(index)
 
   const watchedRows = watch(Rows)
 
   return (
-    <Grid container spacing={2} sx={{ width: '100%', marginTop: '10px' }}>
+    <Grid container spacing={2} sx={{ width: '98%', marginTop: '10px' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%', marginTop: '10px' }}>
+        <Button color='success' onClick={addRow}>
+          <AddIcon />
+        </Button>
+      </Box>
+
       <Table borderAxis='xBetween'>
         <thead>
           <tr>
@@ -68,14 +72,14 @@ export default function InvoicesListed(): JSX.Element {
                     <Controller
                       name={`${Rows}.${index}.${QUANTITY}`}
                       control={control}
-                      render={({ field }) => <Input type='number' {...field} />}
+                      render={({ field }) => <Input {...field} sx={{ width: '6ch' }} />}
                     />
                   </td>
                   <td>
                     <Controller
                       name={`${Rows}.${index}.${NET_PRICE}`}
                       control={control}
-                      render={({ field }) => <Input type='number' {...field} />}
+                      render={({ field }) => <Input {...field} sx={{ width: '8ch' }} />}
                     />
                   </td>
                   <td>{netValue}</td>
@@ -83,7 +87,7 @@ export default function InvoicesListed(): JSX.Element {
                     <Controller
                       name={`${Rows}.${index}.${VAT_RATE}`}
                       control={control}
-                      render={({ field }) => <Input type='number' {...field} />}
+                      render={({ field }) => <Input {...field} sx={{ width: '6ch' }} />}
                     />
                   </td>
                   <td>{vatAmount}</td>
@@ -101,12 +105,6 @@ export default function InvoicesListed(): JSX.Element {
           )}
         </tbody>
       </Table>
-
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%', marginTop: '10px' }}>
-        <Button color='success' onClick={addRow}>
-          <AddIcon />
-        </Button>
-      </Box>
     </Grid>
   )
 }
