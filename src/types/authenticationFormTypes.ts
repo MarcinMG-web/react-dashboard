@@ -7,3 +7,8 @@ export enum AuthForm {
   EMAIL = 'email',
   PASSWORD = 'password',
 }
+
+export const defaultAuthValues: FormValues = {
+  [AuthForm.EMAIL]: '',
+  [AuthForm.PASSWORD]: '',
+}

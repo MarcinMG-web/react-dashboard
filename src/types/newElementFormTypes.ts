@@ -22,3 +22,12 @@ export enum StatusOptionsEnum {
   REFUNDED = 'Refunded',
   CANCELLED = 'Cancelled',
 }
+
+export const defaultElementFormValues: ElementFormValues = {
+  [ElementForm.CUSTOMER_NAME]: '',
+  [ElementForm.CUSTOMER_EMAIL]: '',
+  [ElementForm.DATE]: '',
+  [ElementForm.STATUS]: '',
+  [ElementForm.CUSTOMER_INITIAL]: '',
+  [ElementForm.INVOICE_NUMBER]: '',
+}
