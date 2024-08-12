@@ -29,7 +29,7 @@ export default function NewInvoiceForm({ componentRef }: NewInvoiceFormProps): J
 
   const [activeStep, setActiveStep] = useState(0)
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (activeStep < 3) {
       setActiveStep((prev) => prev + 1)
     }

@@ -11,7 +11,7 @@ export type InvoiceFormValues = {
   [InvoiceFields.BUYER_ADDRESS]: string
   [InvoiceFields.NAME]: string
   [InvoiceFields.INVOICE_NUMBER]: string
-  [InvoiceFields.NOTES]: string
+  [InvoiceFields.NOTES]?: string | null
   [InvoiceFields.PAYMENT_METHOD]: string
   [InvoiceFields.DEADLINE_OF_PAYMENT]: string
   [InvoiceFields.WITHIN]: string

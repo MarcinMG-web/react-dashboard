@@ -33,7 +33,6 @@ export default function Invoice(): JSX.Element {
         height: '90vh',
         margin: '25px',
         padding: '20px',
-        // border: '1px solid black',
       }}
     >
       <Stack spacing={2}>
@@ -89,13 +88,13 @@ export default function Invoice(): JSX.Element {
                 watchedRows.map((row: Row, index: number) => {
                   const { netValue, vatAmount, grossValue } = calculateValues(row)
                   return (
-                    <tr key={row.id} style={{ fontWeight: '500' }}>
+                    <tr key={row?.id} style={{ fontWeight: '500' }}>
                       <td>{index + 1}</td>
-                      <td>{row.name}</td>
-                      <td>{row.quantity}</td>
-                      <td>{row.netPrice}</td>
+                      <td>{row?.name}</td>
+                      <td>{row?.quantity}</td>
+                      <td>{row?.netPrice}</td>
                       <td>{netValue}</td>
-                      <td>{row.vatRate}</td>
+                      <td>{row?.vatRate}</td>
                       <td>{vatAmount}</td>
                       <td>{grossValue}</td>
                     </tr>
