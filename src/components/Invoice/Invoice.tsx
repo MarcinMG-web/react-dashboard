@@ -27,6 +27,8 @@ export default function Invoice(): JSX.Element {
   const bankAccountNumber = watch(InvoiceFields.BANK_ACCOUNT_NUMBER)
   const notes = watch(InvoiceFields.NOTES)
 
+  const addSpacesEveryFourChars = (value: string): string => value.replace(/(.{4})/g, '$1 ')
+
   return (
     <Box
       sx={{
@@ -114,7 +116,11 @@ export default function Invoice(): JSX.Element {
             <Typography>Payment method: {paymentMethod}</Typography>
             <Typography>Within: {within}</Typography>
             <Typography>Deadline of payment: {deadlineOfPayment}</Typography>
-            <Typography>Bank account number: {bankAccountNumber}</Typography>
+            <Typography>
+              Bank account number:
+              <br />
+              <b>{addSpacesEveryFourChars(bankAccountNumber)}</b>
+            </Typography>
           </Stack>
 
           <Stack spacing={1} alignItems='flex-end'>
