@@ -43,7 +43,7 @@ export default function NewInvoiceForm({ componentRef }: NewInvoiceFormProps): J
     }
   }
 
-  const resetAndStarAgain = () => {
+  const resetAndStartAgain = () => {
     setActiveStep(0)
     reset()
   }
@@ -86,22 +86,22 @@ export default function NewInvoiceForm({ componentRef }: NewInvoiceFormProps): J
         <Stepper
           orientation='horizontal'
           sx={{
-            width: '50vw',
+            width: { xs: '90vw', sm: '70vw', md: '50vw' },
             mt: '15px',
-            '--Stepper-horizontalGap': '2.5rem',
-            '--StepIndicator-size': '2.5rem',
-            '--Step-gap': '1rem',
+            '--Stepper-horizontalGap': '1rem',
+            '--StepIndicator-size': '2rem',
+            '--Step-gap': '0.5rem',
             '--Step-connectorInset': '0.5rem',
-            '--Step-connectorRadius': '1rem',
-            '--Step-connectorThickness': '4px',
+            '--Step-connectorRadius': '0.75rem',
+            '--Step-connectorThickness': '3px',
             '--joy-palette-success-solidBg': 'var(--joy-palette-success-400)',
             [`& .${stepClasses.completed}`]: {
               '&::after': { bgcolor: 'success.solidBg' },
             },
             [`& .${typographyClasses['title-sm']}`]: {
               textTransform: 'uppercase',
-              letterSpacing: '1px',
-              fontSize: '10px',
+              letterSpacing: '0.5px',
+              fontSize: { xs: '8px', sm: '10px' },
             },
           }}
         >
@@ -116,7 +116,11 @@ export default function NewInvoiceForm({ componentRef }: NewInvoiceFormProps): J
                 </StepIndicator>
               }
             >
-              <Box>
+              <Box
+                sx={{
+                  display: { xs: 'none', sm: 'block' },
+                }}
+              >
                 <Typography level='title-sm'>{`Step ${index + 1}`}</Typography>
                 {step.title}
               </Box>
@@ -125,16 +129,16 @@ export default function NewInvoiceForm({ componentRef }: NewInvoiceFormProps): J
         </Stepper>
       </Stack>
 
-      <Box sx={{ padding: '10px' }}>{renderStepComponent(activeStep)}</Box>
+      <Box sx={{ padding: { xs: '5px', sm: '10px' } }}>{renderStepComponent(activeStep)}</Box>
 
-      <Stack width='98%' direction='row' justifyContent='space-between' padding='10px'>
+      <Stack width='98%' direction='row' justifyContent='space-between' padding={{ xs: '5px', sm: '10px' }}>
         <Button color='neutral' variant='outlined' onClick={handleBack} disabled={activeStep === 0}>
           Back
         </Button>
 
         {activeStep === 3 ? (
-          <Stack direction='row' spacing={2}>
-            <Button color='danger' variant='outlined' onClick={resetAndStarAgain}>
+          <Stack direction='row' spacing={1}>
+            <Button color='danger' variant='outlined' onClick={resetAndStartAgain}>
               Reset & Start Again
             </Button>
             <Button color='success' onClick={handlePrintClick}>

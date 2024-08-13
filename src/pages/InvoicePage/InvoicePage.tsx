@@ -20,15 +20,16 @@ export default function InvoicePage(): JSX.Element {
   return (
     <>
       <CssBaseline />
-      <Box display='flex' justifyContent='space-between' width='100%'>
+      <Sidebar />
+
+      <Box display='flex' flexDirection={{ xs: 'column', sm: 'row' }} justifyContent='space-between' width='100%'>
         <FormProvider {...methods}>
-          <Box width='45%' ref={componentRef}>
+          <Box width={{ xs: '100%', sm: '45%' }} order={{ xs: 2, sm: 1 }} ref={componentRef}>
             <Invoice />
           </Box>
 
-          <Box width='55%'>
+          <Box width={{ xs: '100%', sm: '55%' }} order={{ xs: 1, sm: 2 }}>
             <Header />
-            <Sidebar />
             <NewInvoiceForm componentRef={componentRef} />
           </Box>
         </FormProvider>
