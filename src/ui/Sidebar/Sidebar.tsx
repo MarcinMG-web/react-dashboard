@@ -92,6 +92,7 @@ export default function Sidebar(): JSX.Element {
 
       <Box
         sx={{
+          cursor: 'pointer',
           minHeight: 0,
           overflow: 'hidden auto',
           flexGrow: 1,

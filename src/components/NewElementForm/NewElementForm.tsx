@@ -15,44 +15,46 @@ export default function NewElementForm(): JSX.Element {
     formState: { errors },
   } = useFormContext<ElementFormValues>()
 
+  const { CUSTOMER_EMAIL, INVOICE_NUMBER, CUSTOMER_NAME, STATUS, CUSTOMER_INITIAL, DATE } = ElementForm
+
   return (
     <Grid container spacing={2} sx={{ width: '100%', margin: 0 }}>
-      <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
-        <FormControl error={!!errors?.customerEmail}>
-          <FormLabel htmlFor={ElementForm.CUSTOMER_EMAIL}>Customer Email</FormLabel>
+      <Grid xs={12} sm={6} sx={{ padding: 1 }}>
+        <FormControl error={!!errors?.[CUSTOMER_EMAIL]}>
+          <FormLabel htmlFor={CUSTOMER_EMAIL}>Customer Email</FormLabel>
           <Input
-            id={ElementForm.CUSTOMER_EMAIL}
+            id={CUSTOMER_EMAIL}
             type='email'
             disabled={openModalAddEditElements.isEdit}
-            {...register(ElementForm.CUSTOMER_EMAIL)}
+            {...register(CUSTOMER_EMAIL)}
           />
-          {!!errors?.customerEmail && <ErrorMessage error={errors.customerEmail} />}
+          {!!errors?.[CUSTOMER_EMAIL] && <ErrorMessage error={errors[CUSTOMER_EMAIL]} />}
         </FormControl>
       </Grid>
 
-      <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
-        <FormControl error={!!errors?.invoiceNumber}>
-          <FormLabel htmlFor={ElementForm.INVOICE_NUMBER}>Invoice Number</FormLabel>
-          <Input id={ElementForm.INVOICE_NUMBER} {...register(ElementForm.INVOICE_NUMBER)} startDecorator='INV ' />
-          {!!errors?.invoiceNumber && <ErrorMessage error={errors.invoiceNumber} />}
+      <Grid xs={12} sm={6} sx={{ padding: 1 }}>
+        <FormControl error={!!errors?.[INVOICE_NUMBER]}>
+          <FormLabel htmlFor={INVOICE_NUMBER}>Invoice Number</FormLabel>
+          <Input id={INVOICE_NUMBER} {...register(INVOICE_NUMBER)} startDecorator='INV ' />
+          {!!errors?.[INVOICE_NUMBER] && <ErrorMessage error={errors[INVOICE_NUMBER]} />}
         </FormControl>
       </Grid>
 
-      <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
-        <FormControl error={!!errors?.customerName}>
-          <FormLabel htmlFor={ElementForm.CUSTOMER_NAME}>Customer Name</FormLabel>
-          <Input id={ElementForm.CUSTOMER_NAME} {...register(ElementForm.CUSTOMER_NAME)} />
-          {!!errors?.customerName && <ErrorMessage error={errors.customerName} />}
+      <Grid xs={12} sm={6} sx={{ padding: 1 }}>
+        <FormControl error={!!errors?.[CUSTOMER_NAME]}>
+          <FormLabel htmlFor={CUSTOMER_NAME}>Customer Name</FormLabel>
+          <Input id={CUSTOMER_NAME} {...register(CUSTOMER_NAME)} />
+          {!!errors?.[CUSTOMER_NAME] && <ErrorMessage error={errors[CUSTOMER_NAME]} />}
         </FormControl>
       </Grid>
 
-      <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
-        <FormControl error={!!errors?.status}>
-          <FormLabel htmlFor={ElementForm.STATUS}>Status</FormLabel>
+      <Grid xs={12} sm={6} sx={{ padding: 1 }}>
+        <FormControl error={!!errors?.[STATUS]}>
+          <FormLabel htmlFor={STATUS}>Status</FormLabel>
           <Controller
-            name={ElementForm.STATUS}
+            name={STATUS}
             control={control}
-            defaultValue=''
+            defaultValue={StatusOptionsEnum.PENDING}
             render={({ field }) => (
               <Select
                 {...field}
@@ -68,23 +70,23 @@ export default function NewElementForm(): JSX.Element {
               </Select>
             )}
           />
-          {!!errors?.status && <ErrorMessage error={errors.status} />}
+          {!!errors?.[STATUS] && <ErrorMessage error={errors[STATUS]} />}
         </FormControl>
       </Grid>
 
-      <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
-        <FormControl error={!!errors?.customerInitial}>
-          <FormLabel htmlFor={ElementForm.CUSTOMER_INITIAL}>Customer Initial</FormLabel>
-          <Input id={ElementForm.CUSTOMER_INITIAL} {...register(ElementForm.CUSTOMER_INITIAL)} />
-          {!!errors?.customerInitial && <ErrorMessage error={errors.customerInitial} />}
+      <Grid xs={12} sm={6} sx={{ padding: 1 }}>
+        <FormControl error={!!errors?.[CUSTOMER_INITIAL]}>
+          <FormLabel htmlFor={CUSTOMER_INITIAL}>Customer Initial</FormLabel>
+          <Input id={CUSTOMER_INITIAL} {...register(CUSTOMER_INITIAL)} />
+          {!!errors?.[CUSTOMER_INITIAL] && <ErrorMessage error={errors[CUSTOMER_INITIAL]} />}
         </FormControl>
       </Grid>
 
-      <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
-        <FormControl error={!!errors?.date}>
-          <FormLabel htmlFor={ElementForm.DATE}>Date</FormLabel>
-          <Input id={ElementForm.DATE} type='date' {...register(ElementForm.DATE)} />
-          {!!errors?.date && <ErrorMessage error={errors.date} />}
+      <Grid xs={12} sm={6} sx={{ padding: 1 }}>
+        <FormControl error={!!errors?.[DATE]}>
+          <FormLabel htmlFor={DATE}>Date</FormLabel>
+          <Input id={DATE} type='date' {...register(DATE)} />
+          {!!errors?.[DATE] && <ErrorMessage error={errors[DATE]} />}
         </FormControl>
       </Grid>
     </Grid>

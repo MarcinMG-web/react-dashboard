@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.5.12 (2024-08-13)
+
+### Features
+
+- add base on invoice page ([#16](https://github.com/MarcinMG-web/react-dashboard/issues/16)) ([39e5244](https://github.com/MarcinMG-web/react-dashboard/commit/39e524477a7a81f1e30cc9121b9a5e25f0ff75c5))
+- new invoice schema ([3a5d8d2](https://github.com/MarcinMG-web/react-dashboard/commit/3a5d8d2cf3dd19af6f477982f09f62b78b49ad36))
+- updated first screen ([b151f53](https://github.com/MarcinMG-web/react-dashboard/commit/b151f539b96db5c2c063ec759ffff7a501534090))
+
+### Bug Fixes
+
+- added defult values and destructuring enums ([d2d593c](https://github.com/MarcinMG-web/react-dashboard/commit/d2d593c5cd71f950c957c8b7d73c9563a715a43c))
+
 ### 0.4.12 (2024-07-25)
 
 ### Features

@@ -12,7 +12,7 @@ import { Button } from '@mui/joy'
 import NewElementForm from '../../components/NewElementForm'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { newElementSchema } from '../../schema/newElementSchema'
-import { ElementFormValues } from '../../types/newElementFormTypes'
+import { ElementFormValues, defaultElementFormValues } from '../../types/newElementFormTypes'
 import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../../api/firebase'
 import { ExpectedAPIFormat, dataPayloadNewElement } from '../../api/utils/dataPayloadNewElement'
@@ -32,6 +32,7 @@ export default function AddEditElementsModal(): JSX.Element {
   const onClose = () => dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: false, isEdit: false } })
 
   const methods = useForm<ElementFormValues>({
+    defaultValues: defaultElementFormValues,
     resolver: yupResolver(newElementSchema),
   })
 

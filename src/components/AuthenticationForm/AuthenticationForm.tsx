@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from '../../api/firebase.ts'
 import { useAppState } from '../../context/AppState.tsx'
 import { authSchema } from '../../schema/authenticationFormSchema.ts'
-import { AuthForm, FormValues } from '../../types/authenticationFormTypes.ts'
+import { AuthForm, FormValues, defaultAuthValues } from '../../types/authenticationFormTypes.ts'
 import RoutesEnum from '../../types/routesEnum.ts'
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage.tsx'
 import { useSnackbar } from 'notistack'
@@ -26,8 +26,11 @@ export default function AuthenticationForm(): JSX.Element {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
+    defaultValues: defaultAuthValues,
     resolver: yupResolver(authSchema),
   })
+
+  const { EMAIL, PASSWORD } = AuthForm
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -69,16 +72,16 @@ export default function AuthenticationForm(): JSX.Element {
 
   return (
     <form onSubmit={registerApp ? handleSubmit(onSubmitRegistration) : handleSubmit(onSubmitLogIn)}>
-      <FormControl error={!!errors?.email}>
+      <FormControl error={!!errors[EMAIL]}>
         <FormLabel>Email</FormLabel>
-        <Input type='email' {...register(AuthForm.EMAIL)} />
-        {!!errors?.email && <ErrorMessage error={errors.email} />}
+        <Input type='email' {...register(EMAIL)} />
+        {!!errors[EMAIL] && <ErrorMessage error={errors[EMAIL]} />}
       </FormControl>
 
-      <FormControl error={!!errors?.password}>
+      <FormControl error={!!errors[PASSWORD]}>
         <FormLabel>Password</FormLabel>
-        <Input type='password' {...register(AuthForm.PASSWORD)} />
-        {!!errors?.password && <ErrorMessage error={errors.password} />}
+        <Input type='password' {...register(PASSWORD)} />
+        {!!errors[PASSWORD] && <ErrorMessage error={errors[PASSWORD]} />}
       </FormControl>
 
       <Stack gap={4} sx={{ mt: 2 }}>
