@@ -2,7 +2,7 @@ import { Grid, FormControl, FormLabel, Input } from '@mui/joy'
 
 import ErrorMessage from '../../ui/ErrorMessage'
 import { useFormContext } from 'react-hook-form'
-import { InvoiceFields } from '../../types/invoiceFormTypes'
+import { InvoiceFields, InvoiceFormValues } from '../../types/invoiceFormTypes'
 
 export default function InvoiceHeader(): JSX.Element {
   const { NAME, INVOICE_NUMBER, PLACE, INVOICE_DATE, DUE_DATE } = InvoiceFields
@@ -10,7 +10,7 @@ export default function InvoiceHeader(): JSX.Element {
   const {
     register,
     formState: { errors },
-  } = useFormContext()
+  } = useFormContext<InvoiceFormValues>()
 
   return (
     <Grid container spacing={2} sx={{ width: '100%' }}>

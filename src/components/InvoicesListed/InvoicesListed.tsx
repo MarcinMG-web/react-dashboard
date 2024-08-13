@@ -1,17 +1,22 @@
-import { Button, Grid, Table, Input, Box } from '@mui/joy'
+import { Button, Grid, Table, Input, Box, FormControl } from '@mui/joy'
 import { useFieldArray, Controller, useFormContext } from 'react-hook-form'
 import DeleteForeverTwoToneIcon from '@mui/icons-material/DeleteForeverTwoTone'
 import AddIcon from '@mui/icons-material/Add'
 import NoData from '../../ui/NoData'
 
 import { calculateValues } from './utils/calculateValues'
-import { InvoiceFields, RowFields } from '../../types/invoiceFormTypes'
+import { InvoiceFields, InvoiceFormValues, RowFields } from '../../types/invoiceFormTypes'
+import ErrorMessage from '../../ui/ErrorMessage'
 
 export default function InvoicesListed(): JSX.Element {
   const { Rows } = InvoiceFields
   const { NAME, QUANTITY, NET_PRICE, VAT_RATE } = RowFields
 
-  const { control, watch } = useFormContext()
+  const {
+    control,
+    watch,
+    formState: { errors },
+  } = useFormContext<InvoiceFormValues>()
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -20,6 +25,7 @@ export default function InvoicesListed(): JSX.Element {
 
   const addRow = () => {
     append({
+      id: fields.length + 1,
       name: '',
       quantity: 0,
       netPrice: 0,
@@ -58,6 +64,11 @@ export default function InvoicesListed(): JSX.Element {
             fields.map((field, index) => {
               const { netValue, vatAmount, grossValue } = calculateValues(watchedRows[index])
 
+              const nameError = errors?.[Rows]?.[index]?.[NAME]
+              const quantityError = errors?.[Rows]?.[index]?.[QUANTITY]
+              const netPriceError = errors?.[Rows]?.[index]?.[NET_PRICE]
+              const vatRateError = errors?.[Rows]?.[index]?.[VAT_RATE]
+
               return (
                 <tr key={field.id}>
                   <td>{index + 1}</td>
@@ -65,21 +76,36 @@ export default function InvoicesListed(): JSX.Element {
                     <Controller
                       name={`${Rows}.${index}.${NAME}`}
                       control={control}
-                      render={({ field }) => <Input {...field} />}
+                      render={({ field }) => (
+                        <FormControl error={!!nameError}>
+                          <Input {...field} />
+                          {nameError && <ErrorMessage error={nameError} errorInArray='10px' />}
+                        </FormControl>
+                      )}
                     />
                   </td>
                   <td>
                     <Controller
                       name={`${Rows}.${index}.${QUANTITY}`}
                       control={control}
-                      render={({ field }) => <Input {...field} sx={{ width: '6ch' }} />}
+                      render={({ field }) => (
+                        <FormControl error={!!quantityError}>
+                          <Input {...field} sx={{ width: '6ch' }} />
+                          {quantityError && <ErrorMessage error={quantityError} errorInArray='10px' />}
+                        </FormControl>
+                      )}
                     />
                   </td>
                   <td>
                     <Controller
                       name={`${Rows}.${index}.${NET_PRICE}`}
                       control={control}
-                      render={({ field }) => <Input {...field} sx={{ width: '8ch' }} />}
+                      render={({ field }) => (
+                        <FormControl error={!!netPriceError}>
+                          <Input {...field} sx={{ width: '8ch' }} />
+                          {netPriceError && <ErrorMessage error={netPriceError} errorInArray='10px' />}
+                        </FormControl>
+                      )}
                     />
                   </td>
                   <td>{netValue}</td>
@@ -87,7 +113,12 @@ export default function InvoicesListed(): JSX.Element {
                     <Controller
                       name={`${Rows}.${index}.${VAT_RATE}`}
                       control={control}
-                      render={({ field }) => <Input {...field} sx={{ width: '6ch' }} />}
+                      render={({ field }) => (
+                        <FormControl error={!!vatRateError}>
+                          <Input {...field} sx={{ width: '6ch' }} />
+                          {vatRateError && <ErrorMessage error={vatRateError} errorInArray='10px' />}
+                        </FormControl>
+                      )}
                     />
                   </td>
                   <td>{vatAmount}</td>

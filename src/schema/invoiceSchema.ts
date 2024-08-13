@@ -6,8 +6,8 @@ export const invoiceSchema = Yup.object().shape({
     .of(
       Yup.object().shape({
         [RowFields.ID]: Yup.number().required('Product name is required'),
-        [RowFields.NAME]: Yup.string().required('Quantity is required').min(1, 'Quantity must be at least 1'),
-        [RowFields.QUANTITY]: Yup.number().required('Price is required').min(1, 'Price cannot be negative or 0'),
+        [RowFields.NAME]: Yup.string().required('Name is required').min(1, 'Quantity must be at least 1'),
+        [RowFields.QUANTITY]: Yup.number().required('Quantity is required').min(1, 'Quantity cannot be negative or 0'),
         [RowFields.NET_PRICE]: Yup.number().required('Net price is required').min(0, 'Net price cannot be negative'),
         [RowFields.VAT_RATE]: Yup.number()
           .required('VAT rate is required')
@@ -18,9 +18,8 @@ export const invoiceSchema = Yup.object().shape({
     .required(),
   [InvoiceFields.PLACE]: Yup.string().required('Place is required'),
   [InvoiceFields.INVOICE_DATE]: Yup.string().required(),
-  [InvoiceFields.DUE_DATE]: Yup.string()
-    .required('Due date is required')
-    .min(Yup.ref(InvoiceFields.INVOICE_DATE), 'Due date cannot be before the invoice date'),
+  [InvoiceFields.DUE_DATE]: Yup.string().required('Due date is required'),
+
   [InvoiceFields.SELLER_COMPANY_NAME]: Yup.string().required('Seller company name is required'),
   [InvoiceFields.SELLER_NIP]: Yup.string()
     .required('Seller NIP is required')

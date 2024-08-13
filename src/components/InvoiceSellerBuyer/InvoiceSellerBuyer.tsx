@@ -1,7 +1,7 @@
 import { Grid, FormControl, FormLabel, Input, Typography } from '@mui/joy'
 import ErrorMessage from '../../ui/ErrorMessage'
 import { useFormContext } from 'react-hook-form'
-import { InvoiceFields } from '../../types/invoiceFormTypes'
+import { InvoiceFields, InvoiceFormValues } from '../../types/invoiceFormTypes'
 
 export default function InvoiceSellerBuyer(): JSX.Element {
   const { SELLER_COMPANY_NAME, SELLER_ADDRESS, SELLER_NIP, BUYER_COMPANY_NAME, BUYER_ADDRESS, BUYER_NIP } =
@@ -10,12 +10,12 @@ export default function InvoiceSellerBuyer(): JSX.Element {
   const {
     register,
     formState: { errors },
-  } = useFormContext()
+  } = useFormContext<InvoiceFormValues>()
 
   return (
     <>
       <Grid container spacing={2} sx={{ width: '100%', marginTop: 2 }}>
-        <Grid xs={12} sm={6} sx={{ boxSizing: 'border-box', padding: 1 }}>
+        <Grid xs={12} sm={6} sx={{ padding: 1 }}>
           <Typography level='h4'>Seller</Typography>
 
           <FormControl error={!!errors[SELLER_COMPANY_NAME]}>

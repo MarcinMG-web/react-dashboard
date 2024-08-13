@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, Grid, Input, Select, Option } from '@mui/joy'
 import { Controller, useFormContext } from 'react-hook-form'
-import { InvoiceFields, PaymentOptionsEnum } from '../../types/invoiceFormTypes'
+import { InvoiceFields, InvoiceFormValues, PaymentOptionsEnum } from '../../types/invoiceFormTypes'
 import ErrorMessage from '../../ui/ErrorMessage'
 
 export default function InvoicePaymentAndPreferences(): JSX.Element {
@@ -10,7 +10,7 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
     register,
     control,
     formState: { errors },
-  } = useFormContext()
+  } = useFormContext<InvoiceFormValues>()
 
   return (
     <Grid sx={{ width: '98%', marginTop: 2 }}>
@@ -34,7 +34,7 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
             </Select>
           )}
         />
-        {!!errors?.status && <ErrorMessage error={errors.status} />}
+        {!!errors?.[PAYMENT_METHOD] && <ErrorMessage error={errors[PAYMENT_METHOD]} />}
       </FormControl>
       <FormControl error={!!errors[WITHIN]} sx={{ marginTop: 2 }}>
         <FormLabel htmlFor={WITHIN}>Within</FormLabel>

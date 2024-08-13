@@ -2,11 +2,8 @@ import Stepper from '@mui/joy/Stepper'
 import Step, { stepClasses } from '@mui/joy/Step'
 import StepIndicator from '@mui/joy/StepIndicator'
 import Typography, { typographyClasses } from '@mui/joy/Typography'
-
 import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded'
-
 import AppRegistrationTwoToneIcon from '@mui/icons-material/AppRegistrationTwoTone'
-
 import PaymentTwoToneIcon from '@mui/icons-material/PaymentTwoTone'
 import SpeakerNotesTwoToneIcon from '@mui/icons-material/SpeakerNotesTwoTone'
 import { Box, Button, Stack } from '@mui/joy'
@@ -19,19 +16,24 @@ import { enqueueSnackbar } from 'notistack'
 import { generatePDF } from '../../pages/InvoicePage/utils/generateInvoicePDF'
 import { RefObject, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { validationByStep } from './utils/validationByStep'
 
 interface NewInvoiceFormProps {
   componentRef: RefObject<HTMLDivElement>
 }
 
 export default function NewInvoiceForm({ componentRef }: NewInvoiceFormProps): JSX.Element {
-  const { reset } = useFormContext()
-
+  const { reset, trigger } = useFormContext()
   const [activeStep, setActiveStep] = useState(0)
 
   const handleNext = async () => {
-    if (activeStep < 3) {
+    const fieldsToValidate = validationByStep(activeStep)
+    const valid = await trigger(fieldsToValidate)
+
+    if (valid && activeStep < steps.length) {
       setActiveStep((prev) => prev + 1)
+    } else if (!valid) {
+      enqueueSnackbar('Please fill in all required fields!', { variant: 'error' })
     }
   }
 

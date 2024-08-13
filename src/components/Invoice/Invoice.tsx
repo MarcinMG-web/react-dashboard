@@ -51,14 +51,14 @@ export default function Invoice(): JSX.Element {
           <Stack spacing={1} alignItems='flex-start'>
             <Typography level='h3'>Seller</Typography>
             <Typography>Company Name: {sellerCompanyName}</Typography>
-            <Typography>Nip: {sellerNip}</Typography>
+            <Typography>NIP: {sellerNip}</Typography>
             <Typography>Address: {sellerAddress}</Typography>
           </Stack>
 
           <Stack spacing={1} alignItems='flex-end'>
             <Typography level='h3'>Buyer</Typography>
             <Typography>Company Name: {buyerCompanyName}</Typography>
-            <Typography>Nip: {buyerNip}</Typography>
+            <Typography>NIP: {buyerNip}</Typography>
             <Typography>Address: {buyerAddress}</Typography>
           </Stack>
         </Stack>
