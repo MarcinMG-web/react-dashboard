@@ -46,7 +46,6 @@ export default function App(): JSX.Element {
       path: RoutesEnum.ORDERS,
       component: (
         <ProtectedRoute>
-          {/* <InvoicePage /> */}
           <OrdersPage />
         </ProtectedRoute>
       ),
