@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.5.12 (2024-08-13)
+
+### Features
+
+- add base on invoice page ([#16](https://github.com/MarcinMG-web/react-dashboard/issues/16)) ([39e5244](https://github.com/MarcinMG-web/react-dashboard/commit/39e524477a7a81f1e30cc9121b9a5e25f0ff75c5))
+- add new form to add or eddit elements ([#6](https://github.com/MarcinMG-web/react-dashboard/issues/6)) ([2381d44](https://github.com/MarcinMG-web/react-dashboard/commit/2381d446cd7a114ae03d428a2f1b96336f8aa749))
+- add sceleton for main table ([#17](https://github.com/MarcinMG-web/react-dashboard/issues/17)) ([102a5b4](https://github.com/MarcinMG-web/react-dashboard/commit/102a5b478605331ba6e08b5fc1c5be101d0068f6))
+- added page locatore and fix name of routes, app ([#13](https://github.com/MarcinMG-web/react-dashboard/issues/13)) ([0f27853](https://github.com/MarcinMG-web/react-dashboard/commit/0f27853922229aa0edcdb4dd0e00cfa6858cb76f))
+- added pagination per pages ([#12](https://github.com/MarcinMG-web/react-dashboard/issues/12)) ([8e8c461](https://github.com/MarcinMG-web/react-dashboard/commit/8e8c4614278a00269c70383487404f963474ad07))
+- added posible to slecect stars and new invoice button ([#9](https://github.com/MarcinMG-web/react-dashboard/issues/9)) ([4fe9454](https://github.com/MarcinMG-web/react-dashboard/commit/4fe9454487591559c910ad7019ac960dd9aa9396))
+- added possible to download pdf with invoice ([6dd991f](https://github.com/MarcinMG-web/react-dashboard/commit/6dd991f60974d235f7431f6011ff3dd31947a670))
+- added preparing invoice ([972d89f](https://github.com/MarcinMG-web/react-dashboard/commit/972d89fec02ae410b108529640b4adb0da6e9346))
+- added psible to search and filter data ([#11](https://github.com/MarcinMG-web/react-dashboard/issues/11)) ([ab05515](https://github.com/MarcinMG-web/react-dashboard/commit/ab055153231c48a3295495e436c285c8667228ea))
+- new invoice schema ([3a5d8d2](https://github.com/MarcinMG-web/react-dashboard/commit/3a5d8d2cf3dd19af6f477982f09f62b78b49ad36))
+- updated first screen ([b151f53](https://github.com/MarcinMG-web/react-dashboard/commit/b151f539b96db5c2c063ec759ffff7a501534090))
+
+### Bug Fixes
+
+- added defult values and destructuring enums ([d2d593c](https://github.com/MarcinMG-web/react-dashboard/commit/d2d593c5cd71f950c957c8b7d73c9563a715a43c))
+- folder name ([c891c42](https://github.com/MarcinMG-web/react-dashboard/commit/c891c423f27043569971acf026e2d2a5543e15af))
+- folder name ([e3dbecf](https://github.com/MarcinMG-web/react-dashboard/commit/e3dbecf283ee878b3f4720abb1437f04d7571f36))
+- type and chip pending status ([4aa0f22](https://github.com/MarcinMG-web/react-dashboard/commit/4aa0f22df6a6a7138f08b73e398f8c6d04ec3ff3))
+
 ### 0.4.12 (2024-07-25)
 
 ### Features
