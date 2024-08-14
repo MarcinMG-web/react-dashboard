@@ -3,6 +3,11 @@ import { Controller, useFormContext } from 'react-hook-form'
 import ErrorMessage from '../../ui/ErrorMessage'
 import { ElementForm, ElementFormValues, StatusOptionsEnum } from '../../types/newElementFormTypes'
 import { useAppState } from '../../context/AppState'
+import MailTwoToneIcon from '@mui/icons-material/MailTwoTone'
+import PersonTwoToneIcon from '@mui/icons-material/PersonTwoTone'
+import BadgeTwoToneIcon from '@mui/icons-material/BadgeTwoTone'
+import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone'
+import AutorenewTwoToneIcon from '@mui/icons-material/AutorenewTwoTone'
 
 export default function NewElementForm(): JSX.Element {
   const {
@@ -25,6 +30,7 @@ export default function NewElementForm(): JSX.Element {
           <Input
             id={CUSTOMER_EMAIL}
             type='email'
+            startDecorator={<MailTwoToneIcon />}
             disabled={openModalAddEditElements.isEdit}
             {...register(CUSTOMER_EMAIL)}
           />
@@ -43,7 +49,7 @@ export default function NewElementForm(): JSX.Element {
       <Grid xs={12} sm={6} sx={{ padding: 1 }}>
         <FormControl error={!!errors?.[CUSTOMER_NAME]}>
           <FormLabel htmlFor={CUSTOMER_NAME}>Customer Name</FormLabel>
-          <Input id={CUSTOMER_NAME} {...register(CUSTOMER_NAME)} />
+          <Input id={CUSTOMER_NAME} {...register(CUSTOMER_NAME)} startDecorator={<PersonTwoToneIcon />} />
           {!!errors?.[CUSTOMER_NAME] && <ErrorMessage error={errors[CUSTOMER_NAME]} />}
         </FormControl>
       </Grid>
@@ -61,6 +67,7 @@ export default function NewElementForm(): JSX.Element {
                 value={field.value}
                 placeholder='Select option...'
                 onChange={(_, value) => field.onChange(value)}
+                startDecorator={<AutorenewTwoToneIcon />}
               >
                 {Object.entries(StatusOptionsEnum).map(([key, value]) => (
                   <Option key={key} value={value}>
@@ -77,7 +84,7 @@ export default function NewElementForm(): JSX.Element {
       <Grid xs={12} sm={6} sx={{ padding: 1 }}>
         <FormControl error={!!errors?.[CUSTOMER_INITIAL]}>
           <FormLabel htmlFor={CUSTOMER_INITIAL}>Customer Initial</FormLabel>
-          <Input id={CUSTOMER_INITIAL} {...register(CUSTOMER_INITIAL)} />
+          <Input id={CUSTOMER_INITIAL} {...register(CUSTOMER_INITIAL)} startDecorator={<BadgeTwoToneIcon />} />
           {!!errors?.[CUSTOMER_INITIAL] && <ErrorMessage error={errors[CUSTOMER_INITIAL]} />}
         </FormControl>
       </Grid>
@@ -85,7 +92,7 @@ export default function NewElementForm(): JSX.Element {
       <Grid xs={12} sm={6} sx={{ padding: 1 }}>
         <FormControl error={!!errors?.[DATE]}>
           <FormLabel htmlFor={DATE}>Date</FormLabel>
-          <Input id={DATE} type='date' {...register(DATE)} />
+          <Input id={DATE} type='date' {...register(DATE)} startDecorator={<CalendarMonthTwoToneIcon />} />
           {!!errors?.[DATE] && <ErrorMessage error={errors[DATE]} />}
         </FormControl>
       </Grid>

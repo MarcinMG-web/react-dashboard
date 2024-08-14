@@ -74,6 +74,12 @@ export const appReducer = (state: State, action: Action): State => {
         showSidebar: action.payload,
       }
 
+    case 'SET_COMPONENT_REF':
+      return {
+        ...state,
+        componentRef: action.payload,
+      }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
     }

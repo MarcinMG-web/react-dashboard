@@ -12,6 +12,7 @@ export default function OrdersPage(): JSX.Element {
   const {
     state: { openModalAddEditElements },
   } = useAppState()
+
   return (
     <>
       <CssBaseline />

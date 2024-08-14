@@ -1,4 +1,4 @@
-import { InvoiceFields, RowFields } from '../types/invoiceFormTypes'
+import { InvoiceFields, PaymentOptionsEnum, RowFields } from '../types/invoiceFormTypes'
 import * as Yup from 'yup'
 
 export const invoiceSchema = Yup.object().shape({
@@ -36,7 +36,10 @@ export const invoiceSchema = Yup.object().shape({
   [InvoiceFields.PAYMENT_METHOD]: Yup.string().required('Payment method is required'),
   [InvoiceFields.DEADLINE_OF_PAYMENT]: Yup.string().required('Deadline is required'),
   [InvoiceFields.WITHIN]: Yup.string().required('Within is required'),
-  [InvoiceFields.BANK_ACCOUNT_NUMBER]: Yup.string()
-    .required('Bank account number is required')
-    .matches(/^\d{26}$/, 'Bank account number must be 26 digits'),
+  [InvoiceFields.BANK_ACCOUNT_NUMBER]: Yup.string().when(InvoiceFields.PAYMENT_METHOD, {
+    is: PaymentOptionsEnum.DUE_TRANSFER,
+    then: (schema) =>
+      schema.required('Bank account number is required').matches(/^\d{26}$/, 'Bank account number must be 26 digits'),
+    otherwise: (schema) => schema.notRequired(),
+  }),
 })

@@ -2,7 +2,7 @@ import { useFormContext } from 'react-hook-form'
 import { Box, Divider, Stack, Table, Typography } from '@mui/joy'
 import NoData from '../../ui/NoData'
 import { calculateTotals, calculateValues } from '../InvoicesListed/utils/calculateValues'
-import { InvoiceFields, Row } from '../../types/invoiceFormTypes'
+import { InvoiceFields, PaymentOptionsEnum, Row } from '../../types/invoiceFormTypes'
 
 export default function Invoice(): JSX.Element {
   const { watch } = useFormContext()
@@ -26,6 +26,8 @@ export default function Invoice(): JSX.Element {
   const deadlineOfPayment = watch(InvoiceFields.DEADLINE_OF_PAYMENT)
   const bankAccountNumber = watch(InvoiceFields.BANK_ACCOUNT_NUMBER)
   const notes = watch(InvoiceFields.NOTES)
+
+  const isBank = watch(InvoiceFields.PAYMENT_METHOD) === PaymentOptionsEnum.DUE_TRANSFER
 
   const addSpacesEveryFourChars = (value: string): string => value.replace(/(.{4})/g, '$1 ')
 
@@ -116,11 +118,14 @@ export default function Invoice(): JSX.Element {
             <Typography>Payment method: {paymentMethod}</Typography>
             <Typography>Within: {within}</Typography>
             <Typography>Deadline of payment: {deadlineOfPayment}</Typography>
-            <Typography>
-              Bank account number:
-              <br />
-              <b>{addSpacesEveryFourChars(bankAccountNumber)}</b>
-            </Typography>
+
+            {isBank ? (
+              <Typography>
+                Bank account number:
+                <br />
+                <b>{addSpacesEveryFourChars(bankAccountNumber)}</b>
+              </Typography>
+            ) : null}
           </Stack>
 
           <Stack spacing={1} alignItems='flex-end'>

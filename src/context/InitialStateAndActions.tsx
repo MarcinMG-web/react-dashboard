@@ -1,6 +1,7 @@
 import { User } from 'firebase/auth'
 import { State } from './Interface'
 import { DataRow } from '../components/OrderTable/utils/data'
+import { RefObject } from 'react'
 
 // Initial State
 export const initialState: State = {
@@ -18,6 +19,7 @@ export const initialState: State = {
   selectedCustomer: '',
   dataWithFilters: [],
   showSidebar: false,
+  componentRef: null,
 }
 
 // Actions
@@ -33,5 +35,6 @@ export type Action =
   | { type: 'SET_SELECTED_CUSTOMER'; payload: string }
   | { type: 'SET_DATA_WITH_FILTERS'; payload: DataRow[] }
   | { type: 'SET_SHOW_SIDEBAR'; payload: boolean }
+  | { type: 'SET_COMPONENT_REF'; payload: RefObject<HTMLDivElement> }
 
 export type Dispatch = (action: Action) => void

@@ -6,16 +6,24 @@ import { FormProvider, useForm } from 'react-hook-form'
 import NewInvoiceForm from '../../components/NewInvoiceForm'
 import Invoice from '../../components/Invoice'
 import { InvoiceFormValues, defaultInvoiceValues } from '../../types/invoiceFormTypes'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { invoiceSchema } from '../../schema/invoiceSchema'
+import { useAppState } from '../../context/AppState'
 
 export default function InvoicePage(): JSX.Element {
+  const { dispatch } = useAppState()
+
   const methods = useForm<InvoiceFormValues>({
     defaultValues: defaultInvoiceValues,
     resolver: yupResolver(invoiceSchema),
   })
   const componentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    dispatch({ type: 'SET_COMPONENT_REF', payload: componentRef })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [componentRef])
 
   return (
     <>
@@ -30,7 +38,7 @@ export default function InvoicePage(): JSX.Element {
 
           <Box width={{ xs: '100%', sm: '55%' }} order={{ xs: 1, sm: 2 }}>
             <Header />
-            <NewInvoiceForm componentRef={componentRef} />
+            <NewInvoiceForm />
           </Box>
         </FormProvider>
       </Box>
