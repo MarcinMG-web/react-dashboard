@@ -21,7 +21,7 @@ const {
 const { Rows } = InvoiceFields
 
 export const validationByStep = (activeStep: number) => {
-  let fieldsToValidate: string | readonly string[] | undefined = []
+  let fieldsToValidate: InvoiceFields[] = []
 
   switch (activeStep) {
     case 0:

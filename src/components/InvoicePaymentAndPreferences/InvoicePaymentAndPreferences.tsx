@@ -9,8 +9,11 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
   const {
     register,
     control,
+    watch,
     formState: { errors },
   } = useFormContext<InvoiceFormValues>()
+
+  const isBank = watch(PAYMENT_METHOD) === PaymentOptionsEnum.DUE_TRANSFER
 
   return (
     <Grid sx={{ width: '98%', marginTop: 2 }}>
@@ -36,11 +39,13 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
         />
         {!!errors?.[PAYMENT_METHOD] && <ErrorMessage error={errors[PAYMENT_METHOD]} />}
       </FormControl>
+
       <FormControl error={!!errors[WITHIN]} sx={{ marginTop: 2 }}>
         <FormLabel htmlFor={WITHIN}>Within</FormLabel>
         <Input size='sm' id={WITHIN} sx={{ width: '50%' }} startDecorator=' Within ' {...register(WITHIN)} />
         {!!errors[WITHIN] && <ErrorMessage error={errors[WITHIN]} />}
       </FormControl>
+
       <FormControl error={!!errors[DEADLINE_OF_PAYMENT]} sx={{ marginTop: 2 }}>
         <FormLabel htmlFor={DEADLINE_OF_PAYMENT}>Deadline</FormLabel>
         <Input
@@ -52,16 +57,19 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
         />
         {!!errors[DEADLINE_OF_PAYMENT] && <ErrorMessage error={errors[DEADLINE_OF_PAYMENT]} />}
       </FormControl>
-      <FormControl error={!!errors[BANK_ACCOUNT_NUMBER]} sx={{ marginTop: 2 }}>
-        <FormLabel htmlFor={BANK_ACCOUNT_NUMBER}>Bank account number</FormLabel>
-        <Input
-          size='sm'
-          id={BANK_ACCOUNT_NUMBER}
-          startDecorator='Bank account number '
-          {...register(BANK_ACCOUNT_NUMBER)}
-        />
-        {!!errors[BANK_ACCOUNT_NUMBER] && <ErrorMessage error={errors[BANK_ACCOUNT_NUMBER]} />}
-      </FormControl>
+
+      {isBank ? (
+        <FormControl error={!!errors[BANK_ACCOUNT_NUMBER]} sx={{ marginTop: 2 }}>
+          <FormLabel htmlFor={BANK_ACCOUNT_NUMBER}>Bank account number</FormLabel>
+          <Input
+            size='sm'
+            id={BANK_ACCOUNT_NUMBER}
+            startDecorator='Bank account number '
+            {...register(BANK_ACCOUNT_NUMBER)}
+          />
+          {!!errors[BANK_ACCOUNT_NUMBER] && <ErrorMessage error={errors[BANK_ACCOUNT_NUMBER]} />}
+        </FormControl>
+      ) : null}
     </Grid>
   )
 }

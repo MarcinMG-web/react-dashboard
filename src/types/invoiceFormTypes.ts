@@ -15,7 +15,7 @@ export type InvoiceFormValues = {
   [InvoiceFields.PAYMENT_METHOD]: string
   [InvoiceFields.DEADLINE_OF_PAYMENT]: string
   [InvoiceFields.WITHIN]: string
-  [InvoiceFields.BANK_ACCOUNT_NUMBER]: string
+  [InvoiceFields.BANK_ACCOUNT_NUMBER]?: string
 }
 
 export enum InvoiceFields {

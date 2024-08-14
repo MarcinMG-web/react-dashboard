@@ -1,5 +1,6 @@
 import { User } from 'firebase/auth'
 import { DataRow } from '../components/OrderTable/utils/data'
+import { RefObject } from 'react'
 
 // State
 export interface State {
@@ -14,4 +15,5 @@ export interface State {
   selectedCustomer: string
   dataWithFilters: DataRow[]
   showSidebar: boolean
+  componentRef: RefObject<HTMLDivElement> | null
 }
