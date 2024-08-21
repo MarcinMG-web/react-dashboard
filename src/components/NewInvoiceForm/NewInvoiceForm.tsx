@@ -9,7 +9,7 @@ import InvoiceSellerBuyer from '../InvoiceSellerBuyer'
 import InvoiceNotes from '../InvoiceNotes'
 import InvoicesListed from '../InvoicesListed'
 import InvoicePaymentAndPreferences from '../InvoicePaymentAndPreferences'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PaginationInvoice from '../PaginationInvoice'
 import StepperInvoice from '../StepperInvoice'
 import Invoice from '../Invoice'
@@ -17,10 +17,18 @@ import { useAppState } from '../../context/AppState'
 
 export default function NewInvoiceForm(): JSX.Element {
   const {
-    state: { openInvoiceModal, componentRef },
+    state: { openInvoiceModal },
+    dispatch,
   } = useAppState()
 
   const [activeStep, setActiveStep] = useState(0)
+
+  const componentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    dispatch({ type: 'SET_COMPONENT_REF', payload: componentRef })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [componentRef])
 
   const steps = [
     { title: 'Date', icon: <CalendarTodayRoundedIcon /> },

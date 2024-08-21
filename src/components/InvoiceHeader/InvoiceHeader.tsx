@@ -3,6 +3,9 @@ import { Grid, FormControl, FormLabel, Input } from '@mui/joy'
 import ErrorMessage from '../../ui/ErrorMessage'
 import { useFormContext } from 'react-hook-form'
 import { InvoiceFields, InvoiceFormValues } from '../../types/invoiceFormTypes'
+import DescriptionTwoToneIcon from '@mui/icons-material/DescriptionTwoTone'
+import AddLocationTwoToneIcon from '@mui/icons-material/AddLocationTwoTone'
+import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone'
 
 export default function InvoiceHeader(): JSX.Element {
   const { NAME, INVOICE_NUMBER, PLACE, INVOICE_DATE, DUE_DATE } = InvoiceFields
@@ -17,7 +20,7 @@ export default function InvoiceHeader(): JSX.Element {
       <Grid xs={12} sm={6} sx={{ padding: 1 }}>
         <FormControl error={!!errors[NAME]} sx={{ marginTop: 1 }}>
           <FormLabel htmlFor={NAME}>Name</FormLabel>
-          <Input size='sm' id={NAME} {...register(NAME)} />
+          <Input size='sm' id={NAME} startDecorator={<DescriptionTwoToneIcon />} {...register(NAME)} />
           {!!errors[NAME] && <ErrorMessage error={errors[NAME]} />}
         </FormControl>
 
@@ -31,19 +34,31 @@ export default function InvoiceHeader(): JSX.Element {
       <Grid xs={12} sm={6} sx={{ padding: 1 }}>
         <FormControl error={!!errors[PLACE]} sx={{ marginTop: 1 }}>
           <FormLabel htmlFor={PLACE}>Place</FormLabel>
-          <Input size='sm' id={PLACE} {...register(PLACE)} />
+          <Input size='sm' id={PLACE} startDecorator={<AddLocationTwoToneIcon />} {...register(PLACE)} />
           {!!errors[PLACE] && <ErrorMessage error={errors[PLACE]} />}
         </FormControl>
 
         <FormControl error={!!errors[INVOICE_DATE]} sx={{ marginTop: 2 }}>
           <FormLabel htmlFor={INVOICE_DATE}>Invoice Date</FormLabel>
-          <Input size='sm' id={INVOICE_DATE} type='date' {...register(INVOICE_DATE)} />
+          <Input
+            size='sm'
+            id={INVOICE_DATE}
+            type='date'
+            startDecorator={<CalendarMonthTwoToneIcon />}
+            {...register(INVOICE_DATE)}
+          />
           {!!errors[INVOICE_DATE] && <ErrorMessage error={errors[INVOICE_DATE]} />}
         </FormControl>
 
         <FormControl error={!!errors[DUE_DATE]} sx={{ marginTop: 2 }}>
           <FormLabel htmlFor={DUE_DATE}>Due Date</FormLabel>
-          <Input size='sm' id={DUE_DATE} type='date' {...register(DUE_DATE)} />
+          <Input
+            size='sm'
+            id={DUE_DATE}
+            type='date'
+            startDecorator={<CalendarMonthTwoToneIcon />}
+            {...register(DUE_DATE)}
+          />
           {!!errors[DUE_DATE] && <ErrorMessage error={errors[DUE_DATE]} />}
         </FormControl>
       </Grid>
