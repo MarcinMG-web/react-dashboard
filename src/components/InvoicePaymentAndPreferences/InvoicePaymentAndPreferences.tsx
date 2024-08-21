@@ -2,6 +2,9 @@ import { FormControl, FormLabel, Grid, Input, Select, Option } from '@mui/joy'
 import { Controller, useFormContext } from 'react-hook-form'
 import { InvoiceFields, InvoiceFormValues, PaymentOptionsEnum } from '../../types/invoiceFormTypes'
 import ErrorMessage from '../../ui/ErrorMessage'
+import AutorenewTwoToneIcon from '@mui/icons-material/AutorenewTwoTone'
+import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone'
+import AccountBalanceWalletTwoToneIcon from '@mui/icons-material/AccountBalanceWalletTwoTone'
 
 export default function InvoicePaymentAndPreferences(): JSX.Element {
   const { PAYMENT_METHOD, WITHIN, DEADLINE_OF_PAYMENT, BANK_ACCOUNT_NUMBER } = InvoiceFields
@@ -27,6 +30,7 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
               {...field}
               value={field.value}
               placeholder='Select option...'
+              startDecorator={<AutorenewTwoToneIcon />}
               onChange={(_, value) => field.onChange(value)}
             >
               {Object.entries(PaymentOptionsEnum).map(([key, value]) => (
@@ -52,6 +56,7 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
           size='sm'
           id={DEADLINE_OF_PAYMENT}
           type='date'
+          startDecorator={<CalendarMonthTwoToneIcon />}
           sx={{ width: '50%' }}
           {...register(DEADLINE_OF_PAYMENT)}
         />
@@ -64,7 +69,7 @@ export default function InvoicePaymentAndPreferences(): JSX.Element {
           <Input
             size='sm'
             id={BANK_ACCOUNT_NUMBER}
-            startDecorator='Bank account number '
+            startDecorator={<AccountBalanceWalletTwoToneIcon />}
             {...register(BANK_ACCOUNT_NUMBER)}
           />
           {!!errors[BANK_ACCOUNT_NUMBER] && <ErrorMessage error={errors[BANK_ACCOUNT_NUMBER]} />}

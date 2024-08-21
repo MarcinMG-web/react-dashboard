@@ -1,4 +1,5 @@
 import { Stepper, stepClasses, typographyClasses, Step, StepIndicator, Box, Typography } from '@mui/joy'
+import { useAppState } from '../../context/AppState'
 
 interface StepperInvoiceProps {
   activeStep: number
@@ -9,6 +10,21 @@ interface StepperInvoiceProps {
 }
 
 export default function StepperInvoice({ activeStep, steps }: StepperInvoiceProps): JSX.Element {
+  const {
+    state: { openInvoiceModal },
+  } = useAppState()
+
+  const getStepColor = (index: number) => {
+    switch (true) {
+      case openInvoiceModal:
+        return 'primary'
+      case activeStep === index:
+        return 'success'
+      default:
+        return 'neutral'
+    }
+  }
+
   return (
     <Stepper
       orientation='horizontal'
@@ -38,7 +54,7 @@ export default function StepperInvoice({ activeStep, steps }: StepperInvoiceProp
           completed={activeStep > index}
           active={activeStep === index}
           indicator={
-            <StepIndicator variant='soft' color={activeStep === index ? 'success' : 'neutral'}>
+            <StepIndicator variant='soft' color={getStepColor(index)}>
               {step.icon}
             </StepIndicator>
           }

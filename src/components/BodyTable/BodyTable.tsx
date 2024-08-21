@@ -40,6 +40,8 @@ export default function BodyTable({ displayedRows }: BodyTableProps): JSX.Elemen
     dispatch({ type: 'SET_OPEN_DELETED_MODAL', payload: true })
   }
 
+  const onClickOpenInvoiceModal = () => dispatch({ type: 'SET_OPEN_INVOICE_MODAL', payload: true })
+
   return (
     <>
       {displayedRows.map((row: DataRow) => (
@@ -93,7 +95,7 @@ export default function BodyTable({ displayedRows }: BodyTableProps): JSX.Elemen
               </Tooltip>
 
               <Tooltip title='Invoice' color='primary' placement='top-end'>
-                <Button color='primary' variant='plain' size='md'>
+                <Button color='primary' variant='plain' size='md' onClick={onClickOpenInvoiceModal}>
                   <DescriptionIcon />
                 </Button>
               </Tooltip>

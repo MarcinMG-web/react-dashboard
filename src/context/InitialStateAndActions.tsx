@@ -13,6 +13,7 @@ export const initialState: State = {
     isEdit: false,
   },
   openDeletedModal: false,
+  openInvoiceModal: false,
   selectedId: '',
   queryText: '',
   selectedStatus: '',
@@ -29,6 +30,7 @@ export type Action =
   | { type: 'SET_REGISTER_APP'; payload: boolean }
   | { type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS'; payload: { modal: boolean; isEdit: boolean } }
   | { type: 'SET_OPEN_DELETED_MODAL'; payload: boolean }
+  | { type: 'SET_OPEN_INVOICE_MODAL'; payload: boolean }
   | { type: 'SET_SELECTED_ID'; payload: string }
   | { type: 'SET_QUERY_TEXT'; payload: string }
   | { type: 'SET_SELECTED_STATUS'; payload: string }

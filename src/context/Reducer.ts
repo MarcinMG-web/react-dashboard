@@ -38,6 +38,12 @@ export const appReducer = (state: State, action: Action): State => {
         openDeletedModal: action.payload,
       }
 
+    case 'SET_OPEN_INVOICE_MODAL':
+      return {
+        ...state,
+        openInvoiceModal: action.payload,
+      }
+
     case 'SET_SELECTED_ID':
       return {
         ...state,

@@ -25,26 +25,18 @@ export const validationByStep = (activeStep: number) => {
 
   switch (activeStep) {
     case 0:
-      fieldsToValidate = [
-        NAME,
-        INVOICE_NUMBER,
-        PLACE,
-        INVOICE_DATE,
-        DUE_DATE,
-        SELLER_COMPANY_NAME,
-        SELLER_ADDRESS,
-        SELLER_NIP,
-        BUYER_COMPANY_NAME,
-        BUYER_ADDRESS,
-        BUYER_NIP,
-      ]
+      fieldsToValidate = [NAME, INVOICE_NUMBER, PLACE, INVOICE_DATE, DUE_DATE]
       break
 
     case 1:
-      fieldsToValidate = [Rows]
+      fieldsToValidate = [SELLER_COMPANY_NAME, SELLER_ADDRESS, SELLER_NIP, BUYER_COMPANY_NAME, BUYER_ADDRESS, BUYER_NIP]
       break
 
     case 2:
+      fieldsToValidate = [Rows]
+      break
+
+    case 3:
       fieldsToValidate = [PAYMENT_METHOD, WITHIN, DEADLINE_OF_PAYMENT, BANK_ACCOUNT_NUMBER]
       break
 
