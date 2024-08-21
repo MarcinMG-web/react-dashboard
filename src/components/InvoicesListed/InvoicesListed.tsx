@@ -7,8 +7,13 @@ import NoData from '../../ui/NoData'
 import { calculateValues } from './utils/calculateValues'
 import { InvoiceFields, InvoiceFormValues, RowFields } from '../../types/invoiceFormTypes'
 import ErrorMessage from '../../ui/ErrorMessage'
+import { useAppState } from '../../context/AppState'
 
 export default function InvoicesListed(): JSX.Element {
+  const {
+    state: { openInvoiceModal },
+  } = useAppState()
+
   const { Rows } = InvoiceFields
   const { NAME, QUANTITY, NET_PRICE, VAT_RATE } = RowFields
 
@@ -40,7 +45,7 @@ export default function InvoicesListed(): JSX.Element {
   return (
     <Grid container spacing={2} sx={{ width: '98%', marginTop: '10px' }}>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', width: '100%', marginTop: '10px' }}>
-        <Button color='success' onClick={addRow}>
+        <Button color={openInvoiceModal ? 'primary' : 'success'} onClick={addRow}>
           <AddIcon />
         </Button>
       </Box>

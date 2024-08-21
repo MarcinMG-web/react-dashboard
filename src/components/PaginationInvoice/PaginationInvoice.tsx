@@ -17,7 +17,7 @@ interface PaginationInvoiceProps {
 
 export default function PaginationInvoice({ activeStep, setActiveStep, steps }: PaginationInvoiceProps): JSX.Element {
   const {
-    state: { componentRef },
+    state: { componentRef, openInvoiceModal },
   } = useAppState()
 
   const { reset, trigger } = useFormContext()
@@ -49,18 +49,20 @@ export default function PaginationInvoice({ activeStep, setActiveStep, steps }: 
     enqueueSnackbar('Success download .pdf file!', { variant: 'success' })
   }
 
+  const stepLength = openInvoiceModal ? steps.length : steps.length - 1
+
   return (
     <Stack width='98%' direction='row' justifyContent='space-between' padding={{ xs: '5px', sm: '10px' }}>
       <Button color='neutral' variant='outlined' onClick={handleBack} disabled={activeStep === 0}>
         Back
       </Button>
 
-      {activeStep === 3 ? (
+      {activeStep === stepLength ? (
         <Stack direction='row' spacing={1}>
           <Button color='danger' variant='outlined' onClick={resetAndStartAgain}>
             Reset & Start Again
           </Button>
-          <Button color='success' onClick={handlePrintClick}>
+          <Button color={openInvoiceModal ? 'primary' : 'success'} onClick={handlePrintClick}>
             Download Invoice
           </Button>
         </Stack>

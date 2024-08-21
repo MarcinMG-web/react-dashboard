@@ -7,6 +7,7 @@ import AddEditElementsModal from '../../ui/AddEditElementsModal'
 import DeletedModal from '../../ui/DeletedModal'
 import Sidebar from '../../ui/Sidebar'
 import { useAppState } from '../../context/AppState'
+import InvoiceModal from '../../ui/InvoiceModal'
 
 export default function OrdersPage(): JSX.Element {
   const {
@@ -40,6 +41,7 @@ export default function OrdersPage(): JSX.Element {
         >
           {openModalAddEditElements.modal && <AddEditElementsModal />}
           <DeletedModal />
+          <InvoiceModal />
 
           <OrdersBelt />
           <OrderTable />

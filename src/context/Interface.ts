@@ -9,6 +9,7 @@ export interface State {
   registerApp: boolean
   openModalAddEditElements: { modal: boolean; isEdit: boolean }
   openDeletedModal: boolean
+  openInvoiceModal: boolean
   selectedId: string
   queryText: string
   selectedStatus: string
