@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { FormProvider, useForm } from 'react-hook-form'
 import { invoiceSchema } from '../../schema/invoiceSchema'
 import { InvoiceFormValues, defaultInvoiceValues } from '../../types/invoiceFormTypes'
+import { Divider } from '@mui/joy'
 
 export default function DeletedModal(): JSX.Element {
   const {
@@ -47,6 +48,8 @@ export default function DeletedModal(): JSX.Element {
           <WarningRoundedIcon color='primary' />
           Invoice
         </DialogTitle>
+
+        <Divider />
 
         <DialogContent>
           <FormProvider {...methods}>
