@@ -6,14 +6,9 @@ import OrdersBelt from '../../components/OrdersBelt'
 import AddEditElementsModal from '../../ui/AddEditElementsModal'
 import DeletedModal from '../../ui/DeletedModal'
 import Sidebar from '../../ui/Sidebar'
-import { useAppState } from '../../context/AppState'
 import InvoiceModal from '../../ui/InvoiceModal'
 
 export default function OrdersPage(): JSX.Element {
-  const {
-    state: { openModalAddEditElements },
-  } = useAppState()
-
   return (
     <>
       <CssBaseline />
@@ -39,7 +34,7 @@ export default function OrdersPage(): JSX.Element {
             gap: 1,
           }}
         >
-          {openModalAddEditElements.modal && <AddEditElementsModal />}
+          <AddEditElementsModal />
           <DeletedModal />
           <InvoiceModal />
 

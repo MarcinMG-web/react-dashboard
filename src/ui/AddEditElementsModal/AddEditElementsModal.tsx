@@ -29,18 +29,20 @@ export default function AddEditElementsModal(): JSX.Element {
 
   const { enqueueSnackbar } = useSnackbar()
 
-  const onClose = () => dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: false, isEdit: false } })
-
   const methods = useForm<ElementFormValues>({
     defaultValues: defaultElementFormValues,
     resolver: yupResolver(newElementSchema),
   })
 
+  const onClose = () => {
+    dispatch({ type: 'SET_OPEN_MODAL_ADD_EDIT_ELEMENTS', payload: { modal: false, isEdit: false } })
+    methods.reset(defaultElementFormValues)
+  }
+
   useEffect(() => {
-    if (openModalAddEditElements.isEdit && selectedId) {
+    if (openModalAddEditElements.isEdit) {
       getDocumentById(selectedId)
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModalAddEditElements.isEdit, selectedId])
 
