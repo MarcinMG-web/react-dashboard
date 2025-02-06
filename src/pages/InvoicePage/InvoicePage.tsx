@@ -32,7 +32,16 @@ export default function InvoicePage(): JSX.Element {
 
       <Box display='flex' flexDirection={{ xs: 'column', sm: 'row' }} justifyContent='space-between' width='100%'>
         <FormProvider {...methods}>
-          <Box width={{ xs: '100%', sm: '45%' }} order={{ xs: 2, sm: 1 }} ref={componentRef}>
+          <Box
+            width={{
+              xs: '100%',
+              sm: '65%',
+              backgroundImage: 'url(src/assets/background.jpg)',
+              backgroundPosition: 'center',
+            }}
+            order={{ xs: 2, sm: 1 }}
+            ref={componentRef}
+          >
             <Invoice />
           </Box>
 
